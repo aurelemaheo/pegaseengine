@@ -8,12 +8,14 @@ public:
  PegaseEngine(); /* Constructor */
  ~PegaseEngine(); /* Destructor */
 
- void run();
+ void runEngine();
  void Stop();
  void addObject();
  void createScene();
- void displayScene();
+ void displayScene(); // Display scene with all created objects
  void switchPlainMesh(); 
+ void detectCollisions(); // Detect all possible collisions between objects on scene
+ void computeOnColls(); // Compute reaction of objects after collision
  void computePositions();
  void actionOnCollision(bool is_collision);
  
