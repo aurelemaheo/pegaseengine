@@ -16,12 +16,13 @@ public:
  void switchPlainMesh(); 
  void detectCollisions(); // Detect all possible collisions between objects on scene
  void computeOnColls(); // Compute reaction of objects after collision
- void computePositions();
+ void computePositions(); // Compute positions at each time step
  void actionOnCollision(bool is_collision);
  
 private:
 
  bool is_collision;
+ bool engine_running;
 };
 
 #endif //PEGASE_ENGINE_H
