@@ -14,10 +14,17 @@ void PegaseEngine::runEngine()
 {
 
  createScene();
+
  // Infinite loop computing the scene
- while(1)
+ while(engine_running)
  {
-  
+   displayObjects();
+
+   computePositions();
+
+   detectCollisions();
+
+   computeOnColls();   
  }
 
 }
