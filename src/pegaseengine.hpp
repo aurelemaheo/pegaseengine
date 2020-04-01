@@ -9,7 +9,7 @@ public:
  ~PegaseEngine(); /* Destructor */
 
  void runEngine();
- void Stop();
+ void stopEngine();
  void addObject();
  void createScene();
  void displayScene(); // Display scene with all created objects

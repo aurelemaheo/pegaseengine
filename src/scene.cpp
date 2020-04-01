@@ -11,10 +11,10 @@ Scene::Scene()
  int WindowName;
 
  //glutInit(&argcp, argv);
- glutInit(NULL, NULL);
- glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
+ //glutInit(NULL, NULL);
+ //glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 
- glutInitWindowSize(640,480);	
- WindowName = glutCreateWindow("Ma première fenêtre OpenGL !"); 
+ //glutInitWindowSize(640,480);	
+ //WindowName = glutCreateWindow("Ma première fenêtre OpenGL !"); 
 
 }

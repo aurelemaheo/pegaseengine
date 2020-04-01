@@ -12,7 +12,6 @@ file(
 	GLOB_RECURSE
 	source_files
 	src/*
-        include/*
 )
 
 #Binary name
