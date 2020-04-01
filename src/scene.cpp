@@ -1,6 +1,8 @@
 #include <iostream>
 
-#include <gl/glut.h>
+#include <GLUT/glut.h>
+
+#include "scene.hpp"
 
 Scene::Scene()
 {
@@ -8,7 +10,8 @@ Scene::Scene()
  char **argv = NULL;
  int WindowName;
 
- glutInit(&argcp, argv);
+ //glutInit(&argcp, argv);
+ glutInit(NULL, NULL);
  glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 
  glutInitWindowSize(640,480);	
