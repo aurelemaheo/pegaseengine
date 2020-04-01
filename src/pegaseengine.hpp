@@ -12,7 +12,7 @@ public:
  void stopEngine();
  void addObject();
  void createScene();
- void displayScene(); // Display scene with all created objects
+ void displayObjects(); // Display scene with all created objects
  void switchPlainMesh(); 
  void detectCollisions(); // Detect all possible collisions between objects on scene
  void computeOnColls(); // Compute reaction of objects after collision
