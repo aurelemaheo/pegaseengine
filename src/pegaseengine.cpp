@@ -13,7 +13,7 @@ PegaseEngine::~PegaseEngine() {}
 void PegaseEngine::runEngine()
 {
 
- createScene();
+ createObjects();
 
  // Infinite loop computing the scene
  while(engine_running)
@@ -34,7 +34,7 @@ void PegaseEngine::stopEngine()
 
 }
 
-void PegaseEngine::createScene()
+void PegaseEngine::createObjects()
 {
 
 }

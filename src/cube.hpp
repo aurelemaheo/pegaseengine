@@ -7,9 +7,9 @@ class Cube : public Solid
 {
 
 public:
- Cube(); /* Constructor */
- Cube(float dimensions); /* Constructor */
- ~Cube(); /* Destructor */
+ Cube(); 			/* Constructor */
+ Cube(float dims); 		/* Copy Constructor */
+ ~Cube(); 			/* Destructor */
 
 private:
   float _dimensions;
