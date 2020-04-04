@@ -28,3 +28,34 @@ void PegaseEngine::runEngine()
  }
 
 }
+
+void PegaseEngine::stopEngine()
+{
+
+}
+
+void PegaseEngine::createScene()
+{
+
+}
+
+
+void PegaseEngine::displayObjects()
+{
+
+}
+
+void PegaseEngine::detectCollisions()
+{
+
+}
+
+void PegaseEngine::computeOnColls()
+{
+
+}
+
+void PegaseEngine::computePositions()
+{
+
+}

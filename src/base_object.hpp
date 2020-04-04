@@ -1,14 +1,13 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-struct pos_s
+struct Pos
 {
  float _x;
  float _y;
  float _z;
 };
 
-typedef pos_s pos_t;
 
 class base_object
 {
@@ -18,8 +17,8 @@ public:
 
 private:
  float _weight;  
- pos_t _curr_pos;
- float _speed;
+ Pos  _curr_pos;
+ float _initial_speed;
  float _ang_speed;
   
 };
