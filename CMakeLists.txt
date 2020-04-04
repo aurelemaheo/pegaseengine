@@ -16,6 +16,6 @@ file(
 
 #Binary name
 add_executable(
-  pg
+  pegaseengine
   ${source_files}
 )

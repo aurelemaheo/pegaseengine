@@ -1,9 +1,9 @@
 #ifndef SPHERE_H
 #define SPHERE_H
 
-#include "base_object.hpp"
+#include "solid.hpp"
 
-class Sphere: public base_object
+class Sphere: public Solid
 {
 
 public:

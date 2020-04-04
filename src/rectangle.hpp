@@ -1,9 +1,9 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
-//#include "base_object.hpp"
+#include "solid.hpp"
 
-class Rectangle
+class Rectangle : public Solid
 {
 
 public:
