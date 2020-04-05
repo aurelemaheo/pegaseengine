@@ -18,7 +18,7 @@ class Solid
     };
 
   private:
-
+    int   _Id;             // Object identifier
     float _weight;  
     Pos  _curr_pos;        // Position (x,y,z) of the solid at t time
     float _initial_speed;
