@@ -1,5 +1,6 @@
 #ifndef SOLID_H
 #define SOLID_H
+
 /*
 Base class defining a solid object
 */

@@ -1,10 +1,20 @@
-
 #include <iostream>
+#include <thread>
 
 #include "pegaseengine.hpp"
+#include "collisionmanager.hpp"
 
 /* Constructor */
-PegaseEngine::PegaseEngine() {}
+PegaseEngine::PegaseEngine() 
+{
+
+ std::cout << "PegaseEngine constructor ... " << std::endl;
+
+ CollisionManager *cm = new CollisionManager();
+ std::thread collThread(&CollisionManager::collListener, cm);
+ collThread.join();
+
+}
 
 /* Destructor */
 PegaseEngine::~PegaseEngine() {}
