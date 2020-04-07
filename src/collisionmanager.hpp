@@ -2,6 +2,7 @@
 #define COLLISION_MANAGER_H
 
 #include <iostream>
+#include <map>
 #include <thread>
 
 class CollisionManager
@@ -13,7 +14,7 @@ class CollisionManager
     void collListener();
 
   private:
-
+    std::map<int, float> mapSolidPos; // Map storing Solid identifiers as keys and for each solid its associated position
    //std::thread collThread(collListener);
 };
 
