@@ -17,4 +17,4 @@ class CollisionManager
    //std::thread collThread(collListener);
 };
 
-#endif COLLISION_MANAGER_H
+#endif // COLLISION_MANAGER_H
