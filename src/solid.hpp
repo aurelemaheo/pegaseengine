@@ -23,6 +23,7 @@ class Solid
     Pos  _curr_pos;        // Position (x,y,z) of the solid at t time
     float _initial_speed;
     float _ang_speed;      // Angular velocity (rad/sec) 
+    bool is_colliding;     // Boolean notifying whether solid is colliding with another object or not
   
 };
 
