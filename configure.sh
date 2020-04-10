@@ -7,6 +7,10 @@ source env_pegase_engine
 
 cd thirdparty
 rm -rf *
+# Download boost::property_tree
+git clone https://github.com/boostorg/property_tree.git
+
+# Download and install jsoncpp
 git clone https://github.com/open-source-parsers/jsoncpp.git
 cd jsoncpp
 cmake .
