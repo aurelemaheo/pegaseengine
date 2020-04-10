@@ -8,7 +8,7 @@ class Solid
 {
   public:
 
-    virtual void setForce(float newton, int x, int y, int z) = 0;
+    //virtual void setForce(float newton, int x, int y, int z) = 0;
 
     struct Pos
     {
@@ -27,4 +27,4 @@ class Solid
   
 };
 
-#endif SOLID_H
+#endif //SOLID_H

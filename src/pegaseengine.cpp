@@ -44,6 +44,14 @@ void PegaseEngine::stopEngine()
 
 }
 
+/* 
+* Load objects (plan, solids) from an external source into the scene
+*/
+void PegaseEngine::loadObjects()
+{
+
+}
+
 void PegaseEngine::createObjects()
 {
 

@@ -1,6 +1,10 @@
 #ifndef PEGASE_ENGINE_H
 #define PEGASE_ENGINE_H
 
+#include <list>
+
+#include "solid.hpp"
+
 class PegaseEngine
 {
 public:
@@ -24,6 +28,8 @@ private:
 
  bool is_collision;
  bool engine_running;
+ std::list<Solid> listSolids;  
+ 
 };
 
 #endif //PEGASE_ENGINE_H
