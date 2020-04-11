@@ -1,0 +1,19 @@
+{
+	"scene" :
+        {
+                "plan" :
+                {
+                 
+		},
+        	"objects" :	
+		{
+  		  "sphere" :
+                  {
+                    "size" :,
+                    "weight" :,
+                    "position" :,
+                    "speed" :
+		  }	  
+  		}
+        }
+}
