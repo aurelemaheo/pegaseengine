@@ -35,7 +35,7 @@ class Solid
     int   	_Id;          	       // Object identifier
     float 	_weight;               // Weight of the solid
     Pos  	_curr_pos; 	       // Position (x,y,z) of the solid at t time
-    lVelocity   _initial_speed;        // Linear velocity (x,y,z)
+    lVelocity   _linear_speed;         // Linear velocity (x,y,z)
     float 	_ang_speed;            // Angular velocity (rad/sec) 
     bool 	is_colliding;          // Boolean notifying whether solid is colliding with another object or not
   
