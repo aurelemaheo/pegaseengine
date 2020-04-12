@@ -16,6 +16,13 @@ class Solid
       float _y;
       float _z;
     };
+  
+    struct Velocity
+    {
+      float _x;
+      float _y;
+      float _z;
+    };
 
   private:
     int   _Id;             // Object identifier
