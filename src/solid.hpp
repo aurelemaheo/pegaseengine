@@ -17,7 +17,7 @@ class Solid
       float _z;
     };
   
-    struct Velocity
+    struct lVelocity
     {
       float _x;
       float _y;
@@ -25,12 +25,12 @@ class Solid
     };
 
   private:
-    int   _Id;             // Object identifier
+    int   _Id;          	   // Object identifier
     float _weight;  
-    Pos  _curr_pos;        // Position (x,y,z) of the solid at t time
-    float _initial_speed;
-    float _ang_speed;      // Angular velocity (rad/sec) 
-    bool is_colliding;     // Boolean notifying whether solid is colliding with another object or not
+    Pos  _curr_pos; 	       // Position (x,y,z) of the solid at t time
+    lVelocity _initial_speed;  // Linear velocity (x,y,z)
+    float _ang_speed;          // Angular velocity (rad/sec) 
+    bool is_colliding;         // Boolean notifying whether solid is colliding with another object or not
   
 };
 
