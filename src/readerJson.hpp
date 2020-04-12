@@ -8,5 +8,7 @@ class ReaderJson : public Reader
 {
   public:
    void loadJsonStream(string JsonStreamName); 
+   void parseJsonStream();
   private:
+   pt::ptree root;
 };

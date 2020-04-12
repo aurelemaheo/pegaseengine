@@ -10,6 +10,13 @@ class Solid
 
     //virtual void setForce(float newton, int x, int y, int z) = 0;
 
+    enum solid_type
+    {
+      SPHERE,
+      CUBE,
+      JOINT
+    };
+
     struct Pos
     {
       float _x;
@@ -25,12 +32,12 @@ class Solid
     };
 
   private:
-    int   _Id;          	   // Object identifier
-    float _weight;  
-    Pos  _curr_pos; 	       // Position (x,y,z) of the solid at t time
-    lVelocity _initial_speed;  // Linear velocity (x,y,z)
-    float _ang_speed;          // Angular velocity (rad/sec) 
-    bool is_colliding;         // Boolean notifying whether solid is colliding with another object or not
+    int   	_Id;          	       // Object identifier
+    float 	_weight;               // Weight of the solid
+    Pos  	_curr_pos; 	       // Position (x,y,z) of the solid at t time
+    lVelocity   _initial_speed;        // Linear velocity (x,y,z)
+    float 	_ang_speed;            // Angular velocity (rad/sec) 
+    bool 	is_colliding;          // Boolean notifying whether solid is colliding with another object or not
   
 };
 
