@@ -1,19 +1,30 @@
 {
-	"scene" :
-        {
-                "plan" :
-                {
+  "scene" :
+  {
+    "plan" :
+     {
                  
-		},
-        	"objects" :	
-		{
-  		  "sphere" :
-                  {
-                    "size" :,
-                    "weight" :,
-                    "position" :,
-                    "speed" :
-		  }	  
-  		}
-        }
+     },
+     "objects" :	
+     {
+       "sphere" :
+       {
+         "size" :,
+         "weight" :,
+         "initial position" :
+         {
+           "x": 3.0,
+           "y": 4.0,
+           "z": 2.0
+         },
+         "linear speed" :
+         {
+           "x": 3.0,
+           "y": 2.0,
+           "z": 3.0
+         },
+         "angular velocity" : "3.0" 
+       }	  
+     }
+  }
 }
