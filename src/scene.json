@@ -9,8 +9,26 @@
      {
        "sphere" :
        {
-         "size" :,
-         "weight" :,
+         "size" : 3.0,
+         "weight" : 2.0,
+         "initial position" :
+         {
+           "x": 3.0,
+           "y": 4.0,
+           "z": 2.0
+         },
+         "linear speed" :
+         {
+           "x": 3.0,
+           "y": 2.0,
+           "z": 3.0
+         },
+         "angular velocity" : "3.0" 
+       },
+       "sphere" :
+       {
+         "size" : 2.0,
+         "weight" : 5.0,
          "initial position" :
          {
            "x": 3.0,
@@ -25,6 +43,7 @@
          },
          "angular velocity" : "3.0" 
        }	  
+  
      }
   }
 }
