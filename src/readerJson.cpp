@@ -14,3 +14,9 @@ void readerJson::loadJsonStream(string jsonStreamName)
   pt::read_json(jsonStreamName, root);
 
 }
+
+void readerJson::parseJsonStream()
+{
+  string msgSolid = root.get<std::string>("scene.objects.type.sphere");  
+  
+}

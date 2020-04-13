@@ -5,27 +5,31 @@
      {
                  
      },
-     "objects" :	
-     {
-       "sphere" :
-       {
-         "size" : 3.0,
-         "weight" : 2.0,
-         "initial position" :
+     "objects" : [
+     { 
+         "type" : "sphere",
+         "content": 
          {
-           "x": 3.0,
-           "y": 4.0,
-           "z": 2.0
-         },
-         "linear speed" :
-         {
-           "x": 3.0,
-           "y": 2.0,
-           "z": 3.0
-         },
-         "angular velocity" : "3.0" 
+           "size" : 3.0,
+           "weight" : 2.0,
+           "initial position" :
+           {
+             "x": 3.0,
+             "y": 4.0,
+             "z": 2.0
+           },
+           "linear speed" :
+           {
+             "x": 3.0,
+             "y": 2.0,
+             "z": 3.0
+           },
+           "angular velocity" : "3.0" 
+         }
        },
-       "sphere" :
+       {
+       "type" : "sphere",
+       "content" :
        {
          "size" : 2.0,
          "weight" : 5.0,
@@ -43,7 +47,7 @@
          },
          "angular velocity" : "3.0" 
        }	  
-  
-     }
+      }
+     ]
   }
 }
