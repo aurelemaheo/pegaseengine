@@ -1,0 +1,44 @@
+{
+    "plan" :
+     {
+                 
+     },
+     "solids" : [
+     { 
+         "type" : "sphere",
+         "size" : 3.33,
+         "weight" : 2.12,
+         "position" :
+         {
+             "x": 3.0,
+             "y": 4.0,
+             "z": 2.0
+         },
+         "linvelocity" :
+         {
+           "x": 3.0,
+           "y": 2.0,
+           "z": 3.0
+         },
+         "angvelocity" : 3.0 
+     },
+     {
+       "type" : "sphere",
+       "size" : 2.54,
+       "weight" : 5.99,
+       "position" :
+       {
+         "x": 3.0,
+         "y": 4.0,
+         "z": 2.0
+       },
+       "linvelocity" :
+       {
+         "x": 3.0,
+         "y": 2.0,
+         "z": 3.0
+       },
+       "angvelocity" : 3.0 
+     }
+     ]
+}
