@@ -20,7 +20,7 @@ class ReaderJson : public Reader
    void parseJsonStream();
 
   private:
-   pt::ptree root;
+   //pt::ptree root;
    //std::list<Sphere> listSpheres;
 };
 

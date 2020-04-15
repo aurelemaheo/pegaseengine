@@ -1,11 +1,9 @@
 {
-  "scene" :
-  {
     "plan" :
      {
                  
      },
-     "objects" : [
+     "solids" : [
      { 
          "type" : "sphere",
          "content": 
@@ -49,5 +47,4 @@
        }	  
       }
      ]
-  }
 }

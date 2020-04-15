@@ -54,6 +54,7 @@ void PegaseEngine::loadObjects()
   std::cout << "PE: Load objects from external source ... " << std::endl;
 
   rj->loadJsonStream("scene.json"); 
+  rj->parseJsonStream();
 
 }
 
