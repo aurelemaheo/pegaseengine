@@ -35,8 +35,8 @@ void ReaderJson::parseJsonStream()
 
   for(pt::ptree::value_type &solid : root.get_child("solids"))
   {
-    float fsize = solid.second.get<float>("size");
-    float fweight = solid.second.get<float>("weight");
+    double fsize = solid.second.get<double>("size");
+    double fweight = solid.second.get<double>("weight");
     std::cout << "Read size: " << fsize << ", Read weight: " << fweight << std::endl;
 
     //pt::ptree::value_type ssize = root.get_child("size");
