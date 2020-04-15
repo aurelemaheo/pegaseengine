@@ -21,7 +21,7 @@ class ReaderJson : public Reader
 
   private:
    pt::ptree root;
-   std::list<Sphere> listSpheres;
+   //std::list<Sphere> listSpheres;
 };
 
 #endif //READERJSON_H

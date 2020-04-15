@@ -23,7 +23,8 @@ PegaseEngine::~PegaseEngine() {}
 void PegaseEngine::runEngine()
 {
 
- createObjects();
+ std::cout << "PE: run Engine " << std::endl;
+ loadObjects();
 
  // Infinite loop computing the scene
  while(engine_running)
@@ -49,14 +50,16 @@ void PegaseEngine::stopEngine()
 */
 void PegaseEngine::loadObjects()
 {
-  ReaderJson rj;
-  
+  //ReaderJson rj;
+  std::cout << "PE: Load objects from external source ... " << std::endl;
+
+  rj->loadJsonStream("scene.json"); 
 
 }
 
 void PegaseEngine::createObjects()
 {
-
+  
 }
 
 

@@ -16,6 +16,8 @@ namespace pt = boost::property_tree;
 
 void ReaderJson::loadJsonStream(std::string jsonStreamName)
 {
+  std::cout << "Load Json source " << std::endl;
+
   pt::ptree root;
   pt::read_json(jsonStreamName, root);
 
@@ -23,14 +25,18 @@ void ReaderJson::loadJsonStream(std::string jsonStreamName)
 
 void ReaderJson::parseJsonStream()
 {
+  std::cout << "Parse JSON source " << std::endl;
+ 
   std::string msgSolid = root.get<std::string>("scene.objects.type.sphere");  
 
-  Sphere s;
+  //Sphere s;
 
   for(pt::ptree::value_type &object : root.get_child("objects"))
   {
     float fsize = root.get<float>("size");
     float fweight = root.get<float>("weight");
+    std::cout << "Read size: " << fsize << ", Read weight : " << fweight << std::endl;
+
     //pt::ptree::value_type ssize = root.get_child("size");
     //std::string ssize = root.get_child("size");
     //s._radius = ssize.second.data();

@@ -9,28 +9,29 @@
 
 class PegaseEngine
 {
-public:
+  public:
 
- PegaseEngine(); /* Constructor */
- ~PegaseEngine(); /* Destructor */
+    PegaseEngine(); /* Constructor */
+    ~PegaseEngine(); /* Destructor */
 
- void runEngine();
- void stopEngine();
- void loadObjects();                            // Load objects of the scene (solids, plan) from an external source
- void addObject();
- void createObjects();
- void displayObjects(); 			// Display scene with all created objects
- void switchPlainMesh(); 
- void detectCollisions(); 			// Detect all possible collisions between objects on scene
- void computeOnColls(); 			// Compute reaction of objects after collision
- void computePositions(); 			// Compute positions at each time step
- void actionOnCollision(bool is_collision);
+    void runEngine();
+    void stopEngine();
+    void loadObjects();                         // Load objects of the scene (solids, plan) from an external source
+    void addObject();
+    void createObjects();
+    void displayObjects(); 			// Display scene with all created objects
+    void switchPlainMesh(); 
+    void detectCollisions(); 			// Detect all possible collisions between objects on scene
+    void computeOnColls(); 			// Compute reaction of objects after collision
+    void computePositions(); 			// Compute positions at each time step
+    void actionOnCollision(bool is_collision);
  
-private:
+  private:
 
- bool is_collision;
- bool engine_running;
- std::list<Sphere> listSpheres;   
+    bool is_collision;
+    bool engine_running;
+    std::list<Sphere> listSpheres;   
+    ReaderJson* rj;
  
 };
 

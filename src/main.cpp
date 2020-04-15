@@ -18,5 +18,7 @@ int main(int argc, char **argv)
 
  PegaseEngine pg;
 
+ pg.runEngine();
+
  return 0;
 }
