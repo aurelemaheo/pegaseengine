@@ -49,6 +49,8 @@ void PegaseEngine::stopEngine()
 */
 void PegaseEngine::loadObjects()
 {
+  ReaderJson rj;
+  
 
 }
 

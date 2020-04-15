@@ -5,6 +5,7 @@
 
 #include "solid.hpp"
 #include "sphere.hpp"
+#include "readerjson.hpp"
 
 class PegaseEngine
 {
@@ -29,7 +30,7 @@ private:
 
  bool is_collision;
  bool engine_running;
- std::list<Sphere> listSphere;   
+ std::list<Sphere> listSpheres;   
  
 };
 

@@ -12,8 +12,8 @@
 class Reader
 {
   public:
-    Reader();
-    ~Reader();
+    Reader(){}
+    ~Reader(){}
   private:
 
 };

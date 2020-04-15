@@ -1,5 +1,5 @@
-#ifndef READERJSON_H
-#define READERJSON_H
+//#ifndef READERJSON_H
+//#define READERJSON_H
 
 #include <iostream>
 
@@ -10,31 +10,34 @@
 
 namespace pt = boost::property_tree;
 
-ReaderJson::ReaderJson()
-{
-}
+//ReaderJson::ReaderJson()
+//{
+//}
 
 void ReaderJson::loadJsonStream(std::string jsonStreamName)
 {
-  pt::ptree_root;
+  pt::ptree root;
   pt::read_json(jsonStreamName, root);
 
 }
 
 void ReaderJson::parseJsonStream()
 {
-  string msgSolid = root.get<std::string>("scene.objects.type.sphere");  
+  std::string msgSolid = root.get<std::string>("scene.objects.type.sphere");  
 
   Sphere s;
 
-  for(pt::ptree::value_type &object : root::get_child("objects"))
+  for(pt::ptree::value_type &object : root.get_child("objects"))
   {
-    pt::ptree::value_type &size = root.get_child("size");
-    s._radius = size.second.data();
+    float fsize = root.get<float>("size");
+    float fweight = root.get<float>("weight");
+    //pt::ptree::value_type ssize = root.get_child("size");
+    //std::string ssize = root.get_child("size");
+    //s._radius = ssize.second.data();
     
-    listSpheres.insert(s);    
+    //listSpheres.insert(0,s);    
   }
   
 }
 
-#endif //READERJSON_H
+//#endif //READERJSON_H

@@ -10,9 +10,10 @@ public:
  Sphere(); /* Constructor */
  Sphere(float radius); /* Constructor */
  ~Sphere(); /* Destructor */
+ float _radius;
 
 private:
- float _radius;
+ //float _radius;
 };
 
 #endif // SPHERE_H
