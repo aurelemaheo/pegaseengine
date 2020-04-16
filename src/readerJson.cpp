@@ -17,6 +17,9 @@ pt::ptree root;
 //{
 //}
 
+/*
+* Load JSON Stream 
+*/
 void ReaderJson::loadJsonStream(std::string jsonStreamName)
 {
   std::cout << "Load Json source " << std::endl;
@@ -27,11 +30,14 @@ void ReaderJson::loadJsonStream(std::string jsonStreamName)
 
 }
 
+/*
+*  Parse JSON stream and populate Solid content
+*/
 void ReaderJson::parseJsonStream()
 {
   std::cout << "Parse JSON source " << std::endl;
   
-  StoreSolids ss;  
+  //StoreSolids ss;  
   Sphere s;
 
   for(pt::ptree::value_type &solid : root.get_child("solids"))
@@ -50,7 +56,6 @@ void ReaderJson::parseJsonStream()
     std::cout << "Position (x: " << posx << ", y: " << posy << ", z: " << posz << ")" << std::endl;
     std::cout << "Linear velocity (x: " << linvelx << ", y: " << linvely << ", z: " << linvelz << ")" << std::endl;
     std::cout << "Angular velocity: " << angvel << std::endl;
-    //pt::ptree::value_type ssize = root.get_child("size");
     //std::string ssize = root.get_child("size");
     s.setSize(dsize);
     s.setWeight(dweight);

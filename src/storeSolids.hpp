@@ -15,13 +15,12 @@ class StoreSolids
   public:
     StoreSolids(){}
     ~StoreSolids(){}
-    //std::list<Sphere> listSpheres;
     void addSolid(Sphere s){listSpheres.push_back(s);}
 
   private:
     std::list<Sphere> listSpheres;
 };
 
-//std::list<Sphere> StoreSolids::listSpheres = new std::list<Sphere>();
+static StoreSolids ss;
 
 #endif //STORESOLIDS_H

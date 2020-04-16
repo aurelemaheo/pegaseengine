@@ -6,7 +6,7 @@
 
 
 /* Constructor */
-Sphere::Sphere() {}
+//Sphere::Sphere() {}
 
 
 /* Destructor */

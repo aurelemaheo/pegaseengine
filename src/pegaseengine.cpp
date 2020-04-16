@@ -58,11 +58,6 @@ void PegaseEngine::loadObjects()
 
 }
 
-void PegaseEngine::createObjects()
-{
-  
-}
-
 
 void PegaseEngine::displayObjects()
 {

@@ -7,7 +7,7 @@ class Sphere: public Solid
 {
 
   public:
-    Sphere(); /* Constructor */
+    Sphere(){std::cout << "Sphere constructor" << std::endl;} //Constructor 
     Sphere(float radius); /* Constructor */
     ~Sphere(); /* Destructor */
 
