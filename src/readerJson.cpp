@@ -36,8 +36,8 @@ void ReaderJson::parseJsonStream()
 
   for(pt::ptree::value_type &solid : root.get_child("solids"))
   {
-    double fsize = solid.second.get<double>("size");
-    double fweight = solid.second.get<double>("weight");
+    double dsize = solid.second.get<double>("size");
+    double dweight = solid.second.get<double>("weight");
     double posx = solid.second.get<double>("position.x");
     double posy = solid.second.get<double>("position.y");
     double posz = solid.second.get<double>("position.z");
@@ -46,11 +46,17 @@ void ReaderJson::parseJsonStream()
     double linvelz = solid.second.get<double>("linvelocity.z");
     double angvel = solid.second.get<double>("angvelocity");
    
-    std::cout << "Read size: " << fsize << ", Read weight: " << fweight << std::endl;
+    std::cout << "Read size: " << dsize << ", Read weight: " << dweight << std::endl;
     std::cout << "Position (x: " << posx << ", y: " << posy << ", z: " << posz << ")" << std::endl;
+    std::cout << "Linear velocity (x: " << linvelx << ", y: " << linvely << ", z: " << linvelz << ")" << std::endl;
+    std::cout << "Angular velocity: " << angvel << std::endl;
     //pt::ptree::value_type ssize = root.get_child("size");
     //std::string ssize = root.get_child("size");
-    //s._radius = ssize.second.data();
+    s.setSize(dsize);
+    s.setWeight(dweight);
+    s.setPosition(posx,posy,posz);
+    s.setLinVelocity(linvelx,linvely,linvelz);
+    s.setAngVelocity(angvel);
     
     ss.addSolid(s); 
   }

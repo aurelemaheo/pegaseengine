@@ -6,14 +6,15 @@
 class Sphere: public Solid
 {
 
-public:
- Sphere(); /* Constructor */
- Sphere(float radius); /* Constructor */
- ~Sphere(); /* Destructor */
- float _radius;
+  public:
+    Sphere(); /* Constructor */
+    Sphere(float radius); /* Constructor */
+    ~Sphere(); /* Destructor */
 
-private:
- //float _radius;
+    void setSize(double size){_radius = size;} 
+
+  private:
+    double _radius;
 };
 
 #endif // SPHERE_H
