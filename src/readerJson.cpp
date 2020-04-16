@@ -41,6 +41,11 @@ void ReaderJson::parseJsonStream()
     double posx = solid.second.get<double>("position.x");
     double posy = solid.second.get<double>("position.y");
     double posz = solid.second.get<double>("position.z");
+    double linvelx = solid.second.get<double>("linvelocity.x");
+    double linvely = solid.second.get<double>("linvelocity.y");
+    double linvelz = solid.second.get<double>("linvelocity.z");
+    double angvel = solid.second.get<double>("angvelocity");
+   
     std::cout << "Read size: " << fsize << ", Read weight: " << fweight << std::endl;
     std::cout << "Position (x: " << posx << ", y: " << posy << ", z: " << posz << ")" << std::endl;
     //pt::ptree::value_type ssize = root.get_child("size");

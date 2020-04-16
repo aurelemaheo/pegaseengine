@@ -3,8 +3,7 @@
 
 #include <list>
 
-#include "solid.hpp"
-#include "sphere.hpp"
+//#include "sphere.hpp"
 #include "readerjson.hpp"
 #include "singleton.hpp"
 
@@ -31,7 +30,6 @@ class PegaseEngine
 
     bool is_collision;
     bool engine_running;
-    std::list<Sphere> listSpheres;   
     ReaderJson* rj;
  
 };

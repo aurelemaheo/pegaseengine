@@ -4,7 +4,7 @@
 #include <iostream>
 #include <list>
 
-#include "solid.hpp"
+//#include "solid.hpp"
 #include "sphere.hpp"
 
 /*
@@ -15,12 +15,13 @@ class StoreSolids
   public:
     StoreSolids(){}
     ~StoreSolids(){}
-    void addSolid(Sphere s){  listSpheres.push_back(s);}
+    //std::list<Sphere> listSpheres;
+    void addSolid(Sphere s){listSpheres.push_back(s);}
 
   private:
     std::list<Sphere> listSpheres;
-    std::list<Solid> listSolids;
 };
 
-#endif //STORESOLIDS_H
+//std::list<Sphere> StoreSolids::listSpheres = new std::list<Sphere>();
 
+#endif //STORESOLIDS_H

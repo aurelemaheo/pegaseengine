@@ -3,12 +3,9 @@
 
 #include <iostream>
 
-//#include "pegaseengine.hpp"
-
 /*
 * This class reads a configuration containing scene descriptions (objects, plan) 
 */
-
 class Reader
 {
   public:
