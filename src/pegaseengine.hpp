@@ -6,6 +6,7 @@
 #include "solid.hpp"
 #include "sphere.hpp"
 #include "readerjson.hpp"
+#include "singleton.hpp"
 
 class PegaseEngine
 {

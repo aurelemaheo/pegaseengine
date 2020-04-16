@@ -3,6 +3,8 @@
 
 #include "pegaseengine.hpp"
 
+typedef Singleton<PegaseEngine>  pgSingleton;
+
 void listenerEvents()
 {
   std::cout << "Listen to events" << std::endl;
@@ -15,10 +17,10 @@ int main(int argc, char **argv)
  threadListener.join();
 
  std::cout << "Pegase Engine start" << std::endl;
+ 
+ //pgSingleton::getInstance();
 
- PegaseEngine pg;
-
- pg.runEngine();
+ pgSingleton::getInstance()->runEngine();
 
  return 0;
 }
