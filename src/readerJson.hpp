@@ -3,10 +3,11 @@
 
 #include <iostream>
 
-#include "reader.hpp"
-
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
+
+#include "reader.hpp"
+#include "storesolids.hpp"
 
 namespace pt = boost::property_tree;
 

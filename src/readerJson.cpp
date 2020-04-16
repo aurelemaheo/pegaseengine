@@ -30,7 +30,8 @@ void ReaderJson::loadJsonStream(std::string jsonStreamName)
 void ReaderJson::parseJsonStream()
 {
   std::cout << "Parse JSON source " << std::endl;
- 
+  
+  StoreSolids ss;  
   Sphere s;
 
   for(pt::ptree::value_type &solid : root.get_child("solids"))
@@ -46,7 +47,7 @@ void ReaderJson::parseJsonStream()
     //std::string ssize = root.get_child("size");
     //s._radius = ssize.second.data();
     
-    //listSpheres.insert(0,s);    
+    ss.addSolid(s); 
   }
   
 }
