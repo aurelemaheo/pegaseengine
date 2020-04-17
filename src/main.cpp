@@ -1,9 +1,7 @@
 #include <iostream>
 #include <thread>
 
-#include "pegaseengine.hpp"
-
-typedef Singleton<PegaseEngine>  pgSingleton;
+#include "config.hpp"
 
 void listenerEvents()
 {
