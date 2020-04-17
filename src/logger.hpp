@@ -3,9 +3,13 @@
 
 #include <iostream>
 
-class LOG
+class Logger
 {
 
+  public:
+    Logger();	// Constructor
+    ~Logger();	// Destructor
+  private:
 
 };
 
