@@ -6,6 +6,8 @@ class Renderer
   public:
     Renderer();		// Constructor
     ~Renderer();	// Destructor
+    void BeginScene();  // Start scene
+    void EndScene();    // End scene    
 
   private:
 
