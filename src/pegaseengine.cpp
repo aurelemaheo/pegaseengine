@@ -1,5 +1,6 @@
 #include <iostream>
 #include <thread>
+#include <chrono>
 
 #include "pegaseengine.hpp"
 #include "collisionmanager.hpp"
@@ -9,7 +10,7 @@ PegaseEngine::PegaseEngine()
 {
 
  std::cout << "PegaseEngine constructor ... " << std::endl;
-
+ engine_running = 1;
  CollisionManager *cm = new CollisionManager();
  std::thread collThread(&CollisionManager::collListener, cm);
  collThread.join();
@@ -17,18 +18,24 @@ PegaseEngine::PegaseEngine()
 }
 
 /* Destructor */
-PegaseEngine::~PegaseEngine() {}
+PegaseEngine::~PegaseEngine() 
+{
+  std::cout << "PegaseEngine constructor: load Objects from external source " << std::endl;
+  loadObjects();
+}
 
 /* Method containing main loop */
 void PegaseEngine::runEngine()
 {
 
  std::cout << "PE: run Engine " << std::endl;
- loadObjects();
 
  // Infinite loop computing the scene
  while(engine_running)
  {
+  
+   std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
    displayObjects();
 
    computePositions();

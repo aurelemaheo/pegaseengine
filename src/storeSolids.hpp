@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <list>
+#include <string>
 
 //#include "solid.hpp"
 #include "sphere.hpp"
@@ -14,7 +15,12 @@ class StoreSolids
 {
   public:
     StoreSolids(){}
-    ~StoreSolids(){}
+    ~StoreSolids(){
+    std::cout << "StoreSolids Destructor - print listSpheres: " << std::endl;
+    //for(auto const& it: listSpheres)
+    //   std::cout << std::to_string(it.second) << std::endl;
+    }
+
     void addSolid(Sphere s){listSpheres.push_back(s);}
 
   private:

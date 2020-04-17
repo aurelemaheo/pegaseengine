@@ -1,6 +1,3 @@
-//#ifndef READERJSON_H
-//#define READERJSON_H
-
 #include <iostream>
 #include <cassert>
 
@@ -56,7 +53,7 @@ void ReaderJson::parseJsonStream()
     std::cout << "Position (x: " << posx << ", y: " << posy << ", z: " << posz << ")" << std::endl;
     std::cout << "Linear velocity (x: " << linvelx << ", y: " << linvely << ", z: " << linvelz << ")" << std::endl;
     std::cout << "Angular velocity: " << angvel << std::endl;
-    //std::string ssize = root.get_child("size");
+
     s.setSize(dsize);
     s.setWeight(dweight);
     s.setPosition(posx,posy,posz);
@@ -68,4 +65,3 @@ void ReaderJson::parseJsonStream()
   
 }
 
-//#endif //READERJSON_H

@@ -28,7 +28,7 @@ class PegaseEngine
   private:
 
     bool is_collision;
-    bool engine_running;
+    bool engine_running = 0;
     ReaderJson* rj;
  
 };
