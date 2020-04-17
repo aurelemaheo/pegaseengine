@@ -33,7 +33,7 @@ void PegaseEngine::runEngine()
  // Infinite loop computing the scene
  while(engine_running)
  {
-  
+   // So far, this latency is considered as the simulation timestep 
    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
    displayObjects();
@@ -74,6 +74,9 @@ void PegaseEngine::displayObjects()
 void PegaseEngine::detectCollisions()
 {
 
+ //Inspect list of solids and their respective positions
+ for(auto const &it: ss.getListSpheres())
+ {}
 }
 
 void PegaseEngine::computeOnColls()

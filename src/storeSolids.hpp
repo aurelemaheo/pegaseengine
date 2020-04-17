@@ -22,6 +22,7 @@ class StoreSolids
     }
 
     void addSolid(Sphere s){listSpheres.push_back(s);}
+    std::list<Sphere> getListSpheres() {return listSpheres;}
 
   private:
     std::list<Sphere> listSpheres;
