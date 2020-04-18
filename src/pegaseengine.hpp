@@ -24,7 +24,10 @@ class PegaseEngine
     void computeOnColls(); 			// Compute reaction of objects after collision
     void computePositions(); 			// Compute positions at each time step
     void actionOnCollision(bool is_collision);
- 
+    void registerObsBoard();			// Add an observer board to the system 
+    void removeObsBoard();			// Remove the observer board to the system 
+    void notifyToObsBoard();			// Notify useful information to the observers
+
   private:
 
     bool is_collision;
