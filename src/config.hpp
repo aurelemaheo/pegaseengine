@@ -10,5 +10,4 @@ typedef Singleton<PegaseEngine>  pgSingleton;
 typedef Singleton<Renderer>  	 rendererSingleton;
 typedef Singleton<Logger>  	 loggerSingleton;
 
-
 #endif //CONFIG_H

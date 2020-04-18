@@ -3,7 +3,7 @@
 #include "cube.hpp"
 
 /* Constructor */
-Cube::Cube() {}
+//Cube::Cube() {}
 
 /* Destructor */
 Cube::~Cube() {}

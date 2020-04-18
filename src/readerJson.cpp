@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cassert>
 
+#include <time.h>
+
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
@@ -34,11 +36,15 @@ void ReaderJson::parseJsonStream()
 {
   std::cout << "Parse JSON source " << std::endl;
   
-  //StoreSolids ss;  
-  Sphere s;
+  //StoreSolids ss;
 
   for(pt::ptree::value_type &solid : root.get_child("solids"))
   {
+
+    int Id = rand() % 1000; 
+    std::cout << "ID generated for a solid: " << Id << std::endl; 
+    Sphere s(Id);
+
     double dsize = solid.second.get<double>("size");
     double dweight = solid.second.get<double>("weight");
     double posx = solid.second.get<double>("position.x");

@@ -7,7 +7,7 @@ class Cube : public Solid
 {
 
 public:
- Cube(); 			/* Constructor */
+ Cube(int Id); 			/* Constructor */
  Cube(float dims); 		/* Copy Constructor */
  ~Cube(); 			/* Destructor */
 

@@ -9,11 +9,13 @@
 PegaseEngine::PegaseEngine() 
 {
 
- std::cout << "PegaseEngine constructor ... " << std::endl;
- engine_running = 1;
- CollisionManager *cm = new CollisionManager();
- std::thread collThread(&CollisionManager::collListener, cm);
- collThread.join();
+  std::cout << "PegaseEngine constructor ... " << std::endl;  
+  std::cout << "PegaseEngine constructor: load Objects from external source " << std::endl;
+  loadObjects();
+
+  CollisionManager *cm = new CollisionManager();
+  std::thread collThread(&CollisionManager::collListener, cm);
+  collThread.join();
 
 }
 

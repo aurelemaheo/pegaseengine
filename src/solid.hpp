@@ -9,6 +9,9 @@ class Solid
   public:
 
     //virtual void setForce(float newton, int x, int y, int z) = 0;
+    //Solid(int Id):_Id(Id){}
+    Solid(){}
+    ~Solid(){}
 
     enum solid_type
     {
@@ -36,13 +39,14 @@ class Solid
     void setLinVelocity(double x, double y, double z){_lin_velocity._x = x; _lin_velocity._y = y; _lin_velocity._z = z;}
     void setAngVelocity(double angvel){_ang_velocity = angvel;}
 
-  private:
+  protected:
     int   	_Id;          	       // Object identifier
     double 	_weight;               // Weight of the solid
     Pos  	_curr_pos; 	       // Position (x,y,z) of the solid at t time
     lVelocity   _lin_velocity;         // Linear velocity (x,y,z)
     double 	_ang_velocity;            // Angular velocity (rad/sec) 
     bool 	is_colliding;          // Boolean notifying whether solid is colliding with another object or not
+  private:
   
 };
 
