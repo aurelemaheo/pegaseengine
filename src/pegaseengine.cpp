@@ -22,8 +22,6 @@ PegaseEngine::PegaseEngine()
 /* Destructor */
 PegaseEngine::~PegaseEngine() 
 {
-  std::cout << "PegaseEngine constructor: load Objects from external source " << std::endl;
-  loadObjects();
 }
 
 /* Method containing main loop */
