@@ -3,14 +3,22 @@
 
 #include <iostream>
 
-class Logger
+enum type_log
+{
+  DEBUG,
+  INFO,
+  WARN,
+  ERROR
+};
+
+class ILogger
 {
 
   public:
-    Logger();	// Constructor
-    ~Logger();	// Destructor
+    ILogger();	// Constructor
+    ~ILogger();	// Destructor
   private:
-
+   static ILogger& _instance; 
 };
 
 #endif //LOGGER_H

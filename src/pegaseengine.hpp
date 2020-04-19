@@ -11,7 +11,8 @@ class PegaseEngine
 {
   public:
 
-    PegaseEngine(); /* Constructor */
+    PegaseEngine();
+    PegaseEngine(std::string nameInStream); /* Constructor */
     ~PegaseEngine(); /* Destructor */
 
     void runEngine();
@@ -33,6 +34,7 @@ class PegaseEngine
     bool is_collision;
     bool engine_running = 0;
     ReaderJson* rj;
+    std::string _nameInStream;
  
 };
 

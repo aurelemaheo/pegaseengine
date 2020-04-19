@@ -1,16 +1,19 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <string>
 
 #include "pegaseengine.hpp"
 #include "collisionmanager.hpp"
 
 /* Constructor */
-PegaseEngine::PegaseEngine() 
+PegaseEngine::PegaseEngine(std::string nameInStream) 
 {
 
   std::cout << "PegaseEngine constructor ... " << std::endl;  
   std::cout << "PegaseEngine constructor: load Objects from external source " << std::endl;
+  _nameInStream = nameInStream;
+
   loadObjects();
 
   CollisionManager *cm = new CollisionManager();
@@ -60,7 +63,7 @@ void PegaseEngine::loadObjects()
   //ReaderJson rj;
   std::cout << "PE: Load objects from external source ... " << std::endl;
 
-  rj->loadJsonStream("scene.json"); 
+  rj->loadJsonStream(_nameInStream); 
   rj->parseJsonStream();
 
 }
