@@ -11,13 +11,16 @@ enum type_log
   ERROR
 };
 
-class ILogger
+class Logger
 {
 
   public:
-    ILogger();	// Constructor
-    ~ILogger();	// Destructor
+    LOG(type_log type);	// Constructor
+    LOG();	// Destructor
+    std::string getCurrentDate();
+    std::string getCurrentTime();
   private:
+   type_log msg_level;
    static ILogger& _instance; 
 };
 
