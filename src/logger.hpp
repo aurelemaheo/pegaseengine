@@ -16,9 +16,11 @@ class Logger
 
   public:
     LOG(type_log type);	// Constructor
-    LOG();	// Destructor
+    ~LOG();	// Destructor
     std::string getCurrentDate();
     std::string getCurrentTime();
+    void write(std::string message);
+    void destroy();
   private:
    type_log msg_level;
    static ILogger& _instance; 
