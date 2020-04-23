@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#define LOG(...) Log(__FILE__, __FUNCTION__, __LINE__)
+//#define LOG(...) Logger(__FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
 
 enum type_log
 {
@@ -13,20 +13,23 @@ enum type_log
   ERROR
 };
 
-class Log
+class Logger
 {
 
   public:
-    LOG(std::string fileName, std::string func, int line, type_log type);	// Constructor
-    ~LOG();	// Destructor
+    Logger(std::string fileName, std::string func, int line, type_log type);	// Constructor
+    ~Logger();	// Destructor
+    void Log(const char* Format, ...);
     std::string getCurrentDate();
     std::string getCurrentTime();
     void write(std::string message);
     void destroy();
-    Logger operator <<(std::string message); 
+    //Logger& operator <<(const std::string message)
+    //Logger& Log()
+
   private:
    type_log msg_level;
-   static ILogger& _instance; 
+   static Logger* _instance; 
 };
 
 #endif //LOGGER_H

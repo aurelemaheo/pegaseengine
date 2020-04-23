@@ -11,7 +11,7 @@ class PegaseEngine
 {
   public:
 
-    PegaseEngine();
+    PegaseEngine(){}
     PegaseEngine(std::string nameInStream); /* Constructor */
     ~PegaseEngine(); /* Destructor */
 
