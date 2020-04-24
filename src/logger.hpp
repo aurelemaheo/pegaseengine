@@ -19,15 +19,16 @@ class Logger
   public:
     Logger(std::string fileName, std::string func, int line, type_log type);	// Constructor
     ~Logger();	// Destructor
-    void Log(const char* Format, ...);
+    void Log(const char* Format, ...);   // Log (C version)
     std::string getCurrentDate();
     std::string getCurrentTime();
     void write(std::string message);
     void destroy();
-    template <typename T> Logger& operator <<(const T& toLog)
+
+    template <typename T> Logger& operator <<(const T& toLog)   // Log (C++ version)
     {
       std::cout << toLog;
-      return *this;
+      return *_instance;
     }
 
     //Logger& Log()
