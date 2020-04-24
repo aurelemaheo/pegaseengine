@@ -24,7 +24,12 @@ class Logger
     std::string getCurrentTime();
     void write(std::string message);
     void destroy();
-    //Logger& operator <<(const std::string message)
+    template <typename T> Logger& operator <<(const T& toLog)
+    {
+      std::cout << toLog;
+      return *this;
+    }
+
     //Logger& Log()
 
   private:
