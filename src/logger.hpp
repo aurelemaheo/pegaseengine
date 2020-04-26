@@ -34,6 +34,8 @@ class Logger
     //Logger& Log()
 
   private:
+   std::string get_label();
+   std::string get_clock();
    type_log msg_level;
    static Logger* _instance; 
 };
