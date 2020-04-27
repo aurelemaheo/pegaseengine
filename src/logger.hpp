@@ -8,7 +8,8 @@
 
 #include "const.hpp"
 
-#define LOG(...) Logger(__FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
+#define __FILENAME__ (strrchr(FILEPATH, '/') ? strrchr(FILEPATH, '/') + 1 : FILEPATH)
+#define LOG(...) Logger(__FILENAME__, __FUNCTION__, __LINE__, __VA_ARGS__)
 
 enum type_log
 {
@@ -18,13 +19,16 @@ enum type_log
   ERROR
 };
 
+/**
+*
+*/
 class Logger
 {
 
   public:
     Logger(std::string fileName, std::string func, int line, type_log msg_type)	// Constructor
     {
-      operator<<("[ "+get_label(msg_type)+" ] [ File: "+fileName+" - Function: "+func+" - Line: "+std::to_string(line)+" ]");
+      operator<<("[ "+get_label(msg_type)+" ] ["+ get_clock() +"] [ File: "+fileName+" - Function: "+func+" - Line: "+std::to_string(line)+" ]");
     }
     ~Logger();	// Destructor
     void Log(const char* Format, ...);   // Log (C version)
