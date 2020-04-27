@@ -6,6 +6,8 @@
 #include <sys/timeb.h>
 #include <time.h>
 
+#include "const.hpp"
+
 //#define LOG(...) Logger(__FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
 
 enum type_log
@@ -35,9 +37,28 @@ class Logger
     //Logger& Log()
 
   private:
-   inline std::string get_label()
-   {
-     
+   inline std::string get_label( type_log msg_level)
+   { 
+     std::string label; 
+ 
+     switch(msg_level)
+     {
+       case INFO:  
+         label = COLOR(COLOR_GREEN, "INFO");
+         break; 
+       case DEBUG:
+         label = COLOR(COLOR_CYAN, "DEBUG"); 
+         break;
+       case WARN:
+         label = COLOR(COLOR_YELLOW, "WARN"); 
+         break;
+       case ERROR:
+         label = COLOR(COLOR_RED, "ERROR"); 
+         break;
+       break;
+     }     
+   
+     return label;  
    }
 
    inline std::string get_clock()
@@ -54,7 +75,8 @@ class Logger
      sprintf(append, ":%03u", currtime.millitm);
      strcat(buffer, append);
      std::cout << "local time: " << buffer << std::endl;
-     
+    
+     return buffer; 
    }
 
    type_log msg_level;
