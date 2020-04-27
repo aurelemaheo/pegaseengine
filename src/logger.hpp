@@ -8,7 +8,7 @@
 
 #include "const.hpp"
 
-//#define LOG(...) Logger(__FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
+#define LOG(...) Logger(__FILE__, __FUNCTION__, __LINE__, __VA_ARGS__)
 
 enum type_log
 {
@@ -22,7 +22,10 @@ class Logger
 {
 
   public:
-    Logger(std::string fileName, std::string func, int line, type_log type);	// Constructor
+    Logger(std::string fileName, std::string func, int line, type_log msg_type)	// Constructor
+    {
+      operator<<("[ "+get_label(msg_type)+" ] [ File: "+fileName+" - Function: "+func+" - Line: "+std::to_string(line)+" ]");
+    }
     ~Logger();	// Destructor
     void Log(const char* Format, ...);   // Log (C version)
     void write(std::string message);
@@ -37,7 +40,7 @@ class Logger
     //Logger& Log()
 
   private:
-   inline std::string get_label( type_log msg_level)
+   inline std::string get_label(type_log msg_level)
    { 
      std::string label; 
  
