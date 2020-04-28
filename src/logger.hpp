@@ -8,7 +8,7 @@
 
 #include "const.hpp"
 
-#define __FILENAME__ (strrchr(FILEPATH, '/') ? strrchr(FILEPATH, '/') + 1 : FILEPATH)
+#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 #define LOG(...) Logger(__FILENAME__, __FUNCTION__, __LINE__, __VA_ARGS__)
 
 enum type_log
@@ -26,11 +26,11 @@ class Logger
 {
 
   public:
-    Logger(std::string &fileName, std::string &func, int line, type_log msg_type)	// Constructor
+    Logger(const std::string &fileName, const std::string &func, int line, type_log msg_type)	// Constructor
     {
       operator<<("[ "+get_label(msg_type)+" ] ["+ get_clock() +"] [ File: "+fileName+" - Function: "+func+" - Line: "+std::to_string(line)+" ]");
     }
-    ~Logger();	// Destructor
+    ~Logger(){}	// Destructor
     void Log(const char* Format, ...);   // Log (C version)
     void write(std::string message);
     void destroy();
@@ -38,7 +38,8 @@ class Logger
     template <typename T> Logger& operator <<(const T& toLog)   // Log (C++ version)
     {
       std::cout << toLog;
-      return *_instance;
+      //return *_instance;
+      return *this;
     }
 
     //Logger& Log()

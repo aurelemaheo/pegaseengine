@@ -2,6 +2,7 @@
 #include <thread>
 
 #include "config.hpp"
+#include "logger.hpp"
 
 void listenerEvents()
 {
@@ -15,7 +16,8 @@ int main(int argc, char **argv)
  threadListener.join();
 
  std::cout << "Pegase Engine start" << std::endl;
- 
+ LOG(DEBUG) << "Pegase Engine start"; 
+
  pgSingleton::getInstance()->runEngine();
 
  return 0;
