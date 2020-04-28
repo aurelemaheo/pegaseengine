@@ -20,13 +20,13 @@ enum type_log
 };
 
 /**
-*
+* usage: LOG(DEBUG) << "hello"
 */
 class Logger
 {
 
   public:
-    Logger(std::string fileName, std::string func, int line, type_log msg_type)	// Constructor
+    Logger(std::string &fileName, std::string &func, int line, type_log msg_type)	// Constructor
     {
       operator<<("[ "+get_label(msg_type)+" ] ["+ get_clock() +"] [ File: "+fileName+" - Function: "+func+" - Line: "+std::to_string(line)+" ]");
     }
