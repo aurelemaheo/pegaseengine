@@ -48,6 +48,12 @@ class Logger
       return *this;
     }
 
+    Logger& operator <<(std::ostream& (*os)(std::ostream &))
+    {
+      std::cout << os;
+      return *this;
+    }
+
     //Logger& Log()
 
   private:
@@ -88,7 +94,6 @@ class Logger
      // Append milliseconds
      sprintf(append, ":%03u", currtime.millitm);
      strcat(buffer, append);
-     //std::cout << "local time: " << buffer << std::endl;
     
      return buffer; 
    }

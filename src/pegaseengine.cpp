@@ -11,9 +11,7 @@
 PegaseEngine::PegaseEngine(std::string nameInStream) 
 {
 
-  //std::cout << "PegaseEngine constructor ... " << std::endl; 
-  LOG(DEBUG) << "PegaseEngine constructor";
-  //std::cout << "PegaseEngine constructor: load Objects from external source " << std::endl;
+  LOG(DEBUG) << "PegaseEngine constructor" << std::endl;
   _nameInStream = nameInStream;
 
   loadObjects();
@@ -33,8 +31,7 @@ PegaseEngine::~PegaseEngine()
 void PegaseEngine::runEngine()
 {
 
- //std::cout << "PE: run Engine " << std::endl;
- LOG(INFO) << "PE: run Engine ";
+ LOG(INFO) << "Pegase Engine: run Engine ";
 
  // Infinite loop computing the scene
  while(engine_running)
@@ -64,7 +61,7 @@ void PegaseEngine::stopEngine()
 void PegaseEngine::loadObjects()
 {
   //ReaderJson rj;
-  std::cout << "PE: Load objects from external source ... " << std::endl;
+  LOG(INFO) << "Pegase Engine: Load objects from external source" << std::endl;
 
   rj->loadJsonStream(_nameInStream); 
   rj->parseJsonStream();
