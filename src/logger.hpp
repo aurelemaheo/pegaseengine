@@ -28,8 +28,14 @@ class Logger
   public:
     Logger(const std::string &fileName, const std::string &func, int line, type_log msg_type)	// Constructor
     {
-      operator<<("[ "+get_label(msg_type)+" ] ["+ get_clock() +"] [ File: "+fileName+" - Function: "+func+" - Line: "+std::to_string(line)+" ]");
+      operator<<("[ "+get_label(msg_type)+" ] ");
+      
+      if(msg_type == DEBUG)
+      {
+        operator<<("["+ get_clock() +"] [ file: "+fileName+" - function: "+func+" - line: "+std::to_string(line)+" ] ");
+      }
     }
+
     ~Logger(){}	// Destructor
     void Log(const char* Format, ...);   // Log (C version)
     void write(std::string message);
@@ -82,7 +88,7 @@ class Logger
      // Append milliseconds
      sprintf(append, ":%03u", currtime.millitm);
      strcat(buffer, append);
-     std::cout << "local time: " << buffer << std::endl;
+     //std::cout << "local time: " << buffer << std::endl;
     
      return buffer; 
    }

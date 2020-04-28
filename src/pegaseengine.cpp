@@ -5,13 +5,15 @@
 
 #include "pegaseengine.hpp"
 #include "collisionmanager.hpp"
+#include "Logger.hpp"
 
 /* Constructor */
 PegaseEngine::PegaseEngine(std::string nameInStream) 
 {
 
-  std::cout << "PegaseEngine constructor ... " << std::endl;  
-  std::cout << "PegaseEngine constructor: load Objects from external source " << std::endl;
+  //std::cout << "PegaseEngine constructor ... " << std::endl; 
+  LOG(DEBUG) << "PegaseEngine constructor";
+  //std::cout << "PegaseEngine constructor: load Objects from external source " << std::endl;
   _nameInStream = nameInStream;
 
   loadObjects();
@@ -31,7 +33,8 @@ PegaseEngine::~PegaseEngine()
 void PegaseEngine::runEngine()
 {
 
- std::cout << "PE: run Engine " << std::endl;
+ //std::cout << "PE: run Engine " << std::endl;
+ LOG(INFO) << "PE: run Engine ";
 
  // Infinite loop computing the scene
  while(engine_running)
