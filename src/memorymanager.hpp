@@ -19,9 +19,9 @@ class MemoryManager
    {}
    void* operator new[](std::size_t size, std::string file, int line)
    {}
-   void operator delete(std::size_t size, std::string file, int line)
+   void operator delete(void* Ptr, std::size_t size, std::string file, int line)
    {}
-   void operator delete[](std::size_t size, std::string file, int line)
+   void operator delete[](void* Ptr, std::size_t size, std::string file, int line)
    {}
 
    void Allocate(std::size_t size, bool array);
