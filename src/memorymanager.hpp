@@ -4,7 +4,9 @@
 #include <iostream>
 #include <string>
 
+#include "const.hpp"
 #include "logger.hpp"
+
 
 struct TBlock
 {
@@ -27,19 +29,9 @@ class MemoryManager
      }
      else 
      {
-       LOG(ERROR) << "Memory leaks detected  " << std::endl;
+       LOG(ERROR) << "Memory leaks detected " << std::endl;
      }
-     
    }
-
-   void* operator new(std::size_t size, std::string file, int line)
-   {}
-   void* operator new[](std::size_t size, std::string file, int line)
-   {}
-   void operator delete(void* Ptr, std::size_t size, std::string file, int line)
-   {}
-   void operator delete[](void* Ptr, std::size_t size, std::string file, int line)
-   {}
 
    void Allocate(std::size_t size, bool array);
    void Release(void* ptr, bool array); 
@@ -47,5 +39,24 @@ class MemoryManager
   private:
     TBlockMap mBlocks;
 };
+
+
+inline void* operator new(std::size_t size, std::string file, int line)
+{}
+
+inline void* operator new[](std::size_t size, std::string file, int line)
+{}
+
+inline void operator delete(void* ptr, std::size_t size, std::string file, int line)
+{}
+
+inline void operator delete[](void* ptr, std::size_t size, std::string file, int line)
+{}
+
+
+#define new new(__FILENAME__, __LINE__)
+#define delete delete(__FILENAME__, __LINE__)
+
+
 
 #endif //MEMORYMANAGER_H
