@@ -8,7 +8,6 @@
 
 #include "const.hpp"
 
-#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 #define LOG(...) Logger(__FILENAME__, __FUNCTION__, __LINE__, __VA_ARGS__)
 
 enum type_log

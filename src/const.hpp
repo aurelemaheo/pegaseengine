@@ -9,4 +9,6 @@
 
 #define COLOR(clevel,msg) "\033[" clevel "m" msg "\033[0m"
 
+#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+
 #endif //CONST_HPP
