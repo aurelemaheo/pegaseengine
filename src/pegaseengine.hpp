@@ -6,12 +6,16 @@
 //#include "sphere.hpp"
 #include "readerjson.hpp"
 #include "singleton.hpp"
+#include "logger.hpp"
 
 class PegaseEngine
 {
   public:
 
-    PegaseEngine(){}
+    PegaseEngine()
+    {
+      LOG(DEBUG) << "Pegase Engine constructor" << std::endl;
+    }
     PegaseEngine(std::string nameInStream); /* Constructor */
     ~PegaseEngine(); /* Destructor */
 

@@ -15,7 +15,6 @@ int main(int argc, char **argv)
  std::thread threadListener(listenerEvents);
  threadListener.join();
 
- //std::cout << "Pegase Engine start" << std::endl;
  LOG(DEBUG) << "Pegase Engine start" << std::endl; 
 
  pgSingleton::getInstance()->runEngine();

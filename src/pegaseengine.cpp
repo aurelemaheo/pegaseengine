@@ -5,7 +5,6 @@
 
 #include "pegaseengine.hpp"
 #include "collisionmanager.hpp"
-#include "Logger.hpp"
 
 /* Constructor */
 PegaseEngine::PegaseEngine(std::string nameInStream) 

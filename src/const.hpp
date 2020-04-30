@@ -8,4 +8,5 @@
 #define COLOR_RED "1;31"
 
 #define COLOR(clevel,msg) "\033[" clevel "m" msg "\033[0m"
+
 #endif //CONST_HPP
