@@ -1,6 +1,15 @@
 #ifndef MEMORYMANAGER_H
 #define MEMORYMANAGER_H
 
+struct TBlock
+{
+  std::size_t 	Size;
+  int 		line;
+  bool 		Array;
+};
+
+typedef std::map<void *, TBlock> TBlockMap;
+
 class MemoryManager
 {
   public:
