@@ -15,8 +15,9 @@ class MemoryManager
    void operator delete[](std::size_t size, std::string file, int line)
    {}
 
-   void allocate(bool array);
-   void free(bool array); 
+   void Allocate(std::size_t size, bool array);
+   void Release(void* ptr, bool array); 
+
   private:
 };
 
