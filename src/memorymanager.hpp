@@ -14,7 +14,7 @@ struct TBlock
   std::string   file;
   std::string   funcname;
   int 		line;
-  bool 		Array;
+  bool 		array;
 };
 
 typedef std::map<void *, TBlock> TBlockMap;
