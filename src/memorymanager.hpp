@@ -36,7 +36,7 @@ class MemoryManager
      }
    }
 
-   void* Allocate(std::size_t size, std::string file, std::string funcname, bool array);
+   void* Allocate(std::size_t size, std::string file, std::string funcname, int line, bool array);
    void Release(void* ptr, bool array); 
 
   private:
