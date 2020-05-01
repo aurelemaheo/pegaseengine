@@ -37,7 +37,7 @@ class Logger
 
     ~Logger(){}	// Destructor
     void Log(const char* Format, ...);   // Log (C version)
-    void write(std::string message);
+    void Write(std::string message);
     void destroy();
 
     template <typename T> Logger& operator <<(const T& toLog)   // Log (C++ version)

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <map>
 
 #include "const.hpp"
 #include "logger.hpp"
@@ -35,7 +36,7 @@ class MemoryManager
      }
    }
 
-   void Allocate(std::size_t size,  bool array);
+   void* Allocate(std::size_t size, std::string file, std::string funcname, bool array);
    void Release(void* ptr, bool array); 
 
   private:
