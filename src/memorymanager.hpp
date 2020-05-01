@@ -40,12 +40,16 @@ class MemoryManager
    void Release(void* ptr, bool array); 
 
   private:
+    MemoryManager& Instance();
+    static MemoryManager& _Instance;
     TBlockMap mBlocks;
 };
 
 
 inline void* operator new(std::size_t size, std::string file, std::string funcname, int line)
-{}
+{
+  
+}
 
 inline void* operator new[](std::size_t size, std::string file, std::string funcname, int line)
 {}
