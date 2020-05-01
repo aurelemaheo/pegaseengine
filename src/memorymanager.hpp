@@ -10,7 +10,9 @@
 
 struct TBlock
 {
-  std::size_t 	Size;
+  std::size_t 	size;
+  std::string   file;
+  std::string   funcname;
   int 		line;
   bool 		Array;
 };
