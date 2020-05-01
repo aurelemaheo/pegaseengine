@@ -33,7 +33,7 @@ class MemoryManager
      }
    }
 
-   void Allocate(std::size_t size, bool array);
+   void Allocate(std::size_t size,  bool array);
    void Release(void* ptr, bool array); 
 
   private:
@@ -41,16 +41,16 @@ class MemoryManager
 };
 
 
-inline void* operator new(std::size_t size, std::string file, int line)
+inline void* operator new(std::size_t size, std::string file, std::string funcname, int line)
 {}
 
-inline void* operator new[](std::size_t size, std::string file, int line)
+inline void* operator new[](std::size_t size, std::string file, std::string funcname, int line)
 {}
 
-inline void operator delete(void* ptr, std::size_t size, std::string file, int line)
+inline void operator delete(void* ptr, std::size_t size, std::string file, std::string funcname, int line)
 {}
 
-inline void operator delete[](void* ptr, std::size_t size, std::string file, int line)
+inline void operator delete[](void* ptr, std::size_t size, std::string file, std::string funcname, int line)
 {}
 
 
