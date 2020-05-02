@@ -38,9 +38,12 @@ class MemoryManager
 
    void* Allocate(std::size_t size, std::string file, std::string funcname, int line, bool array);
    void Release(void* ptr, bool array); 
+   MemoryManager& Instance()
+   {
+     return _Instance;
+   }
 
   private:
-    MemoryManager& Instance();
     static MemoryManager& _Instance;
     TBlockMap mBlocks;
 };
@@ -48,11 +51,13 @@ class MemoryManager
 
 inline void* operator new(std::size_t size, std::string file, std::string funcname, int line)
 {
-  
+  //return MemoryManager::Instance().Allocate(size, file, funcname, line, false);  
 }
 
 inline void* operator new[](std::size_t size, std::string file, std::string funcname, int line)
-{}
+{
+  //return MemoryManager::Instance().Allocate(size, file, funcname, line, true);  
+}
 
 inline void operator delete(void* ptr, std::size_t size, std::string file, std::string funcname, int line)
 {}
