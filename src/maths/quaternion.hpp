@@ -8,6 +8,7 @@ class Quaternion
     Quaternion();
     Quaternion(T x, T y, T z, T w);
     ~Quaternion();
+    T length();
 
   private:
     T _x;
