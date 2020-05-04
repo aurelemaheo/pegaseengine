@@ -9,6 +9,7 @@ class Quaternion
     Quaternion(T x, T y, T z, T w);
     ~Quaternion();
     T length();
+    T dot(const Quaternion&);
 
   private:
     T _x;
