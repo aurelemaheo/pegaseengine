@@ -16,7 +16,11 @@ class Vector3
     Vector3 dot(vector3&);		    // Scalar product
     Vector3 max(const Vector3& vector1, const Vector3& vector2);	
     Vector3 min(const Vector3& vector1, const Vector3& vector2);	
+ 
   private:
+    T _x; // X component
+    T _y; // Y component
+    T _z; // Z component
 
 };
 
