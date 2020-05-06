@@ -11,7 +11,12 @@ class Quaternion
     Quaternion();
     Quaternion(T x, T y, T z, T w);
     ~Quaternion();
-    T length();
+    T length()
+    {
+      return std::sqrt(_x*_x + _y*_y + _z*_z + _w*_w);
+    }
+
+    void normalize();
     T dot(const Quaternion&);
     void BuildQuaternionFromEulerAngles(T anglex, T angley, T anglez);
     Quaternion operator*(const Quaternion& quaternion)
@@ -22,11 +27,12 @@ class Quaternion
                     _w * quaternion._w - quaternion._w * _x + _y * quaternion._x - _z * quaternion._z);
     }
 
-  private:
     T _x;
     T _y;
     T _z;
     T _w;
+
+  private:
  
 };
 
