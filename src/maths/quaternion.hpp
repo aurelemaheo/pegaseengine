@@ -1,6 +1,9 @@
 #ifndef QUATERNION_H
 #define QUATERNION_H
 
+#include <iostream>
+#include <cmath>
+
 template <typename T>
 class Quaternion
 {
@@ -10,7 +13,14 @@ class Quaternion
     ~Quaternion();
     T length();
     T dot(const Quaternion&);
-    void BuildQuaternionFromEuler(T x, T y, T z);
+    void BuildQuaternionFromEulerAngles(T anglex, T angley, T anglez);
+    Quaternion operator*(const Quaternion& quaternion)
+    {
+      return Quaternion(_w * quaternion._x + quaternion._w * _x + _y * quaternion._z - _z * quaternion._y,
+                    _w * quaternion._y + quaternion._w * _y + _z * quaternion._x - _x * quaternion._z,
+                    _w * quaternion._z + quaternion._w * _z + _x * quaternion._y - _y * quaternion._x,
+                    _w * quaternion._w - quaternion._w * _x + _y * quaternion._x - _z * quaternion._z);
+    }
 
   private:
     T _x;
