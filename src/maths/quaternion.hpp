@@ -10,7 +10,7 @@ class Quaternion
     ~Quaternion();
     T length();
     T dot(const Quaternion&);
-    void BuildQuaternionFromEuler(float x, float y, float z);
+    void BuildQuaternionFromEuler(T x, T y, T z);
 
   private:
     T _x;
