@@ -1,17 +1,17 @@
-#ifndef SOLID_H
-#define SOLID_H
+#ifndef BODY_H
+#define BODY_H
 
-/*
-Base class defining a solid object
+/**
+* Base class defining a body
 */
-class Solid
+class Body
 {
   public:
 
     //virtual void setForce(float newton, int x, int y, int z) = 0;
     //Solid(int Id):_Id(Id){}
-    Solid(){}
-    ~Solid(){}
+    Body(){}
+    ~Body){}
 
     enum solid_type
     {
@@ -50,4 +50,4 @@ class Solid
   
 };
 
-#endif //SOLID_H
+#endif //BODY_H
