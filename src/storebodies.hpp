@@ -1,5 +1,5 @@
-#ifndef STORESOLIDS_H
-#define STORESOLIDS_H
+#ifndef STOREBODIES_H
+#define STOREBODIES_H
 
 #include <iostream>
 #include <list>
@@ -11,23 +11,23 @@
 /*
 * Class used to store objects read from external source
 */
-class StoreSolids
+class StoreBodies
 {
   public:
-    StoreSolids(){}
-    ~StoreSolids(){
-    std::cout << "StoreSolids Destructor - print listSpheres: " << std::endl;
+    StoreBodies(){}
+    ~StoreBodies(){
+    std::cout << "StoreBodies Destructor - print listSpheres: " << std::endl;
     //for(auto const& it: listSpheres)
     //   std::cout << std::to_string(it.second) << std::endl;
     }
 
-    void addSolid(Sphere s){listSpheres.push_back(s);}
+    void addBody(Sphere s){listSpheres.push_back(s);}
     std::list<Sphere> getListSpheres() {return listSpheres;}
 
   private:
     std::list<Sphere> listSpheres;
 };
 
-static StoreSolids ss;
+static StoreBodies ss;
 
-#endif //STORESOLIDS_H
+#endif //STOREBODIES_H
