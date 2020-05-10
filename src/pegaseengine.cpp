@@ -40,9 +40,9 @@ void PegaseEngine::runEngine()
 
    displayObjects();
 
-   computePositions();
+   updateBodyPositions();
 
-   detectCollisions();
+   updateCollisions();
 
    computeOnColls();   
  }
@@ -73,7 +73,7 @@ void PegaseEngine::displayObjects()
 
 }
 
-void PegaseEngine::detectCollisions()
+void PegaseEngine::updateCollisions()
 {
 
  //Inspect list of solids and their respective positions
@@ -86,7 +86,7 @@ void PegaseEngine::computeOnColls()
 
 }
 
-void PegaseEngine::computePositions()
+void PegaseEngine::updateBodyPositions()
 {
 
 }
