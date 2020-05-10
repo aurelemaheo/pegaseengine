@@ -1,9 +1,9 @@
 #ifndef CUBE_H
 #define CUBE_H
 
-#include "solid.hpp"
+#include "body.hpp"
 
-class Cube : public Solid
+class Cube : public Body
 {
 
 public:

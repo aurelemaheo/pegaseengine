@@ -11,13 +11,12 @@ class Body
     //virtual void setForce(float newton, int x, int y, int z) = 0;
     //Solid(int Id):_Id(Id){}
     Body(){}
-    ~Body){}
+    ~Body(){}
 
-    enum solid_type
+    enum body_type
     {
-      SPHERE,
-      CUBE,
-      JOINT
+      STATIC,
+      DYNAMIC
     };
 
     struct Pos
@@ -46,6 +45,7 @@ class Body
     lVelocity   _lin_velocity;         // Linear velocity (x,y,z)
     double 	_ang_velocity;            // Angular velocity (rad/sec) 
     bool 	is_colliding;          // Boolean notifying whether solid is colliding with another object or not
+    body_type   _type;
   private:
   
 };
