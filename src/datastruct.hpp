@@ -1,6 +1,7 @@
 #ifndef DATASTRUCT_H
 #define DATASTRUCT_H
 
+template <typename T>
 struct Point
 {
   int _x;

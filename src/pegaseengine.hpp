@@ -39,7 +39,10 @@ class PegaseEngine
     bool engine_running = 0;
     ReaderJson* rj;
     std::string _nameInStream;
- 
+    double deltaSimTime;
+    double previousSimTime;
+    double currentSimTime;
+
 };
 
 #endif //PEGASE_ENGINE_H

@@ -7,7 +7,7 @@
 #include <boost/property_tree/json_parser.hpp>
 
 #include "reader.hpp"
-#include "storesolids.hpp"
+#include "storeBodies.hpp"
 
 namespace pt = boost::property_tree;
 

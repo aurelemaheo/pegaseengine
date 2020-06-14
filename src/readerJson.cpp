@@ -66,7 +66,7 @@ void ReaderJson::parseJsonStream()
     s.setLinVelocity(linvelx,linvely,linvelz);
     s.setAngVelocity(angvel);
     
-    ss.addSolid(s); 
+    ss.addBody(s);
   }
   
 }
