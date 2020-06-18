@@ -38,13 +38,12 @@ void PegaseEngine::runEngine()
    // So far, this latency is considered as the simulation timestep 
    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-   displayObjects();
-
+   deltaSimTime = currentSimTime - previousSimTime;
+   
    updateBodyPositions();
-
    updateCollisions();
-
-   computeOnColls();   
+   computeOnColls();
+   displayObjects();
  }
 
 }
