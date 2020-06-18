@@ -27,7 +27,7 @@ class PegaseEngine
     void switchPlainMesh(); 
     void updateCollisions(); 		            	// Detect all possible collisions between objects on scene
     void computeOnColls(); 			                // Compute reaction of objects after collision
-    void updateBodyPositions(double deltaTime); 	// Compute positions at each time step
+    void updateBodyPositions(double deltaTime); 	// Update bodies positions at each time step
     void actionOnCollision(bool is_collision);
     void registerObsBoard();			            // Add an observer board to the system
     void removeObsBoard();			                // Remove the observer board to the system

@@ -90,10 +90,15 @@ void PegaseEngine::computeOnColls()
 
 }
 
+/*
+Get a list of bodies and update their position, based on the previous position,
+the linear velocity and the delate time
+*/
 void PegaseEngine::updateBodyPositions(double deltaTime)
 {
     int i=0;
     std::list<Body>::iterator it;
+
     for(it = StoreBodies::listBodies.begin(); it != StoreBodies::listBodies.end(); it++)
     {
         it->setPosition(it.getPosition() + it.getLinVelocity() * deltaTime);
