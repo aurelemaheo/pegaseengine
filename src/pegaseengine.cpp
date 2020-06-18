@@ -5,7 +5,9 @@
 
 #include "pegaseengine.hpp"
 #include "collisionmanager.hpp"
+#include "storebodies.hpp"
 #include "timer.hpp"
+
 
 /* Constructor */
 PegaseEngine::PegaseEngine(std::string nameInStream) 
@@ -43,7 +45,7 @@ void PegaseEngine::runEngine()
    deltaSimTime = currentSimTime - previousSimTime;
    previousSimTime = currentSimTime;
 
-   updateBodyPositions();
+   updateBodyPositions(deltaSimTime);
    updateCollisions();
    computeOnColls();
    displayObjects();
@@ -88,7 +90,12 @@ void PegaseEngine::computeOnColls()
 
 }
 
-void PegaseEngine::updateBodyPositions()
+void PegaseEngine::updateBodyPositions(double deltaTime)
 {
-
+    int i=0;
+    std::list<Body>::iterator it;
+    for(it = StoreBodies::listBodies.begin(); it != StoreBodies::listBodies.end(); it++)
+    {
+        it->setPosition(it.getPosition() + it.getLinVelocity() * deltaTime);
+    }
 }

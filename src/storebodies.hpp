@@ -21,11 +21,12 @@ class StoreBodies
     //   std::cout << std::to_string(it.second) << std::endl;
     }
 
-    void addBody(Sphere s){listSpheres.push_back(s);}
-    std::list<Sphere> getListSpheres() {return listSpheres;}
+    void addBody(Sphere s){listBodies.push_back(s);}
+    std::list<Sphere> getListSpheres() {return listBodies;}
 
-  private:
-    std::list<Sphere> listSpheres;
+  public:
+    static std::list<Body> listBodies;
+
 };
 
 static StoreBodies ss;

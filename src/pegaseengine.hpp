@@ -21,17 +21,17 @@ class PegaseEngine
 
     void runEngine();
     void stopEngine();
-    void loadObjects();                         // Load objects of the scene (solids, plan) from an external source
+    void loadObjects();                             // Load objects of the scene (solids, plan) from an external source
     void addObject();
-    void displayObjects(); 			// Display scene with all created objects
+    void displayObjects(); 			                // Display scene with all created objects
     void switchPlainMesh(); 
-    void updateCollisions(); 			// Detect all possible collisions between objects on scene
-    void computeOnColls(); 			// Compute reaction of objects after collision
-    void updateBodyPositions(); 		// Compute positions at each time step
+    void updateCollisions(); 		            	// Detect all possible collisions between objects on scene
+    void computeOnColls(); 			                // Compute reaction of objects after collision
+    void updateBodyPositions(double deltaTime); 	// Compute positions at each time step
     void actionOnCollision(bool is_collision);
-    void registerObsBoard();			// Add an observer board to the system 
-    void removeObsBoard();			// Remove the observer board to the system 
-    void notifyToObsBoard();			// Notify useful information to the observers
+    void registerObsBoard();			            // Add an observer board to the system
+    void removeObsBoard();			                // Remove the observer board to the system
+    void notifyToObsBoard();			            // Notify useful information to the observers
 
   private:
 
