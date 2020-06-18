@@ -5,6 +5,7 @@
 
 #include "pegaseengine.hpp"
 #include "collisionmanager.hpp"
+#include "timer.hpp"
 
 /* Constructor */
 PegaseEngine::PegaseEngine(std::string nameInStream) 
@@ -38,8 +39,10 @@ void PegaseEngine::runEngine()
    // So far, this latency is considered as the simulation timestep 
    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
+   currentSimTime = Timer::getCurrentSystemTime();
    deltaSimTime = currentSimTime - previousSimTime;
-   
+   previousSimTime = currentSimTime;
+
    updateBodyPositions();
    updateCollisions();
    computeOnColls();
