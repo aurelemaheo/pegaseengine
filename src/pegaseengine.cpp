@@ -92,7 +92,7 @@ void PegaseEngine::computeOnColls()
 
 /*
 Get a list of bodies and update their position, based on the previous position,
-the linear velocity and the delate time
+the linear velocity and the delta time
 */
 void PegaseEngine::updateBodyPositions(double deltaTime)
 {
