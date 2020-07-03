@@ -11,6 +11,13 @@ set(CMAKE_BUILD_TYPE Debug)
 # Include
 include_directories(include)
 include_directories(/Users/aurele/git/pegaseengine/thirdparty/boost_1_72_0)
+include_directories(/Users/aurele/git/pegaseengine/thirdparty/glfw/include)
+
+#Library
+#add_library(libglfw3 STATIC /Users/aurele/git/pegaseengine/thirdparty/glfw/src)
+
+#link_directories(/Users/aurele/git/pegaseengine/thirdparty/glfw/src)
+link_directories(/usr/local/Cellar/glfw/3.3.2/lib)
 
 #Generate list of source files
 file(
@@ -24,3 +31,10 @@ add_executable(
   pegaseengine
   ${source_files}
 )
+
+#target_link_libraries(pegaseengine ${GLFW3_LIBRARY})
+target_link_libraries(pegaseengine libglfw.3.3.dylib)
+
+if (APPLE)
+#  target_link_libraries(pegaseengine "-framework OpenGL")
+endif()

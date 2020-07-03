@@ -4,6 +4,7 @@
 #include <string>
 
 #include "pegaseengine.hpp"
+#include "renderer.hpp"
 #include "collisionmanager.hpp"
 #include "storebodies.hpp"
 #include "timer.hpp"
@@ -17,6 +18,8 @@ PegaseEngine::PegaseEngine(std::string nameInStream)
   _nameInStream = nameInStream;
 
   loadObjects();
+  //Renderer renderer;
+  //renderer.init();
 
   CollisionManager *cm = new CollisionManager();
   std::thread collThread(&CollisionManager::collListener, cm);
@@ -34,6 +37,9 @@ void PegaseEngine::runEngine()
 {
 
  LOG(INFO) << "Pegase Engine: run Engine ";
+
+  Renderer renderer;
+  renderer.init();
 
  // Infinite loop computing the scene
  while(engine_running)
@@ -81,8 +87,8 @@ void PegaseEngine::updateCollisions()
 {
 
  //Inspect list of solids and their respective positions
- for(auto const &it: ss.getListSpheres())
- {}
+ //for(auto const &it: ss.getListSpheres())
+ //{}
 }
 
 void PegaseEngine::computeOnColls()
@@ -99,8 +105,8 @@ void PegaseEngine::updateBodyPositions(double deltaTime)
     int i=0;
     std::list<Body>::iterator it;
 
-    for(it = StoreBodies::listBodies.begin(); it != StoreBodies::listBodies.end(); it++)
-    {
-        it->setPosition(it.getPosition() + it.getLinVelocity() * deltaTime);
-    }
+    //for(it = StoreBodies::listBodies.begin(); it != StoreBodies::listBodies.end(); it++)
+    //{
+        //it->setPosition(it.getPosition() + it.getLinVelocity() * deltaTime);
+    //}
 }

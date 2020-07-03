@@ -22,7 +22,7 @@ class StoreBodies
     }
 
     void addBody(Sphere s){listBodies.push_back(s);}
-    std::list<Sphere> getListSpheres() {return listBodies;}
+    //std::list<Sphere> getListSpheres() {return listBodies;}
 
   public:
     static std::list<Body> listBodies;

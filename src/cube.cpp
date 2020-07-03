@@ -6,4 +6,4 @@
 //Cube::Cube() {}
 
 /* Destructor */
-Cube::~Cube() {}
+//Cube::~Cube() {}

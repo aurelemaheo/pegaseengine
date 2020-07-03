@@ -12,7 +12,7 @@ class Body
 
     //virtual void setForce(float newton, int x, int y, int z) = 0;
     //Solid(int Id):_Id(Id){}
-    Body(){_curr_pos = NULL; _lin_velocity = NULL;}
+    //Body(){_curr_pos = NULL; _lin_velocity = NULL;}
     ~Body(){}
 
     enum body_type

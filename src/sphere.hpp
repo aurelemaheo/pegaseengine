@@ -8,7 +8,7 @@ class Sphere: public Body
 
   public:
     //Sphere(){std::cout << "Sphere constructor" << std::endl;} //Constructor 
-    Sphere(int Id):m_Id(Id){}  /* Constructor */
+    //Sphere(int Id):m_Id(Id){}  /* Constructor */
     ~Sphere(){} /* Destructor */
 
     void setSize(double size){_radius = size;} 

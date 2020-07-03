@@ -41,6 +41,7 @@ void ReaderJson::parseJsonStream()
   for(pt::ptree::value_type &solid : root.get_child("solids"))
   {
 
+      /*
     int Id = rand() % 1000; 
     std::cout << "ID generated for a solid: " << Id << std::endl; 
     Sphere s(Id);
@@ -67,6 +68,7 @@ void ReaderJson::parseJsonStream()
     s.setAngVelocity(angvel);
     
     ss.addBody(s);
+       */
   }
   
 }

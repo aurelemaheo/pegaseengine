@@ -3,13 +3,13 @@
 
 #include <iostream>
 
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
+//#include <boost/property_tree/ptree.hpp>
+//#include <boost/property_tree/json_parser.hpp>
 
 #include "reader.hpp"
-#include "storeBodies.hpp"
+#include "storebodies.hpp"
 
-namespace pt = boost::property_tree;
+//namespace pt = boost::property_tree;
 
 /* 
 *  Class in charge of reading JSON stream input and populating classes and structures

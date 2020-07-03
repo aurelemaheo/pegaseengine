@@ -8,7 +8,7 @@
 #include "memorymanager.hpp"
 
 typedef Singleton<PegaseEngine>  pgSingleton;
-typedef Singleton<Renderer>  	 rendererSingleton;
+//typedef Singleton<Renderer>  	 rendererSingleton;
 typedef Singleton<Logger>  	 loggerSingleton;
 typedef Singleton<MemoryManager> memmanagerSingleton;
 

@@ -10,7 +10,7 @@ if [ -z "$(ls)" ]; then
   echo "Directory empty"
   # Download boost::property_tree
   #git clone https://github.com/boostorg/property_tree.git
-  #wget https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.gz
+  wget https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.gz
   # Download and install jsoncpp
   git clone https://github.com/open-source-parsers/jsoncpp.git
   cd jsoncpp
@@ -24,12 +24,13 @@ if [ -z "$(ls)" ]; then
   cmake .
   make
   make install
+  cd ..
 fi
 
 # Install BOOST
-#tar -xvzf boost_1_72_0.tar.gz
-#cd boost_1_72_0
-#./bootstrap.sh
-#./b2
+tar -xvzf boost_1_72_0.tar.gz
+cd boost_1_72_0
+./bootstrap.sh
+./b2
 
 
