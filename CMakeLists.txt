@@ -16,8 +16,15 @@ include_directories(/Users/aurele/git/pegaseengine/thirdparty/glfw/include)
 #Library
 #add_library(libglfw3 STATIC /Users/aurele/git/pegaseengine/thirdparty/glfw/src)
 
-#link_directories(/Users/aurele/git/pegaseengine/thirdparty/glfw/src)
-link_directories(/usr/local/Cellar/glfw/3.3.2/lib)
+link_directories(/Users/aurele/git/pegaseengine/thirdparty/glfw/src)
+#link_directories(/usr/local/Cellar/glfw/3.3.2/lib)
+find_package(glfw3 REQUIRED)
+find_library(COCOA_LIBRARY Cocoa)
+find_library(IOKIT_LIBRARY IOKit)
+find_library(CARBON_LIBRARY Carbon)
+find_library(CORESERVICES_LIBRARY CoreServices)
+find_library(COREFOUNDATION_LIBRARY CoreFoundation)
+find_library(OPENGL_LIBRARY OpenGL)
 
 #Generate list of source files
 file(
@@ -33,7 +40,14 @@ add_executable(
 )
 
 #target_link_libraries(pegaseengine ${GLFW3_LIBRARY})
-target_link_libraries(pegaseengine libglfw.3.3.dylib)
+target_link_libraries(pegaseengine glfw3)
+target_link_libraries(pegaseengine ${COCOA_LIBRARY})
+target_link_libraries(pegaseengine ${IOKIT_LIBRARY})
+target_link_libraries(pegaseengine ${CARBON_LIBRARY})
+target_link_libraries(pegaseengine ${CORESERVICES_LIBRARY})
+target_link_libraries(pegaseengine ${COREFOUNDATION_LIBRARY})
+target_link_libraries(pegaseengine ${OPENGL_LIBRARY})
+#target_link_libraries(pegaseengine libglfw.3.3.dylib)
 
 if (APPLE)
 #  target_link_libraries(pegaseengine "-framework OpenGL")
