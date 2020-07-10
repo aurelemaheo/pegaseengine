@@ -1,10 +1,14 @@
 #include <iostream>
 #include <cassert>
+#include <stdio.h>
+//#include <conio.h>
 
 #include <time.h>
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
+
+#include <Python.h>
 
 #include "readerjson.hpp"
 
@@ -12,9 +16,18 @@ namespace pt = boost::property_tree;
 
 pt::ptree root;
 
-//ReaderJson::ReaderJson()
-//{
-//}
+ReaderJson::ReaderJson()
+{
+  char filename[] = "readerjson.py";
+	FILE* fp;
+
+	Py_Initialize();
+
+	fp = _Py_fopen(filename, "r");
+	//PyRun_SimpleFile(fp, filename);
+
+	Py_Finalize();
+}
 
 /*
 * Load JSON Stream 

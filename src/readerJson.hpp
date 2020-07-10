@@ -17,6 +17,8 @@
 class ReaderJson : public Reader
 {
   public:
+   ReaderJson();
+   ~ReaderJson();
    void loadJsonStream(std::string JsonStreamName); 
    void parseJsonStream();
 
