@@ -14,3 +14,13 @@ from io import BytesIO
 import os
 
 import ujson as json
+import json
+
+def parsejson(self):
+
+    with open('tests/scene01.json') as filejson:
+    scene = json.load(filejson)
+
+    print(scene)
+
+def main(self):
