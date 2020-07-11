@@ -24,3 +24,5 @@ def parsejson(self):
     print(scene)
 
 def main(self):
+
+    self.parsejson()
