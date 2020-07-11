@@ -25,8 +25,15 @@ ReaderJson::ReaderJson()
 
 	fp = _Py_fopen(filename, "r");
 	//PyRun_SimpleFile(fp, filename);
+  PyRun_SimpleString("import readerjson;");
+  PyRun_SimpleString("readerjson.parsejson()");
 
 	Py_Finalize();
+}
+
+ReaderJson::~ReaderJson()
+{
+
 }
 
 /*

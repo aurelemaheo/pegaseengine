@@ -10,7 +10,21 @@
 #include "timer.hpp"
 
 
+PegaseEngine::PegaseEngine()
+{
+  LOG(DEBUG) << "PegaseEngine constructor" << std::endl;
+
+  loadObjects();
+  //Renderer renderer;
+  //renderer.init();
+
+  CollisionManager *cm = new CollisionManager();
+  std::thread collThread(&CollisionManager::collListener, cm);
+  collThread.join();
+}
+
 /* Constructor */
+/*
 PegaseEngine::PegaseEngine(std::string nameInStream) 
 {
 
@@ -26,7 +40,7 @@ PegaseEngine::PegaseEngine(std::string nameInStream)
   collThread.join();
 
 }
-
+*/
 /* Destructor */
 PegaseEngine::~PegaseEngine() 
 {
@@ -69,11 +83,10 @@ void PegaseEngine::stopEngine()
 */
 void PegaseEngine::loadObjects()
 {
-  //ReaderJson rj;
   LOG(INFO) << "Pegase Engine: Load objects from external source" << std::endl;
-
-  rj->loadJsonStream(_nameInStream); 
-  rj->parseJsonStream();
+  ReaderJson rj;
+  //rj->loadJsonStream(_nameInStream); 
+  //rj->parseJsonStream();
 
 }
 

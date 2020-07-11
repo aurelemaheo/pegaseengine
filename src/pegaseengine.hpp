@@ -12,11 +12,8 @@ class PegaseEngine
 {
   public:
 
-    PegaseEngine()
-    {
-      LOG(DEBUG) << "Pegase Engine constructor" << std::endl;
-    }
-    PegaseEngine(std::string nameInStream); /* Constructor */
+    PegaseEngine();
+    //PegaseEngine(std::string nameInStream); /* Constructor */
     ~PegaseEngine(); /* Destructor */
 
     void runEngine();
