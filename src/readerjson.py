@@ -8,21 +8,19 @@ This job uses Spark to run this distributed ETL job.
 """
 
 import time
-import gzip
-import argparse
-from io import BytesIO
 import os
 
-import ujson as json
 import json
 
 def parsejson(self):
 
+    print "Parse JSON scene"
     with open('tests/scene01.json') as filejson:
     scene = json.load(filejson)
 
+    print "Print JSON scene"
     print(scene)
 
-def main(self):
+#def main(self):
 
-    self.parsejson()
+#    iself.parsejson()

@@ -18,10 +18,15 @@ pt::ptree root;
 
 ReaderJson::ReaderJson()
 {
+
+  LOG(DEBUG) << "ReaderJson Constructor" << std::endl;
+
   char filename[] = "readerjson.py";
 	FILE* fp;
 
 	Py_Initialize();
+
+  LOG(DEBUG) << "Python initialized" << std::endl;
 
 	fp = _Py_fopen(filename, "r");
 	//PyRun_SimpleFile(fp, filename);
@@ -29,6 +34,8 @@ ReaderJson::ReaderJson()
   PyRun_SimpleString("readerjson.parsejson()");
 
 	Py_Finalize();
+
+  LOG(DEBUG) << "Python finalized" << std::endl;
 }
 
 ReaderJson::~ReaderJson()
@@ -41,8 +48,8 @@ ReaderJson::~ReaderJson()
 */
 void ReaderJson::loadJsonStream(std::string jsonStreamName)
 {
-  std::cout << "Load Json source " << std::endl;
-
+  LOG(DEBUG) << "Load JON source from Python script" << std::endl;
+  
   //pt::ptree root;
   //pt::read_json(jsonStreamName, root);
   pt::read_json("scene.json", root);
