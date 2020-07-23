@@ -30,8 +30,16 @@ ReaderJson::ReaderJson()
 
 	fp = _Py_fopen(filename, "r");
 	//PyRun_SimpleFile(fp, filename);
-  PyRun_SimpleString("import readerjson;");
-  PyRun_SimpleString("readerjson.parsejson()");
+  //PyRun_SimpleString("import readerjson;");
+  //PyRun_SimpleString("readerjson.parsejson()");
+
+  PyObject* myModuleString = PyString_FromString((char*)"readerjson");
+  PyObject* myModule = PyImport_Import(myModuleString);
+
+  PyObject* myFunction = PyObject_GetAttrString(myModule,(char*)"parsejson");
+  //PyObject* args = PyTuple_Pack(1,PyFloat_FromDouble(2.0));
+
+  //PyObject* myResult = PyObject_CallObject(myFunction, args);
 
 	Py_Finalize();
 
