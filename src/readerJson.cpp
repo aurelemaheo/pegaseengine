@@ -5,16 +5,15 @@
 
 #include <time.h>
 
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
+//#include <boost/property_tree/ptree.hpp>
+//#include <boost/property_tree/json_parser.hpp>
+#include <json/json.h>
 
 #include <Python.h>
 
 #include "readerjson.hpp"
 
-namespace pt = boost::property_tree;
-
-pt::ptree root;
+//pt::ptree root;
 
 ReaderJson::ReaderJson()
 {
@@ -22,21 +21,21 @@ ReaderJson::ReaderJson()
   LOG(DEBUG) << "ReaderJson Constructor" << std::endl;
 
   char filename[] = "readerjson.py";
-	FILE* fp;
+	//FILE* fp;
 
-	Py_Initialize();
+	//Py_Initialize();
 
   LOG(DEBUG) << "Python initialized" << std::endl;
 
-	fp = _Py_fopen(filename, "r");
+	//fp = _Py_fopen(filename, "r");
 	//PyRun_SimpleFile(fp, filename);
   //PyRun_SimpleString("import readerjson;");
   //PyRun_SimpleString("readerjson.parsejson()");
 
-  PyObject* myModuleString = PyString_FromString((char*)"readerjson");
-  PyObject* myModule = PyImport_Import(myModuleString);
+  //PyObject* myModuleString = PyString_FromString((char*)"readerjson");
+  //PyObject* myModule = PyImport_Import(myModuleString);
 
-  PyObject* myFunction = PyObject_GetAttrString(myModule,(char*)"parsejson");
+  //PyObject* myFunction = PyObject_GetAttrString(myModule,(char*)"parsejson");
   //PyObject* args = PyTuple_Pack(1,PyFloat_FromDouble(2.0));
 
   //PyObject* myResult = PyObject_CallObject(myFunction, args);
@@ -60,7 +59,7 @@ void ReaderJson::loadJsonStream(std::string jsonStreamName)
   
   //pt::ptree root;
   //pt::read_json(jsonStreamName, root);
-  pt::read_json("scene.json", root);
+  //pt::read_json("scene.json", root);
 
 }
 
@@ -73,8 +72,8 @@ void ReaderJson::parseJsonStream()
   
   //StoreSolids ss;
 
-  for(pt::ptree::value_type &solid : root.get_child("solids"))
-  {
+  //for(pt::ptree::value_type &solid : root.get_child("solids"))
+  //{
 
       /*
     int Id = rand() % 1000; 
@@ -104,7 +103,7 @@ void ReaderJson::parseJsonStream()
     
     ss.addBody(s);
        */
-  }
+  //}
   
 }
 
