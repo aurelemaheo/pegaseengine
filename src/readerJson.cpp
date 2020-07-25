@@ -23,6 +23,8 @@ ReaderJson::ReaderJson()
   char filename[] = "readerjson.py";
 	//FILE* fp;
 
+  Json::Value json;
+  Json::Reader reader;
 	//Py_Initialize();
 
   LOG(DEBUG) << "Python initialized" << std::endl;
