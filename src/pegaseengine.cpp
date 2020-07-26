@@ -41,6 +41,7 @@ PegaseEngine::PegaseEngine(std::string nameInStream)
 
 }
 */
+
 /* Destructor */
 PegaseEngine::~PegaseEngine() 
 {

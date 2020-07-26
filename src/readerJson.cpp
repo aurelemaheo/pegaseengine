@@ -4,6 +4,8 @@
 //#include <conio.h>
 
 #include <time.h>
+#include <string>
+#include <fstream>
 
 //#include <boost/property_tree/ptree.hpp>
 //#include <boost/property_tree/json_parser.hpp>
@@ -23,9 +25,19 @@ ReaderJson::ReaderJson()
   char filename[] = "readerjson.py";
 	//FILE* fp;
 
+  std::ifstream t("scene01.json");
+  std::stringstream buffer;
+  buffer << t.rdbuf();
+  
+  std::string jsondata = buffer.str();
+  
+  LOG(DEBUG) << "JSON FILE: " << jsondata << std::endl;
+
   Json::Value json;
   Json::Reader reader;
 	//Py_Initialize();
+
+  reader.parse(jsondata, json, false);
 
   LOG(DEBUG) << "Python initialized" << std::endl;
 
