@@ -8,7 +8,7 @@ class Renderer
     ~Renderer();	// Destructor
     int init();
     void destroy();
-    void BeginScene();  // Start scene
+    void create();      // Create scene based on what is described
     void EndScene();    // End scene    
 
     enum
