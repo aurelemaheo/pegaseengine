@@ -2,7 +2,6 @@
 
 //#include "glad/gl.h"
 #include "linmath.h"
-#include <GLFW/glfw3.h>
 
 #include "renderer.hpp"
 
@@ -37,9 +36,7 @@ static const char* fragment_shader_text =
 "    gl_FragColor = vec4(color, 1.0);\n"
 "}\n";
 
-static GLFWwindow* window;
-
-static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+static void key_callback(int key, int scancode, int action, int mods)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GLFW_TRUE);
@@ -77,7 +74,7 @@ int Renderer::init()
         return -1;
     }
 
-    glfwSetKeyCallback(window, key_callback);
+    //glfwSetKeyCallback(window, key_callback);
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);

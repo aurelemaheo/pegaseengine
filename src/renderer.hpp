@@ -1,7 +1,11 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+#include <GLFW/glfw3.h>
+
 #include "logger.hpp"
+
+GLFWwindow* window;
 
 class Renderer
 {
@@ -19,9 +23,6 @@ class Renderer
         DIRECTX,
         METAL
     };
-
-
-  private:
 
 };
 
