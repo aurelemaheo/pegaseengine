@@ -1,6 +1,8 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+#include "logger.hpp"
+
 class Renderer
 {
   public:

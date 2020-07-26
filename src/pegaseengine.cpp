@@ -55,6 +55,7 @@ void PegaseEngine::runEngine()
 
   Renderer renderer;
   renderer.init();
+  renderer.create();
 
  // Infinite loop computing the scene
  while(engine_running)

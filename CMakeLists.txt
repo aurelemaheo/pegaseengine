@@ -10,7 +10,8 @@ set(CMAKE_BUILD_TYPE Debug)
 
 # Include
 include_directories(include)
-include_directories(/Users/aurele/git/pegaseengine/thirdparty/boost_1_72_0)
+include_directories(/Users/aurele/git/pegaseengine/thirdparty)
+#include_directories(/Users/aurele/git/pegaseengine/thirdparty/boost_1_72_0)
 include_directories(/Users/aurele/git/pegaseengine/thirdparty/glfw/include)
 include_directories(/Users/aurele/git/pegaseengine/thirdparty/jsoncpp/include)
 #include_directories(/System/Library/Frameworks/Python.framework//Versions/2.7/include/python2.7)
