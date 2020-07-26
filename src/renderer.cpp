@@ -1,8 +1,7 @@
 #include <iostream>
+//#include <glad/gl.h>
 
-//#include "glad/gl.h"
 #include "linmath.h"
-
 #include "renderer.hpp"
 
 static const struct
@@ -36,7 +35,12 @@ static const char* fragment_shader_text =
 "    gl_FragColor = vec4(color, 1.0);\n"
 "}\n";
 
-static void key_callback(int key, int scancode, int action, int mods)
+static void error_callback(int error, const char* description)
+{
+    fprintf(stderr, "Error: %s\n", description);
+}
+
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GLFW_TRUE);
@@ -52,6 +56,7 @@ int Renderer::init()
 
     LOG(DEBUG) << "Init renderer ..." << std::endl;
 
+#if 0
     //GLFWwindow* window;
 
     /* Initialize the library */
@@ -80,6 +85,7 @@ int Renderer::init()
     glfwMakeContextCurrent(window);
     //gladLoadGL(glfwGetProcAddress);
     glfwSwapInterval(1);
+#endif
 
 }
 
@@ -88,9 +94,34 @@ void Renderer::create()
 
     LOG(DEBUG) << "Create scene ..." << std::endl;
 
+
+    GLFWwindow* window;
     GLuint vertex_buffer, vertex_shader, fragment_shader, program;
     GLint mvp_location, vpos_location, vcol_location;
-
+ 
+    glfwSetErrorCallback(error_callback);
+ 
+    if (!glfwInit())
+        exit(EXIT_FAILURE);
+ 
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+ 
+    window = glfwCreateWindow(640, 480, "Simple example", NULL, NULL);
+    if (!window)
+    {
+        glfwTerminate();
+        exit(EXIT_FAILURE);
+    }
+ 
+    glfwSetKeyCallback(window, key_callback);
+ 
+    glfwMakeContextCurrent(window);
+    //gladLoadGL(glfwGetProcAddress);
+    glfwSwapInterval(1);
+ 
+    // NOTE: OpenGL error checks have been omitted for brevity
+ 
     glGenBuffers(1, &vertex_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
@@ -148,6 +179,8 @@ void Renderer::create()
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+
+    glfwDestroyWindow(window);
 
 }
 

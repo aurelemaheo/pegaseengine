@@ -5,7 +5,7 @@
 
 #include "logger.hpp"
 
-GLFWwindow* window;
+//GLFWwindow* window;
 
 class Renderer
 {
