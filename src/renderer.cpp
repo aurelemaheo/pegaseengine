@@ -182,8 +182,7 @@ void Renderer::Run()
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT);
  
-        glfwSwapBuffers(window);
-        glfwPollEvents();
+        
 
         //this->UpdateScene();
 
@@ -207,6 +206,9 @@ void Renderer::Run()
    glUseProgram(program);
    glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*) mvp);
    glDrawArrays(GL_TRIANGLES, 0, 3); 
+
+   glfwSwapBuffers(window);
+        glfwPollEvents();
 
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
 		now = std::chrono::high_resolution_clock::now();
