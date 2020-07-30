@@ -182,32 +182,12 @@ void Renderer::Run()
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT);
  
-        
-
-        //this->UpdateScene();
-
         float ratio;
-         mat4x4 m, p, mvp;
+        mat4x4 m, p, mvp;
 
+        this->UpdateScene();
 
-   LOG(DEBUG) << "Update scene" << std::endl;
-
-   //int width = this->getWidth();
-   //int height = this->getHeight();
- 
-   glfwGetFramebufferSize(window, &width, &height);
-   ratio = width / (float) height;
-
-   mat4x4_identity(m);
-   mat4x4_rotate_Z(m, m, (float) glfwGetTime());
-   mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
-   mat4x4_mul(mvp, p, m);
- 
-   glUseProgram(program);
-   glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*) mvp);
-   glDrawArrays(GL_TRIANGLES, 0, 3); 
-
-   glfwSwapBuffers(window);
+        glfwSwapBuffers(window);
         glfwPollEvents();
 
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -223,11 +203,10 @@ void Renderer::Run()
 void Renderer::UpdateScene()
 {
 
+   LOG(DEBUG) << "Update scene" << std::endl;
+
    float ratio;
    mat4x4 m, p, mvp;
-
-
-   LOG(DEBUG) << "Update scene" << std::endl;
 
    int width = this->getWidth();
    int height = this->getHeight();
