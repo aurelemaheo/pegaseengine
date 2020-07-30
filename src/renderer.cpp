@@ -6,6 +6,8 @@
 #include "renderer.hpp"
 
   GLFWwindow* window;
+  GLuint program; 
+  GLint mvp_location;
 
 static const struct
 {
@@ -175,27 +177,13 @@ void Renderer::Run()
 		std::chrono::high_resolution_clock::duration duration = now.time_since_epoch();
         int64_t startMillis = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
 
-        float ratio;
-        int width, height;
-        mat4x4 m, p, mvp;
- 
-        glfwGetFramebufferSize(window, &width, &height);
-        ratio = width / (float) height;
- 
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT);
  
-        mat4x4_identity(m);
-        mat4x4_rotate_Z(m, m, (float) glfwGetTime());
-        mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
-        mat4x4_mul(mvp, p, m);
- 
-        glUseProgram(program);
-        glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*) mvp);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
- 
         glfwSwapBuffers(window);
         glfwPollEvents();
+
+        this->UpdateScene();
 
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
 		now = std::chrono::high_resolution_clock::now();
@@ -204,6 +192,32 @@ void Renderer::Run()
 
 		LOG(DEBUG) << "Frame duration: " << endMillis - startMillis << std::endl;
     }
+
+}
+
+void Renderer::UpdateScene()
+{
+
+   float ratio;
+   mat4x4 m, p, mvp;
+
+
+   LOG(DEBUG) << "Update scene" << std::endl;
+
+   int width = this->getWidth();
+   int height = this->getHeight();
+ 
+   glfwGetFramebufferSize(window, &width, &height);
+   ratio = width / (float) height;
+
+   mat4x4_identity(m);
+   mat4x4_rotate_Z(m, m, (float) glfwGetTime());
+   mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
+   mat4x4_mul(mvp, p, m);
+ 
+   glUseProgram(program);
+   glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*) mvp);
+   glDrawArrays(GL_TRIANGLES, 0, 3);  
 
 }
 
