@@ -165,7 +165,6 @@ void Renderer::Destroy()
 void Renderer::Run()
 {
 
-
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
@@ -176,6 +175,9 @@ void Renderer::Run()
 			std::chrono::high_resolution_clock::now();
 		std::chrono::high_resolution_clock::duration duration = now.time_since_epoch();
         int64_t startMillis = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
+
+        int width = this->getWidth();
+        int height = this->getHeight();
 
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT);
