@@ -2,6 +2,9 @@
 #define RENDERER_H
 
 #include <GLFW/glfw3.h>
+#include <chrono>
+#include <thread>
+#include <cstdint>
 
 #include "logger.hpp"
 
@@ -12,9 +15,10 @@ class Renderer
   public:
     Renderer();		// Constructor
     ~Renderer();	// Destructor
-    int init();
-    void destroy();
-    void create();      // Create scene based on what is described
+    int Init();
+    void Destroy();     // Destroy scene
+    void Create();      // Create scene based on described bodies
+    void Run();         // Run scene
     void EndScene();    // End scene    
 
     enum
@@ -24,6 +28,10 @@ class Renderer
         METAL
     };
 
+
+  private:
+    GLuint vertex_buffer, vertex_shader, fragment_shader, program;
+    GLint mvp_location, vpos_location, vcol_location;
 };
 
 #endif //RENDERER_H

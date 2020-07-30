@@ -54,8 +54,9 @@ void PegaseEngine::runEngine()
  LOG(INFO) << "Pegase Engine: run Engine ";
 
   Renderer renderer;
-  renderer.init();
-  renderer.create();
+  renderer.Init();
+  renderer.Create();
+  renderer.Run();
 
  // Infinite loop computing the scene
  while(engine_running)

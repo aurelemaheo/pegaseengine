@@ -1,8 +1,11 @@
 #include <iostream>
+
 //#include <glad/gl.h>
 
 #include "linmath.h"
 #include "renderer.hpp"
+
+  GLFWwindow* window;
 
 static const struct
 {
@@ -51,7 +54,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
  */
 Renderer::Renderer(){}
 
-int Renderer::init()
+int Renderer::Init()
 {
 
     LOG(DEBUG) << "Init renderer ..." << std::endl;
@@ -89,16 +92,11 @@ int Renderer::init()
 
 }
 
-void Renderer::create()
+void Renderer::Create()
 {
 
     LOG(DEBUG) << "Create scene ..." << std::endl;
 
-
-    GLFWwindow* window;
-    GLuint vertex_buffer, vertex_shader, fragment_shader, program;
-    GLint mvp_location, vpos_location, vcol_location;
- 
     glfwSetErrorCallback(error_callback);
  
     if (!glfwInit())
@@ -107,7 +105,7 @@ void Renderer::create()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
  
-    window = glfwCreateWindow(640, 480, "Simple example", NULL, NULL);
+    window = glfwCreateWindow(1200, 1000, "Pegase Engine", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -149,13 +147,33 @@ void Renderer::create()
     glEnableVertexAttribArray(vcol_location);
     glVertexAttribPointer(vcol_location, 3, GL_FLOAT, GL_FALSE,
                           sizeof(vertices[0]), (void*) (sizeof(float) * 2));
+   
+
+}
+
+void Renderer::Destroy()
+{
+    LOG(DEBUG) << "Destroy scene ..." << std::endl;
+   
+    glfwTerminate();
+
+    glfwDestroyWindow(window);
+}
+
+void Renderer::Run()
+{
 
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
 
-        LOG(DEBUG) << "Rendering loop ..." << std::endl;
+        LOG(DEBUG) << "Rendering loop" << std::endl;
+
+        std::chrono::time_point<std::chrono::high_resolution_clock> now =
+			std::chrono::high_resolution_clock::now();
+		std::chrono::high_resolution_clock::duration duration = now.time_since_epoch();
+        int64_t startMillis = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
 
         float ratio;
         int width, height;
@@ -178,17 +196,15 @@ void Renderer::create()
  
         glfwSwapBuffers(window);
         glfwPollEvents();
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		now = std::chrono::high_resolution_clock::now();
+		duration = now.time_since_epoch();
+		int64_t endMillis = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
+
+		LOG(DEBUG) << "Frame duration: " << endMillis - startMillis << std::endl;
     }
 
-    glfwDestroyWindow(window);
-
-}
-
-void Renderer::destroy()
-{
-    LOG(DEBUG) << "Destroy scene ..." << std::endl;
-   
-    glfwTerminate();
 }
 
 /*

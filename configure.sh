@@ -26,6 +26,9 @@ if [ -z "$(ls)" ]; then
   make
   make install
   cd ..
+
+  git clone https://github.com/Dav1dde/glad.git
+  
 fi
 
 # Install BOOST
