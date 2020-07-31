@@ -18,7 +18,7 @@ class Renderer
     int Init();
     void Destroy();     // Destroy scene
     void Create();      // Create scene based on described bodies
-    void Run();         // Run scene
+    void Run();         // Run scene (shoud disappear because redundant with main engine loop)
     void UpdateScene(); // Update scene at each timestep
     void EndScene();    // End scene   
 
