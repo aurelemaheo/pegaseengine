@@ -1,6 +1,8 @@
 #ifndef SPHERE_H
 #define SPHERE_H
 
+#include <GLFW/glfw3.h>
+
 #include "body.hpp"
 
 class Sphere: public Body
@@ -12,6 +14,7 @@ class Sphere: public Body
     ~Sphere(){} /* Destructor */
 
     void setSize(double size){_radius = size;} 
+    void draw();
 
   private:
     int m_Id;

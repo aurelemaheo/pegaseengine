@@ -24,6 +24,7 @@ class Renderer
 
     int getWidth(){ return width;} 
     int getHeight(){ return height;} 
+    //void fillIndices(){for(int i=0;i<10;i++)lineIndices.push_back(0);}
 
     enum
     {
@@ -37,6 +38,7 @@ class Renderer
     GLuint vertex_buffer, vertex_shader, fragment_shader;
     GLint vpos_location, vcol_location;
     int width, height;
+    //std::vector<unsigned int> lineIndices;
 };
 
 #endif //RENDERER_H

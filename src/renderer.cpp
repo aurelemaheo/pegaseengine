@@ -215,13 +215,14 @@ void Renderer::UpdateScene()
    ratio = width / (float) height;
 
    mat4x4_identity(m);
-   //mat4x4_rotate_Z(m, m, (float) glfwGetTime());
+   mat4x4_rotate_Z(m, m, (float) glfwGetTime());
    mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
    mat4x4_mul(mvp, p, m);
  
    glUseProgram(program);
    glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*) mvp);
-   glDrawArrays(GL_TRIANGLE_FAN, 0, 3);  
+   //glDrawArrays(GL_TRIANGLE_FAN, 0, 3); 
+   glDrawElements(GL_LINES, 20, GL_UNSIGNED_INT, NULL); 
 
 }
 
