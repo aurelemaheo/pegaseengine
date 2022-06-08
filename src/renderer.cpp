@@ -185,7 +185,11 @@ void Renderer::Run()
         float ratio;
         mat4x4 m, p, mvp;
 
+        LOG(DEBUG) << "Before updating scene" << std::endl;
+
         this->UpdateScene();
+
+        LOG(DEBUG) << "After updating scene" << std::endl;
 
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -219,10 +223,12 @@ void Renderer::UpdateScene()
    mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
    mat4x4_mul(mvp, p, m);
  
+   LOG(DEBUG) << "Update scene 1" << std::endl;
    glUseProgram(program);
+   LOG(DEBUG) << "Update scene 2" << std::endl;
    glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*) mvp);
-   //glDrawArrays(GL_TRIANGLE_FAN, 0, 3); 
-   glDrawElements(GL_LINES, 20, GL_UNSIGNED_INT, NULL); 
+   glDrawArrays(GL_TRIANGLE_FAN, 0, 3); 
+   //glDrawElements(GL_LINES, 20, GL_UNSIGNED_INT, NULL); 
 
 }
 

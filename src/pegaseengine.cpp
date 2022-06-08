@@ -51,7 +51,7 @@ PegaseEngine::~PegaseEngine()
 void PegaseEngine::runEngine()
 {
 
- LOG(INFO) << "Pegase Engine: run Engine ";
+ LOG(INFO) << "Pegase Engine: run Engine " << std::endl;
 
   Renderer renderer;
   renderer.Init();
