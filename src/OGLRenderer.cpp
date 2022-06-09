@@ -1,9 +1,19 @@
 #include <iostream>
+#include <stdlib.h>
 
-//#include <glad/gl.h>
+#include <GLFW/glfw3.h>
+#include <chrono>
+#include <thread>
+#include <cstdint>
+
+#include "logger.hpp"
 
 #include "linmath.h"
-#include "renderer.hpp"
+#include "OGLRenderer.hpp"
+
+  GLFWwindow* window;
+  GLuint program; 
+  GLint mvp_location;
 
 static const struct
 {
@@ -47,15 +57,11 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
-/*
- * Renderer Constructor
- */
-Renderer::Renderer(){}
 
-int Renderer::Init()
+int OGLRenderer::Init()
 {
 
-    LOG(DEBUG) << "Init renderer ..." << std::endl;
+    LOG(DEBUG) << "Init OpenGL renderer ..." << std::endl;
 
 #if 0
     //GLFWwindow* window;
@@ -88,13 +94,13 @@ int Renderer::Init()
     glfwSwapInterval(1);
 #endif
 
+
 }
 
-void Renderer::Create()
+void OGLRenderer::Create()
 {
 
-#if 0
-    LOG(DEBUG) << "Create scene ..." << std::endl;
+    LOG(DEBUG) << "Create OpenGL scene ..." << std::endl;
 
     glfwSetErrorCallback(error_callback);
  
@@ -147,30 +153,27 @@ void Renderer::Create()
     glVertexAttribPointer(vcol_location, 3, GL_FLOAT, GL_FALSE,
                           sizeof(vertices[0]), (void*) (sizeof(float) * 2));
    
-#endif
 
 }
 
-void Renderer::Destroy()
+void OGLRenderer::Destroy()
 {
-    LOG(DEBUG) << "Destroy scene ..." << std::endl;
+    LOG(DEBUG) << "Destroy scene (OpenGL)" << std::endl;
    
- #if 0  
     glfwTerminate();
 
     glfwDestroyWindow(window);
-#endif
+
 }
 
-void Renderer::Run()
+void OGLRenderer::Run()
 {
 
-#if 0
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
 
-        LOG(DEBUG) << "Rendering loop" << std::endl;
+        LOG(DEBUG) << "Rendering loop (OpenGL)" << std::endl;
 
         std::chrono::time_point<std::chrono::high_resolution_clock> now =
 			std::chrono::high_resolution_clock::now();
@@ -202,14 +205,13 @@ void Renderer::Run()
 
 		LOG(DEBUG) << "Frame duration: " << endMillis - startMillis << std::endl;
     }
-#endif
+
 }
 
-void Renderer::UpdateScene()
+void OGLRenderer::UpdateScene()
 {
 
-#if 0
-   LOG(DEBUG) << "Update scene" << std::endl;
+   LOG(DEBUG) << "Update OpenGL scene" << std::endl;
 
    float ratio;
    mat4x4 m, p, mvp;
@@ -231,13 +233,5 @@ void Renderer::UpdateScene()
    glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*) mvp);
    glDrawArrays(GL_TRIANGLE_FAN, 0, 3); 
    //glDrawElements(GL_LINES, 20, GL_UNSIGNED_INT, NULL); 
-#endif
 
-}
-
-/*
- * Renderer destructor
- */
-Renderer::~Renderer()
-{
 }
