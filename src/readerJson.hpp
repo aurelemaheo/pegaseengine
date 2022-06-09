@@ -8,6 +8,7 @@
 
 #include "reader.hpp"
 #include "storebodies.hpp"
+#include "objectpool.hpp"
 #include "logger.hpp"
 
 //namespace pt = boost::property_tree;

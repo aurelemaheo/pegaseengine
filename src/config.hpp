@@ -11,5 +11,6 @@ typedef Singleton<PegaseEngine>  pgSingleton;
 //typedef Singleton<Renderer>  	 rendererSingleton;
 typedef Singleton<Logger>  	 loggerSingleton;
 typedef Singleton<MemoryManager> memmanagerSingleton;
+typedef Singleton<ObjectPool> objpoolSingleton;
 
 #endif //CONFIG_H

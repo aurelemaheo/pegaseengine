@@ -12,7 +12,17 @@ class Body
 
     //virtual void setForce(float newton, int x, int y, int z) = 0;
     //Solid(int Id):_Id(Id){}
-    //Body(){_curr_pos = NULL; _lin_velocity = NULL;}
+    Body()
+    {
+      this->_curr_pos._x = 0.0; 
+      this->_curr_pos._y = 0.0; 
+      this->_curr_pos._z = 0.0; 
+
+      this->_lin_velocity._x = 0.0;
+      this->_lin_velocity._y = 0.0;
+      this->_lin_velocity._z = 0.0;
+    }
+    
     ~Body(){}
 
     enum body_type
@@ -36,7 +46,7 @@ class Body
     };
     
     void setWeight(double w){_weight = w;}
-    void setPosition(Vector3<double> pos){_curr_pos = pos;}
+    //void setPosition(Vector3<double> pos){_curr_pos = pos;}
     void setPosition(double x, double y, double z){_curr_pos._x = x; _curr_pos._y = y; _curr_pos._z = z;}
     Vector3<double> getPosition(){return _curr_pos;}
     void setLinVelocity(double x, double y, double z){_lin_velocity._x = x; _lin_velocity._y = y; _lin_velocity._z = z;}
@@ -47,10 +57,10 @@ class Body
   protected:
     int   	            _Id;          	       // Object identifier
     double 	            _weight;               // Weight of the solid
-    Vector3<double>  	_curr_pos; 	           // Position (x,y,z) of the solid at t time
+    Vector3<double>  	  _curr_pos; 	           // Position (x,y,z) of the solid at t time
     Vector3<double>     _lin_velocity;         // Linear velocity (x,y,z)
     double 	            _ang_velocity;         // Angular velocity (rad/sec)
-    bool 	            is_colliding;          // Boolean notifying whether solid is colliding with another object or not
+    bool 	              is_colliding;          // Boolean notifying whether solid is colliding with another object or not
     body_type           _type;
 
   private:

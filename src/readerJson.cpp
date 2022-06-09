@@ -14,6 +14,7 @@
 #include <Python.h>
 
 #include "readerjson.hpp"
+#include "config.hpp"
 
 //pt::ptree root;
 
@@ -45,9 +46,20 @@ ReaderJson::ReaderJson()
   
   const Json::Value bodies = json["bodies"];
 
+   
   for(int iter=0 ; iter < bodies.size() ; iter ++) 
   {
-    LOG(DEBUG) << "read body [ " << iter << " ] : " << bodies[iter] << std::endl;
+    Body* itemBody = objpoolSingleton::getInstance()->getResource();
+    const Json::Value x_pos = bodies[iter]["position"]["x"];
+    const Json::Value y_pos = bodies[iter]["position"]["y"];
+    const Json::Value z_pos = bodies[iter]["position"]["z"];
+    
+    const Json::Value x_lvel = bodies[iter]["linvelocity"]["x"];
+    const Json::Value y_lvel = bodies[iter]["linvelocity"]["y"];
+    const Json::Value z_lvel = bodies[iter]["linvelocity"]["z"];
+
+    itemBody->setPosition(x_pos.asDouble(), y_pos.asDouble(), z_pos.asDouble());
+    LOG(DEBUG) << "read body [ " << iter << " ] : " << bodies[iter] << " ; position: x = " << x_pos << ", y = " << y_pos << ", z = " << z_pos << std::endl;
   }
 
   LOG(DEBUG) << "Python initialized" << std::endl;
