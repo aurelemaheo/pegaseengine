@@ -39,6 +39,17 @@ ReaderJson::ReaderJson()
 
   reader.parse(jsondata, json, false);
 
+  LOG(DEBUG) << "JSON DATA: " << json << std::endl;
+
+  LOG(DEBUG) << "print JSON bodies: " << json["bodies"] << std::endl;
+  
+  const Json::Value bodies = json["bodies"];
+
+  for(int iter=0 ; iter < bodies.size() ; iter ++) 
+  {
+    LOG(DEBUG) << "read body [ " << iter << " ] : " << bodies[iter] << std::endl;
+  }
+
   LOG(DEBUG) << "Python initialized" << std::endl;
 
 	//fp = _Py_fopen(filename, "r");

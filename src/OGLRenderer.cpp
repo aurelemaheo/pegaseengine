@@ -9,7 +9,7 @@
 #include "logger.hpp"
 
 #include "linmath.h"
-#include "OGLRenderer.hpp"
+#include "oglrenderer.hpp"
 
   GLFWwindow* window;
   GLuint program; 

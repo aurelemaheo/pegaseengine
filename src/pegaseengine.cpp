@@ -5,7 +5,7 @@
 
 #include "pegaseengine.hpp"
 //#include "renderer.hpp"
-#include "OGLRenderer.hpp"
+#include "oglrenderer.hpp"
 #include "collisionmanager.hpp"
 #include "storebodies.hpp"
 #include "timer.hpp"
@@ -54,7 +54,7 @@ void PegaseEngine::runEngine()
 
  LOG(INFO) << "Pegase Engine: run Engine " << std::endl;
 
-  OGLRenderer renderer;
+  OGLRenderer renderer; // Instantiate OpenGL Renderer
   renderer.Init();
   renderer.Create();
   renderer.Run();
