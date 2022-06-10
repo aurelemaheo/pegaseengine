@@ -49,7 +49,8 @@ ReaderJson::ReaderJson()
    
   for(int iter=0 ; iter < bodies.size() ; iter ++) 
   {
-    Body* itemBody = objpoolSingleton::getInstance()->getResource();
+    Body* itemBody = objpoolSingleton::getInstance()->createBody();
+
     const Json::Value x_pos = bodies[iter]["position"]["x"];
     const Json::Value y_pos = bodies[iter]["position"]["y"];
     const Json::Value z_pos = bodies[iter]["position"]["z"];
@@ -58,9 +59,18 @@ ReaderJson::ReaderJson()
     const Json::Value y_lvel = bodies[iter]["linvelocity"]["y"];
     const Json::Value z_lvel = bodies[iter]["linvelocity"]["z"];
 
+    const Json::Value weight = bodies[iter]["weight"];
+
     itemBody->setPosition(x_pos.asDouble(), y_pos.asDouble(), z_pos.asDouble());
+    itemBody->setLinVelocity(x_lvel.asDouble(), y_lvel.asDouble(), z_lvel.asDouble());
+    itemBody->setWeight(weight.asDouble());
+
     LOG(DEBUG) << "read body [ " << iter << " ] : " << bodies[iter] << " ; position: x = " << x_pos << ", y = " << y_pos << ", z = " << z_pos << std::endl;
+
+    objpoolSingleton::getInstance()->storeBody(itemBody);
   }
+
+  LOG(DEBUG) << "Number of bodies: " << objpoolSingleton::getInstance()->getPoolSize() << std::endl;
 
   LOG(DEBUG) << "Python initialized" << std::endl;
 
