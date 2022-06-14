@@ -94,7 +94,6 @@ int OGLRenderer::Init()
     glfwSwapInterval(1);
 #endif
 
-
 }
 
 void OGLRenderer::Create()
@@ -208,10 +207,25 @@ void OGLRenderer::Run()
 
 }
 
+void OGLRenderer::DrawBodies()
+{
+    std::list<Body*> bodies = objpoolSingleton::getInstance()->getListBodies();
+
+    for(std::list<Body*>::iterator it = bodies.begin() ; it != bodies.end() ; it++)
+    {
+        
+    }
+
+    //for(int index=0 ; index < bodies.size() ; index++)
+    //{
+        
+    //}
+}
+
 void OGLRenderer::UpdateScene()
 {
 
-   LOG(DEBUG) << "Update OpenGL scene" << std::endl;
+   LOG(INFO) << "Update OpenGL scene" << std::endl;
 
    float ratio;
    mat4x4 m, p, mvp;

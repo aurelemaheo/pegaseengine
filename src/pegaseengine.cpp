@@ -6,7 +6,7 @@
 #include "pegaseengine.hpp"
 //#include "renderer.hpp"
 #include "oglrenderer.hpp"
-#include "collisionmanager.hpp"
+//#include "collisionmanager.hpp"
 #include "storebodies.hpp"
 #include "timer.hpp"
 
@@ -19,9 +19,9 @@ PegaseEngine::PegaseEngine()
   //Renderer renderer;
   //renderer.init();
 
-  CollisionManager *cm = new CollisionManager();
-  std::thread collThread(&CollisionManager::collListener, cm);
-  collThread.join();
+  //CollisionManager *cm = new CollisionManager();
+  //std::thread collThread(&CollisionManager::collListener, cm);
+  //collThread.join();
 }
 
 /* Constructor */

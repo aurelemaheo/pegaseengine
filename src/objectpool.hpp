@@ -47,6 +47,11 @@ class ObjectPool
             }
         }
 
+        std::list<Body*> getListBodies()
+        {
+            return bodies;
+        }
+
 };
 
 #endif //OBJECTPOOL_H

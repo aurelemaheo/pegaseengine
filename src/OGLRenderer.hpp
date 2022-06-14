@@ -3,11 +3,20 @@
 #define RENDERER_H
 
 #include <GLFW/glfw3.h>
+#include <GLUT/glut.h>
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
+#include <GL/gl.h>
+#endif
+
 #include <chrono>
 #include <thread>
 #include <cstdint>
 
 #include "logger.hpp"
+#include "config.hpp"
 //#include "renderer.hpp"
 
 class OGLRenderer
@@ -20,7 +29,8 @@ class OGLRenderer
     void Create();      // Create scene based on described bodies
     void Run();         // Run scene (shoud disappear because redundant with main engine loop)
     void UpdateScene(); // Update scene at each timestep
-    void EndScene();    // End scene   
+    void EndScene();    // End scene  
+    void DrawBodies();  // Draw bodies in the scene 
 
     int getWidth(){ return width;} 
     int getHeight(){ return height;} 
