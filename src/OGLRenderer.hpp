@@ -16,7 +16,9 @@
 #include <cstdint>
 
 #include "logger.hpp"
-#include "config.hpp"
+//#include "config.hpp"
+#include "body.hpp"
+#include "objectpool.hpp"
 //#include "renderer.hpp"
 
 class OGLRenderer
@@ -24,13 +26,14 @@ class OGLRenderer
   public:
     OGLRenderer(){}		// Constructor
     ~OGLRenderer(){}	// Destructor
-    int Init();
+    int Init(int argc, char **argv);
     void Destroy();     // Destroy scene
     void Create();      // Create scene based on described bodies
     void Run();         // Run scene (shoud disappear because redundant with main engine loop)
     void UpdateScene(); // Update scene at each timestep
     void EndScene();    // End scene  
     void DrawBodies();  // Draw bodies in the scene 
+    void DrawSingleBody(Body* body); // Draw each body
 
     int getWidth(){ return width;} 
     int getHeight(){ return height;} 
@@ -43,6 +46,8 @@ class OGLRenderer
         METAL
     };
 
+    //std::vector<float> vertices = {}
+    //std::vector<unsigned int> lineIndices = {};
 
   private:
     GLuint vertex_buffer, vertex_shader, fragment_shader;

@@ -49,15 +49,16 @@ PegaseEngine::~PegaseEngine()
 }
 
 /* Method containing main loop */
-void PegaseEngine::runEngine()
+void PegaseEngine::runEngine(int argc, char **argv)
 {
 
  LOG(INFO) << "Pegase Engine: run Engine " << std::endl;
 
+  //oglrendererSingleton::getInstance()->Init(argc, argv);
   OGLRenderer renderer; // Instantiate OpenGL Renderer
-  renderer.Init();
-  renderer.Create();
-  renderer.Run();
+  renderer.Init(argc, argv);
+  //renderer.Create();
+  //renderer.Run();
 
  // Infinite loop computing the scene
  while(engine_running)

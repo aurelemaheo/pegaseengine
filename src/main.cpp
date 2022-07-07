@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 
  LOG(DEBUG) << "Pegase Engine start" << std::endl; 
 
- pgSingleton::getInstance()->runEngine();
+ pgSingleton::getInstance()->runEngine(argc, argv);
 
  return 0;
 }

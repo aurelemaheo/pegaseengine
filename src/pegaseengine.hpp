@@ -7,6 +7,7 @@
 #include "readerjson.hpp"
 #include "singleton.hpp"
 #include "logger.hpp"
+//#include "config.hpp"
 
 class PegaseEngine
 {
@@ -16,7 +17,7 @@ class PegaseEngine
     //PegaseEngine(std::string nameInStream); /* Constructor */
     ~PegaseEngine(); /* Destructor */
 
-    void runEngine();                               // Main loop of the engine
+    void runEngine(int argc, char **argv);                               // Main loop of the engine
     void stopEngine();
     void loadObjects();                             // Load objects of the scene (solids, plan) from an external source
     void addObject();
