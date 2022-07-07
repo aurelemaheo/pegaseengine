@@ -10,6 +10,7 @@
 
 #include "linmath.h"
 #include "oglrenderer.hpp"
+#include "config.hpp"
 
   GLFWwindow* window;
   GLuint program; 
@@ -49,6 +50,7 @@ void DrawBodies();
 void displayCB();
 void reshapeCB(int w, int h);
 void timerCB(int millisec);
+void keyboardCB(unsigned char key, int x, int y);
 
 /*
 static const struct
@@ -145,7 +147,7 @@ int OGLRenderer::Init(int argc, char **argv)
     glutDisplayFunc(displayCB);
     glutTimerFunc(33, timerCB, 33);             // redraw only every given millisec
     glutReshapeFunc(reshapeCB);
-
+    glutKeyboardFunc(keyboardCB);
 
     glShadeModel(GL_SMOOTH);                    // shading mathod: GL_SMOOTH or GL_FLAT
     glPixelStorei(GL_UNPACK_ALIGNMENT, 4);      // 4-byte pixel alignment
@@ -450,6 +452,18 @@ void timerCB(int millisec)
     glutPostRedisplay();
 }
 
+void keyboardCB(unsigned char key, int x, int y)
+{
+    switch(key)
+    {
+    case 27: // ESCAPE
+        exit(0);
+        break;
+    default:
+        ;
+    }
+}
+
 void OGLRenderer::Run()
 {
 
@@ -509,10 +523,8 @@ void DrawBodies()
     // line color
     float lineColor[] = {0.2f, 0.2f, 0.2f, 1};
 
-    ObjectPool objPool;
-    std::list<Body*> bodies = objPool.getListBodies();
-    //std::list<Body*> bodies = objpoolSingleton::getInstance()->getListBodies();
-
+    std::list<Body*> bodies = objpoolSingleton::getInstance()->getListBodies();
+    LOG(DEBUG) << "Body pool size: " << bodies.size() << std::endl;
     
     for(std::list<Body*>::iterator it = bodies.begin() ; it != bodies.end() ; it++)
     {
