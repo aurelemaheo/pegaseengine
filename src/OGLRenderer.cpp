@@ -45,7 +45,10 @@ std::vector<float> vertices(10, 0.0);
 void toOrtho();
 void toPerspective();
 void DrawBodies();
+
 void displayCB();
+void reshapeCB(int w, int h);
+void timerCB(int millisec);
 
 /*
 static const struct
@@ -138,6 +141,12 @@ int OGLRenderer::Init(int argc, char **argv)
     // it returns a unique ID
     int handle = glutCreateWindow(argv[0]);     // param is the title of window
 
+
+    glutDisplayFunc(displayCB);
+    glutTimerFunc(33, timerCB, 33);             // redraw only every given millisec
+    glutReshapeFunc(reshapeCB);
+
+
     glShadeModel(GL_SMOOTH);                    // shading mathod: GL_SMOOTH or GL_FLAT
     glPixelStorei(GL_UNPACK_ALIGNMENT, 4);      // 4-byte pixel alignment
 
@@ -207,9 +216,9 @@ int OGLRenderer::Init(int argc, char **argv)
     glfwSwapInterval(1);
 #endif
 
-   glutDisplayFunc(displayCB);
+glutMainLoop(); /* Start GLUT event-processing loop */
 
-   return handle;
+return handle;
 
 }
 
@@ -377,7 +386,9 @@ void showInfo()
 void displayCB()
 {
 
-        // clear buffer
+    LOG(INFO) << "displayCB" << std::endl;
+
+    // clear buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
     // save the initial ModelView matrix before modifying ModelView matrix
@@ -412,6 +423,31 @@ void displayCB()
     glPopMatrix();
 
     glutSwapBuffers();
+}
+
+void reshapeCB(int w, int h)
+{
+    screenWidth = w;
+    screenHeight = h;
+    toPerspective();
+    std::cout << "window resized: " << w << " x " << h << std::endl;
+
+#ifdef _WIN32
+    HWND handle = ::GetActiveWindow();
+    RECT rect;
+    ::GetWindowRect(handle, &rect); // with non-client area; border, titlebar etc.
+    std::cout << "=========================" << std::endl;
+    std::cout << "full window size with border: " << (rect.right - rect.left) << "x" << (rect.bottom - rect.top) << std::endl;
+    ::GetClientRect(handle, &rect); // only client dimension
+    std::cout << "client window size: " << (rect.right - rect.left) << "x" << (rect.bottom - rect.top) << std::endl;
+    std::cout << "=========================" << std::endl;
+#endif
+}
+
+void timerCB(int millisec)
+{
+    glutTimerFunc(millisec, timerCB, millisec);
+    glutPostRedisplay();
 }
 
 void OGLRenderer::Run()
