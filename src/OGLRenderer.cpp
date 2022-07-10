@@ -17,8 +17,8 @@
   GLint mvp_location;
 
   // constants
-const int   SCREEN_WIDTH    = 1500;
-const int   SCREEN_HEIGHT   = 500;
+const int   SCREEN_WIDTH    = 1200;
+const int   SCREEN_HEIGHT   = 800;
 const float CAMERA_DISTANCE = 4.0f;
 const int   TEXT_WIDTH      = 8;
 const int   TEXT_HEIGHT     = 13;
