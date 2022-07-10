@@ -6,7 +6,7 @@
 class OGLSphere
 {
     public:
-        OGLSPhere();
+        OGLSphere();
         ~OGLSphere() {}
         void set(float radius);
         void setRadius(float radius);
