@@ -50,6 +50,8 @@ ReaderJson::ReaderJson()
   for(int iter=0 ; iter < bodies.size() ; iter ++) 
   {
     Body* itemBody = objpoolSingleton::getInstance()->createBody();
+    //OGLSphere* itemSphere = spherepoolSingleton::getInstance()->createSphere();
+    OGLSphere itemSphere;
 
     const Json::Value x_pos = bodies[iter]["position"]["x"];
     const Json::Value y_pos = bodies[iter]["position"]["y"];
@@ -68,9 +70,11 @@ ReaderJson::ReaderJson()
     LOG(DEBUG) << "read body [ " << iter << " ] : " << bodies[iter] << " ; position: x = " << x_pos << ", y = " << y_pos << ", z = " << z_pos << std::endl;
 
     objpoolSingleton::getInstance()->storeBody(itemBody);
+    spherepoolSingleton::getInstance()->storeSphere(&itemSphere);
   }
 
   LOG(DEBUG) << "Number of bodies: " << objpoolSingleton::getInstance()->getPoolSize() << std::endl;
+  LOG(DEBUG) << "Number of spheres: " << spherepoolSingleton::getInstance()->getPoolSize() << std::endl;
 
   LOG(DEBUG) << "Python initialized" << std::endl;
 

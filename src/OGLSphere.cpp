@@ -4,6 +4,11 @@
 #include "oglsphere.hpp"
 
 
+//OGLSphere::OGLSphere(float radius)
+//{
+//    set(radius);
+//}
+
 void OGLSphere::set(float radius)
 {
     this->radius = radius;
@@ -12,7 +17,7 @@ void OGLSphere::set(float radius)
 
 void OGLSphere::buildVertices()
 {
-const float PI = acos(-1);
+    const float PI = acos(-1);
 
     // tmp vertex definition (x,y,z,s,t)
     struct Vertex

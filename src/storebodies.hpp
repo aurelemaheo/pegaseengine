@@ -8,6 +8,8 @@
 //#include "solid.hpp"
 #include "sphere.hpp"
 
+//std::list<Sphere> listSpheres;
+
 /*
 * Class used to store objects read from external source
 */
@@ -16,7 +18,7 @@ class StoreBodies
   public:
     StoreBodies(){}
     ~StoreBodies(){
-    std::cout << "StoreBodies Destructor - print listSpheres: " << std::endl;
+    //std::cout << "StoreBodies Destructor - print listSpheres: " << std::endl;
     //for(auto const& it: listSpheres)
     //   std::cout << std::to_string(it.second) << std::endl;
     }

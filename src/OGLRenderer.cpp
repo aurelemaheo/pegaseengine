@@ -508,13 +508,13 @@ void OGLRenderer::Run()
 
 }
 
-void OGLRenderer::DrawSingleBody(Body* body)
+//void OGLRenderer::DrawSingleBody(Body* body)
+void DrawSingleBody(Body* body)
 {
 
     LOG(INFO) << "OpenGL Renderer: Draw body " << std::endl;
 }
 
-//void OGLRenderer::DrawBodies()
 void DrawBodies()
 {
 
@@ -524,6 +524,7 @@ void DrawBodies()
     float lineColor[] = {0.2f, 0.2f, 0.2f, 1};
 
     std::list<Body*> bodies = objpoolSingleton::getInstance()->getListBodies();
+    //std::list<Body*>::iterator it;
     LOG(DEBUG) << "Body pool size: " << bodies.size() << std::endl;
     
     for(std::list<Body*>::iterator it = bodies.begin() ; it != bodies.end() ; it++)
@@ -553,7 +554,8 @@ void DrawBodies()
         glEnable(GL_LIGHTING);
         glEnable(GL_TEXTURE_2D);
 
-        //this->DrawSingleBody(it); 
+        //Body* b = &*it;
+        DrawSingleBody(*it); 
         //sphere1.drawWithLines(lineColor);
         glPopMatrix(); 
     }

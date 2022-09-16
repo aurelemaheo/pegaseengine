@@ -67,7 +67,7 @@ inline void operator delete[](void* ptr, std::size_t size, std::string file, std
 
 
 #define new new(__FILENAME__, __LINE__)
-#define delete delete(__FILENAME__, __LINE__)
+//#define delete delete(__FILENAME__, __LINE__)
 
 
 

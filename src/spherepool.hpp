@@ -1,7 +1,9 @@
 #ifndef SPHEREPOOL_H
 #define SPHEREPOOL_H
 
-#define "oglsphere.hpp"
+#include <list>
+
+#include "oglsphere.hpp"
 
 class SpherePool
 {
@@ -9,15 +11,16 @@ private:
         std::list<OGLSphere*> spheres;
 
     public:
-        ObjectPool(){}
-        ~ObjectPool(){}
+        SpherePool(){}
+        ~SpherePool(){}
 
-        OGLSphere* createSphere()
-        {   
-            LOG(DEBUG) << "Create sphere" << std::endl;
+        //OGLSphere* createSphere(float radius)
+        //OGLSphere* createSphere()
+        //{   
+        //   LOG(DEBUG) << "Create sphere" << std::endl;
 
-            return new OGLSphere;            
-        }
+        //       return new OGLSphere;            
+        //}
 
         void storeSphere(OGLSphere* sphere)
         {
@@ -31,12 +34,12 @@ private:
             return spheres.size();
         }
 
-        Body* getResource()
+        OGLSphere* getResource()
         {
             if(spheres.empty())
             {
                 std::cout << "Creating new sphere" << std::endl;
-                return new Sphere;
+                //return new OGLSphere;
             }
             else 
             {
