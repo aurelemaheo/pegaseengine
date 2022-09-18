@@ -65,6 +65,6 @@ class Body
 
   private:
   
-};
+}; // class Body
 
 #endif //BODY_H

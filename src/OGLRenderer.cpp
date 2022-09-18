@@ -513,12 +513,63 @@ void DrawSingleBody(Body* body)
 {
 
     LOG(INFO) << "OpenGL Renderer: Draw body " << std::endl;
+
+    glPushMatrix();
+    glRotatef(cameraAngleX, 1, 0, 0);
+    glRotatef(cameraAngleY, 0, 1, 0);
+    glRotatef(-90, 1, 0, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    //sphere2.drawWithLines(lineColor);
+    glEnable(GL_POLYGON_OFFSET_FILL);
+    glPolygonOffset(1.0, 1.0f); // move polygon backward
+
+    // interleaved array
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_NORMAL_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glVertexPointer(3, GL_FLOAT, interleavedStride, &interleavedVertices[0]);
+    glNormalPointer(GL_FLOAT, interleavedStride, &interleavedVertices[3]);
+    glTexCoordPointer(2, GL_FLOAT, interleavedStride, &interleavedVertices[6]);
+
+    glDrawElements(GL_TRIANGLES, (unsigned int)indices.size(), GL_UNSIGNED_INT, indices.data());
+
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_NORMAL_ARRAY);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+    glDisable(GL_POLYGON_OFFSET_FILL);
+
+    // draw lines with VA
+    drawLines(lineColor);
+
+    glPopMatrix();
+
 }
 
 void DrawBodies()
 {
 
     LOG(INFO) << "OpenGL Renderer: Draw bodies" << std::endl;
+
+     // clear buffer
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+
+    // save the initial ModelView matrix before modifying ModelView matrix
+    glPushMatrix();
+
+    // tramsform modelview matrix
+    glTranslatef(0, 0, -cameraDistance);
+
+    // set material
+    float ambient[]  = {0.5f, 0.5f, 0.5f, 1};
+    float diffuse[]  = {0.7f, 0.7f, 0.7f, 1};
+    float specular[] = {1.0f, 1.0f, 1.0f, 1};
+    float shininess  = 128;
+    glMaterialfv(GL_FRONT, GL_AMBIENT,   ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE,   diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR,  specular);
+    glMaterialf(GL_FRONT, GL_SHININESS, shininess);
 
     // line color
     float lineColor[] = {0.2f, 0.2f, 0.2f, 1};
@@ -531,40 +582,18 @@ void DrawBodies()
     {
         LOG(DEBUG) << "Draw body " << *it << std::endl;
 
-        glPushMatrix();
-        glTranslatef(-2.5f, 0, 0);
-        //glRotatef(cameraAngleX, 1, 0, 0);   // pitch
-        //glRotatef(cameraAngleY, 0, 1, 0);   // heading
-        glRotatef(-90, 1, 0, 0);
-        glBindTexture(GL_TEXTURE_2D, 0);
-
-        // set line colour
-        glColor4fv(lineColor);
-        glMaterialfv(GL_FRONT, GL_DIFFUSE,   lineColor);
-
-        // draw lines with VA
-        glDisable(GL_LIGHTING);
-        glDisable(GL_TEXTURE_2D);
-        glEnableClientState(GL_VERTEX_ARRAY);
-        glVertexPointer(3, GL_FLOAT, 0, vertices.data());
-
-        glDrawElements(GL_LINES, (unsigned int)lineIndices.size(), GL_UNSIGNED_INT, lineIndices.data());
-
-        glDisableClientState(GL_VERTEX_ARRAY);
-        glEnable(GL_LIGHTING);
-        glEnable(GL_TEXTURE_2D);
-
         //Body* b = &*it;
         DrawSingleBody(*it); 
-        //sphere1.drawWithLines(lineColor);
-        glPopMatrix(); 
     }
-    
 
-    //for(int index=0 ; index < bodies.size() ; index++)
-    //{
-        
-    //}
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    showInfo();     // print max range of glDrawRangeElements
+
+    glPopMatrix();
+
+    glutSwapBuffers();
+
 }
 
 void OGLRenderer::UpdateScene()
