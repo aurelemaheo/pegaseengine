@@ -515,8 +515,8 @@ void DrawSingleBody(Body* body)
     LOG(INFO) << "OpenGL Renderer: Draw body " << std::endl;
 
     glPushMatrix();
-    glRotatef(cameraAngleX, 1, 0, 0);
-    glRotatef(cameraAngleY, 0, 1, 0);
+    glRotatef(0.0f, 1, 0, 0);
+    glRotatef(0.0f, 0, 1, 0);
     glRotatef(-90, 1, 0, 0);
     glBindTexture(GL_TEXTURE_2D, 0);
 
