@@ -2,16 +2,17 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-//#include <GLFW/glfw3.h>
 //#include <GLUT/glut.h>
 
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#else
-#include <GL/freeglut.h>
-#include <GL/gl.h>
+//#ifdef __APPLE__
+//#include <OpenGL/gl.h>
+//#else
 #include <GL/glew.h>
-#endif
+//#include <GL/freeglut.h>
+//#include <GL/gl.h>
+//#include <GL/glfw3.h>
+#include <GLFW/glfw3.h>
+//#endif
 
 #include <chrono>
 #include <thread>
