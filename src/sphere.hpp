@@ -1,7 +1,7 @@
 #ifndef SPHERE_H
 #define SPHERE_H
 
-#include <GLFW/glfw3.h>
+//#include <GLFW/glfw3.h>
 
 #include "body.hpp"
 

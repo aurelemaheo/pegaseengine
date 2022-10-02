@@ -2,7 +2,9 @@
 #define LOGGER_H
 
 #include <iostream>
+#include <cstring>
 #include <sstream>
+
 
 #include <sys/timeb.h>
 #include <time.h>
