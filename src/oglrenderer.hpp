@@ -57,6 +57,7 @@ class OGLRenderer
     GLint vpos_location, vcol_location;
     int width, height;
     //std::vector<unsigned int> lineIndices;
+
 }; // class OGLRenderer
 
 #endif //OGLRENDERER_H

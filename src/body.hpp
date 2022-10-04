@@ -27,8 +27,8 @@ class Body
 
     enum body_type
     {
-      STATIC,
-      DYNAMIC
+      SPHERE,
+      CUBE
     };
 
     struct Pos
