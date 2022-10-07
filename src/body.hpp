@@ -12,6 +12,7 @@ class Body
 
     //virtual void setForce(float newton, int x, int y, int z) = 0;
     //Solid(int Id):_Id(Id){}
+
     Body()
     {
       this->_curr_pos._x = 0.0; 

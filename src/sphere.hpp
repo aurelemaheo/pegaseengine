@@ -22,12 +22,6 @@ class Sphere: public Body
     int m_Id;
     double _radius;
 
-    std::vector<float> vertices;
-    std::vector<float> normals;
-    std::vector<unsigned int> indices;
-
-    std::vector<float> interleavedVertices;
-    int interleavedStride;
 }; // class Sphere 
 
 #endif // SPHERE_H

@@ -20,7 +20,7 @@
 
 #include "logger.hpp"
 //#include "config.hpp"
-#include "body.hpp"
+//#include "body.hpp"
 #include "objectpool.hpp"
 //#include "renderer.hpp"
 
