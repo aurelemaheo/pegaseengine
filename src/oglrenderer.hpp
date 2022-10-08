@@ -2,14 +2,17 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include <GLFW/glfw3.h>
-#include <GLUT/glut.h>
+//#include <GLUT/glut.h>
 
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#else
-#include <GL/gl.h>
-#endif
+//#ifdef __APPLE__
+//#include <OpenGL/gl.h>
+//#else
+#include <GL/glew.h>
+//#include <GL/freeglut.h>
+//#include <GL/gl.h>
+//#include <GL/glfw3.h>
+#include <GLFW/glfw3.h>
+//#endif
 
 #include <chrono>
 #include <thread>
@@ -17,7 +20,7 @@
 
 #include "logger.hpp"
 //#include "config.hpp"
-#include "body.hpp"
+//#include "body.hpp"
 #include "objectpool.hpp"
 //#include "renderer.hpp"
 
@@ -54,6 +57,7 @@ class OGLRenderer
     GLint vpos_location, vcol_location;
     int width, height;
     //std::vector<unsigned int> lineIndices;
+
 }; // class OGLRenderer
 
 #endif //OGLRENDERER_H

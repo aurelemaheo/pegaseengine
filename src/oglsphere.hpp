@@ -6,25 +6,14 @@
 #define SECTOR_COUNT 36
 #define STACK_COUNT 18
 
-class OGLSphere
+class OGLSphere : public Body
 {
     public:
         OGLSphere() {}
-        //OGLSphere(float radius) {}
+        OGLSphere(float radius) {}
         ~OGLSphere() {}
         void set(float radius);
         void setRadius(float radius);
-
-    private:
-        float radius;   
-        int sectorCount;
-        int stackCount; 
-        std::vector<unsigned int> indices;
-        std::vector<unsigned int> lineIndices;
-        std::vector<float> vertices;
-        std::vector<float> interleavedVertices;
-        std::vector<float> normals;
-        std::vector<float> texCoords;
 
         void buildVertices();
         void buildInterleavedVertices();
@@ -36,6 +25,22 @@ class OGLSphere
                                          float x3, float y3, float z3);
         void addTexCoord(float s, float t);
         void clearArrays();
-};
+
+        std::vector<unsigned int> indices;
+        std::vector<unsigned int> lineIndices;
+        std::vector<float> vertices;
+        std::vector<float> interleavedVertices;
+        std::vector<float> normals;
+        std::vector<float> texCoords;
+
+
+    private:
+        float radius;   
+        int sectorCount;
+        int stackCount; 
+
+	int interleavedStride;
+
+}; // class OGLSphere
 
 #endif // OGLSPHERE_H
