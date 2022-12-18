@@ -3,26 +3,26 @@
 
 #include <list>
 
-#include "body.hpp"
+#include "basebody.hpp"
 #include "logger.hpp"
 
 class ObjectPool
 {
     private:
-        std::list<Body*> bodies;
+        std::list<BaseBody*> bodies;
 
     public:
         ObjectPool(){}
         ~ObjectPool(){}
 
-        Body* createBody()
+        BaseBody* createBaseBody()
         {   
             LOG(DEBUG) << "Create body" << std::endl;
 
-            return new Body;            
+            return new BaseBody;            
         }
 
-        void storeBody(Body* body)
+        void storeBaseBody(BaseBody* body)
         {
             LOG(DEBUG) << "Creating new body" << std::endl;
 
@@ -34,12 +34,12 @@ class ObjectPool
             return bodies.size();
         }
 
-        Body* getResource()
+        BaseBody* getResource()
         {
             if(bodies.empty())
             {
                 std::cout << "Creating new body" << std::endl;
-                return new Body;
+                return new BaseBody;
             }
             else 
             {
@@ -47,7 +47,7 @@ class ObjectPool
             }
         }
 
-        std::list<Body*> getListBodies()
+        std::list<BaseBody*> getListBodies()
         {
             return bodies;
         }

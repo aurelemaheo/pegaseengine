@@ -23,11 +23,11 @@ class StoreBodies
     //   std::cout << std::to_string(it.second) << std::endl;
     }
 
-    void addBody(Sphere s){listBodies.push_back(s);}
+    void addBaseBody(Sphere s){listBodies.push_back(s);}
     //std::list<Sphere> getListSpheres() {return listBodies;}
 
   public:
-    static std::list<Body> listBodies;
+    static std::list<BaseBody> listBodies;
 
 };
 

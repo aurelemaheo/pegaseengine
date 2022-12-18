@@ -3,9 +3,9 @@
 
 //#include <GLFW/glfw3.h>
 
-#include "body.hpp"
+#include "basebody.hpp"
 
-class Sphere: public Body
+class Sphere: public BaseBody
 {
 
   public:

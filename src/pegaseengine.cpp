@@ -121,7 +121,7 @@ the linear velocity and the delta time
 void PegaseEngine::updateBodyPositions(double deltaTime)
 {
     int i=0;
-    std::list<Body>::iterator it;
+    std::list<BaseBody>::iterator it;
 
     //for(it = StoreBodies::listBodies.begin(); it != StoreBodies::listBodies.end(); it++)
     //{

@@ -36,7 +36,7 @@ class OGLRenderer
     void UpdateScene(); // Update scene at each timestep
     void EndScene();    // End scene  
     void DrawBodies();  // Draw bodies in the scene 
-    void DrawSingleBody(Body* body); // Draw each body
+    void DrawSingleBody(BaseBody* body); // Draw each body
 
     int getWidth(){ return width;} 
     int getHeight(){ return height;} 

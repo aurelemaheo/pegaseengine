@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include <GLUT/glut.h>
+//#include <GLUT/glut.h>
 
 #include "scene.hpp"
 

@@ -11,7 +11,7 @@
 //#include <boost/property_tree/json_parser.hpp>
 #include <json/json.h>
 
-#include <Python.h>
+//#include <Python.h>
 
 #include "readerjson.hpp"
 #include "config.hpp"
@@ -26,7 +26,7 @@ ReaderJson::ReaderJson()
   char filename[] = "readerjson.py";
 	//FILE* fp;
 
-  std::ifstream t("scene01.json");
+  std::ifstream t("../tests/scene01.json");
   std::stringstream buffer;
   buffer << t.rdbuf();
   
@@ -49,9 +49,9 @@ ReaderJson::ReaderJson()
    
   for(int iter=0 ; iter < bodies.size() ; iter ++) 
   {
-    Body* itemBody = objpoolSingleton::getInstance()->createBody();
+    BaseBody* itemBody = objpoolSingleton::getInstance()->createBaseBody();
     //OGLSphere* itemSphere = spherepoolSingleton::getInstance()->createSphere();
-    OGLSphere itemSphere;
+    //OGLSphere itemSphere;
 
     const Json::Value x_pos = bodies[iter]["position"]["x"];
     const Json::Value y_pos = bodies[iter]["position"]["y"];
@@ -62,6 +62,7 @@ ReaderJson::ReaderJson()
     const Json::Value z_lvel = bodies[iter]["linvelocity"]["z"];
 
     const Json::Value weight = bodies[iter]["weight"];
+    const Json::Value radius = bodies[iter]["size"];
 
     itemBody->setPosition(x_pos.asDouble(), y_pos.asDouble(), z_pos.asDouble());
     itemBody->setLinVelocity(x_lvel.asDouble(), y_lvel.asDouble(), z_lvel.asDouble());
@@ -69,8 +70,8 @@ ReaderJson::ReaderJson()
 
     LOG(DEBUG) << "read body [ " << iter << " ] : " << bodies[iter] << " ; position: x = " << x_pos << ", y = " << y_pos << ", z = " << z_pos << std::endl;
 
-    objpoolSingleton::getInstance()->storeBody(itemBody);
-    spherepoolSingleton::getInstance()->storeSphere(&itemSphere);
+    objpoolSingleton::getInstance()->storeBaseBody(itemBody);
+    //spherepoolSingleton::getInstance()->storeSphere(&itemSphere);
   }
 
   LOG(DEBUG) << "Number of bodies: " << objpoolSingleton::getInstance()->getPoolSize() << std::endl;
@@ -91,7 +92,7 @@ ReaderJson::ReaderJson()
 
   //PyObject* myResult = PyObject_CallObject(myFunction, args);
 
-	Py_Finalize();
+	//Py_Finalize();
 
   LOG(DEBUG) << "Python finalized" << std::endl;
 }
