@@ -9,7 +9,7 @@
 
 //#include <boost/property_tree/ptree.hpp>
 //#include <boost/property_tree/json_parser.hpp>
-#include <json/json.h>
+#include <jsoncpp/json/json.h>
 
 //#include <Python.h>
 
@@ -34,45 +34,45 @@ ReaderJson::ReaderJson()
   
   LOG(DEBUG) << "JSON FILE: " << jsondata << std::endl;
 
-  Json::Value json;
-  Json::Reader reader;
+  //Json::Value json;
+  //Json::Reader reader;
 	//Py_Initialize();
 
-  reader.parse(jsondata, json, false);
+  //reader.parse(jsondata, json, false);
 
-  LOG(DEBUG) << "JSON DATA: " << json << std::endl;
+  //LOG(DEBUG) << "JSON DATA: " << json << std::endl;
 
-  LOG(DEBUG) << "print JSON bodies: " << json["bodies"] << std::endl;
+  //LOG(DEBUG) << "print JSON bodies: " << json["bodies"] << std::endl;
   
-  const Json::Value bodies = json["bodies"];
+  //const Json::Value bodies = json["bodies"];
 
    
-  for(int iter=0 ; iter < bodies.size() ; iter ++) 
-  {
-    BaseBody* itemBody = objpoolSingleton::getInstance()->createBaseBody();
+  //for(int iter=0 ; iter < bodies.size() ; iter ++) 
+  //{
+    //BaseBody* itemBody = objpoolSingleton::getInstance()->createBaseBody();
     //OGLSphere* itemSphere = spherepoolSingleton::getInstance()->createSphere();
     //OGLSphere itemSphere;
 
-    const Json::Value x_pos = bodies[iter]["position"]["x"];
-    const Json::Value y_pos = bodies[iter]["position"]["y"];
-    const Json::Value z_pos = bodies[iter]["position"]["z"];
+    //const Json::Value x_pos = bodies[iter]["position"]["x"];
+    //const Json::Value y_pos = bodies[iter]["position"]["y"];
+    //const Json::Value z_pos = bodies[iter]["position"]["z"];
     
-    const Json::Value x_lvel = bodies[iter]["linvelocity"]["x"];
-    const Json::Value y_lvel = bodies[iter]["linvelocity"]["y"];
-    const Json::Value z_lvel = bodies[iter]["linvelocity"]["z"];
+    //const Json::Value x_lvel = bodies[iter]["linvelocity"]["x"];
+    //const Json::Value y_lvel = bodies[iter]["linvelocity"]["y"];
+    //const Json::Value z_lvel = bodies[iter]["linvelocity"]["z"];
 
-    const Json::Value weight = bodies[iter]["weight"];
-    const Json::Value radius = bodies[iter]["size"];
+    //const Json::Value weight = bodies[iter]["weight"];
+    //const Json::Value radius = bodies[iter]["size"];
 
-    itemBody->setPosition(x_pos.asDouble(), y_pos.asDouble(), z_pos.asDouble());
-    itemBody->setLinVelocity(x_lvel.asDouble(), y_lvel.asDouble(), z_lvel.asDouble());
-    itemBody->setWeight(weight.asDouble());
+    //itemBody->setPosition(x_pos.asDouble(), y_pos.asDouble(), z_pos.asDouble());
+    //itemBody->setLinVelocity(x_lvel.asDouble(), y_lvel.asDouble(), z_lvel.asDouble());
+    //itemBody->setWeight(weight.asDouble());
 
-    LOG(DEBUG) << "read body [ " << iter << " ] : " << bodies[iter] << " ; position: x = " << x_pos << ", y = " << y_pos << ", z = " << z_pos << std::endl;
+    //LOG(DEBUG) << "read body [ " << iter << " ] : " << bodies[iter] << " ; position: x = " << x_pos << ", y = " << y_pos << ", z = " << z_pos << std::endl;
 
-    objpoolSingleton::getInstance()->storeBaseBody(itemBody);
+    //objpoolSingleton::getInstance()->storeBaseBody(itemBody);
     //spherepoolSingleton::getInstance()->storeSphere(&itemSphere);
-  }
+  //}
 
   LOG(DEBUG) << "Number of bodies: " << objpoolSingleton::getInstance()->getPoolSize() << std::endl;
   LOG(DEBUG) << "Number of spheres: " << spherepoolSingleton::getInstance()->getPoolSize() << std::endl;

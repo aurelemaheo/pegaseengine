@@ -7,11 +7,11 @@
 //#ifdef __APPLE__
 //#include <OpenGL/gl.h>
 //#else
-#include <GL/glew.h>
+//#include <GL/glew.h>
 //#include <GL/freeglut.h>
 //#include <GL/gl.h>
 //#include <GL/glfw3.h>
-#include <GLFW/glfw3.h>
+//#include <GLFW/glfw3.h>
 //#endif
 
 #include <chrono>
@@ -53,8 +53,8 @@ class OGLRenderer
     //std::vector<unsigned int> lineIndices = {};
 
   private:
-    GLuint vertex_buffer, vertex_shader, fragment_shader;
-    GLint vpos_location, vcol_location;
+    //GLuint vertex_buffer, vertex_shader, fragment_shader;
+    //GLint vpos_location, vcol_location;
     int width, height;
     //std::vector<unsigned int> lineIndices;
 
