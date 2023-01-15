@@ -3,7 +3,7 @@
 
 #include "maths/vector3.hpp"
 
-class OGLPlanE
+class OGLPlane : public BaseBody
 {
 public:
 	Plan(Vector3<double> point1, Vector3<double> point2, Vector3<double> point3, Vector3<double> point4);	
