@@ -7,6 +7,7 @@
 #include "readerjson.hpp"
 #include "singleton.hpp"
 #include "logger.hpp"
+#include "basebody.hpp"
 //#include "config.hpp"
 
 class PegaseEngine
@@ -31,6 +32,10 @@ class PegaseEngine
     void removeObsBoard();			                    // Remove the observer board to the system
     void notifyToObsBoard();			                  // Notify useful information to the observers
 
+    bool addBody(BaseBody* body) { listBodies.push_back(body); nbBodies++; return true; }
+
+    std::list<BaseBody*> listBodies;					// store declared bodies	
+
   private:
 
     bool is_collision;
@@ -40,6 +45,8 @@ class PegaseEngine
     double deltaSimTime;
     double previousSimTime;
     double currentSimTime;
+
+    int nbBodies;
 
 };
 

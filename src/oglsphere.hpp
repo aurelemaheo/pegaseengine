@@ -16,10 +16,13 @@
 
 #include "basebody.hpp"
 
+#include "vector3.hpp"
+
 class OGLSphere : public BaseBody
 {
 public:
     // ctor/dtor
+    //OGLSphere(int mass, float radius, Vector3 vPos);
     OGLSphere(float radius=1.0f, int sectorCount=36, int stackCount=18, bool smooth=true);
     ~OGLSphere() {}
 

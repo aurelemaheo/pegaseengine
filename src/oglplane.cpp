@@ -11,12 +11,11 @@
 
 
 
-OGLPlane::OGLPlane(Vector3<double> point1, Vector3<double> point2, Vector3<double> point3, Vector3<double> point4)
+OGLPlane::OGLPlane(Vector3<double> point1, Vector3<double> point2, Vector3<double> point3)
 {
    _point1 = point1; 
    _point2 = point2;  
    _point3 = point3;  
-   _point4 = point4;  
 }
 
 void OGLPlane::Display()
