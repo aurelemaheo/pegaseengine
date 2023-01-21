@@ -1,27 +1,47 @@
-#ifndef SPHERE_H
-#define SPHERE_H
+/*
+ *  Sphere.h
+ *  PhysicEngine
+ *
+ *  Created by Julien Peyre and Grégory Corgié on 17/11/06.
+ *  Copyright 2006 __MyCompanyName__. All rights reserved.
+ 
+ *
+ */
 
-//#include <GLFW/glfw3.h>
+#ifndef __SPHERE_h__ 
+
+#define __SPHERE_h__
 
 #include "basebody.hpp"
 
-class Sphere: public BaseBody
+class Sphere : public BaseBody
 {
+	
+public:
+	
+	Sphere(float fRayon);
+	Sphere(float fRayon, Vector3 Vpos);
+	Sphere(int iMass, float fRayon, Vector3 Vpos);
+	Sphere(float fRayon, float fXpos, float fYpos, float fZpos);
+	
 
-  public:
-    //Sphere(){std::cout << "Sphere constructor" << std::endl;} //Constructor 
-    //Sphere(int Id):m_Id(Id){}  /* Constructor */
-    
-     Sphere(float radius, int sectorCount, int stackCount); // Constructor
-    ~Sphere(){} // Destructor 
+	// ---------------------------------------------------------------
+	// Accessors
+	// ---------------------------------------------------------------	
+	float GetRayon()  { return m_fRayon; }
+	
+	// ---------------------------------------------------------------
+	// Methods
+	// ---------------------------------------------------------------
+	void Display();
+	
+private:
+		
+		// ---------------------------------------------------------------
+		// Attributs
+		// ---------------------------------------------------------------
+		float 		m_fRayon;
+	
+};
 
-    void setSize(double size){_radius = size;} 
-    void draw();
-
-  private:
-    int m_Id;
-    double _radius;
-
-}; // class Sphere 
-
-#endif // SPHERE_H
+#endif

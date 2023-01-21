@@ -5,7 +5,7 @@ project(pegaseengine)
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_C_FLAGS "-w")
+set(CMAKE_C_FLAGS "-w -g")
 
 #target_include_directories(test PRIVATE ${/home/aurele/git/pegaseengine/thirdparty/boost_1_72_0})
 
