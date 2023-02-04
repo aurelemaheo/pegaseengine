@@ -1,0 +1,4 @@
+- Add VULKAN support for body implementation
+- Add OpenCL support
+- Implement more complex bodies
+- Generalize Test and handling of collisions
