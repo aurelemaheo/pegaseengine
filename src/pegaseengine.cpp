@@ -37,6 +37,8 @@
 #include "camera.hpp"
 #include "image.hpp"
 
+#include "logger.hpp"
+
 //Prototype des fonctions
 void init (void);
 void display(void);
@@ -215,6 +217,9 @@ void mousePassiveMotion( int x, int y)
 
 int main (int argc, const char * argv[])
 {
+
+    LOG(INFO) << "Run Pegase Engine " << std::endl;
+
     glutInit(&argc, (char **)argv);
     glutInitDisplayMode(GLUT_DOUBLE |  GLUT_RGB | GLUT_DEPTH );
 	

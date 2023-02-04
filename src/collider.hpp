@@ -73,11 +73,11 @@ public:
 
 
 	 // Méthodes de traitement
-	 void				GererSphereSphereCollision(Sphere* sphereA, Sphere* sphereB);
-	 void				GererSpherePlanCollision(Sphere* sphere, Plan* plan);
-	 void				GererSphereBoxCollision( Sphere* _pSphere, Box* _pBox);
-	 void				GererBoxPlanCollision(Box* _pBox, Plan* plan);
-	 void				GererBoxBoxCollision( Box* _pBox1, Box* _pBox2, Vector3 vNormal, Vector3 vContactPoint);
+	 void				HandleSphereSphereCollision(Sphere* sphereA, Sphere* sphereB);
+	 void				HandleSpherePlanCollision(Sphere* sphere, Plan* plan);
+	 void				HandleSphereBoxCollision( Sphere* _pSphere, Box* _pBox);
+	 void				HandleBoxPlanCollision(Box* _pBox, Plan* plan);
+	 void				HandleBoxBoxCollision( Box* _pBox1, Box* _pBox2, Vector3 vNormal, Vector3 vContactPoint);
 	 // Autres 
 	 float				FindDeltaT(Box* _pBox, Plan* plan, Vector3 ContactPoint, Vector3 BoxVelocity);
 	 Vector3			FindNormal( Sphere* _pSphere, Box* _pBox );

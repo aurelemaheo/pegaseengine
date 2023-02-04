@@ -190,23 +190,23 @@ void Collider::Update()
 
 		if(	typeA == BODY_SPHERE	&&		typeB == BODY_SPHERE )
 		{
-			GererSphereSphereCollision( (Sphere*) A, (Sphere*) B);
+			HandleSphereSphereCollision( (Sphere*) A, (Sphere*) B);
 		}
 		if( typeA == BODY_SPHERE	&&		typeB == BODY_PLAN)
 		{
-			GererSpherePlanCollision( (Sphere*) A, (Plan*) B);
+			HandleSpherePlanCollision( (Sphere*) A, (Plan*) B);
 		}
 		if( typeA == BODY_SPHERE	&&		typeB == BODY_BOX)
 		{
-			GererSphereBoxCollision( (Sphere*) A, (Box*) B);
+			HandleSphereBoxCollision( (Sphere*) A, (Box*) B);
 		}
 		if( typeA == BODY_BOX	&&		typeB == BODY_PLAN )
 		{
-			GererBoxPlanCollision( (Box*) A, (Plan*) B);
+			HandleBoxPlanCollision( (Box*) A, (Plan*) B);
 		}
 		if( typeA == BODY_BOX	&&		typeB == BODY_BOX )
 		{
-			GererBoxBoxCollision( (Box*) A, (Box*) B, (*it).vNormal, (*it).vContactPoint);
+			HandleBoxBoxCollision( (Box*) A, (Box*) B, (*it).vNormal, (*it).vContactPoint);
 		}
 		++it;
 	}
@@ -466,7 +466,7 @@ void Collider::AddIntersection(BaseBody* A, BaseBody*B, Vector3 vNormal, Vector3
 
 }
 
-void Collider::GererSphereSphereCollision(Sphere* sphereA, Sphere* sphereB)
+void Collider::HandleSphereSphereCollision(Sphere* sphereA, Sphere* sphereB)
 {
 	Vector3 V = sphereB->GetNewPos() - sphereA->GetNewPos();
 	float norme = V.Module();
@@ -608,7 +608,7 @@ bool Collider::TestSphereBoxCollision( Sphere* _pSphere, Box* _pBox)
 	return false;
 }
 
-void Collider::GererSpherePlanCollision(Sphere* sphere, Plan* _pPlan)
+void Collider::HandleSpherePlanCollision(Sphere* sphere, Plan* _pPlan)
 {
 	Vector3 V1 = sphere->GetNewPos() - _pPlan->GetPos();
 	Vector3 V2 = _pPlan->GetNormal();
@@ -959,12 +959,12 @@ int Collider::TestSeparatingAxes(float expr1,float expr2,float n1,float n2,float
 }
 
 // -------------------------------------------------------------------------------------------------------	
-// Name : GererBoxPlanCollision
+// Name : HandleBoxPlanCollision
 // Goal : Gere le comportement d'une boite lors d'une collision avec un plan
 // Params : _pBox			: Boite considérée
 //				_pPlan	: Plan considéré
 // -------------------------------------------------------------------------------------------------------
-void Collider::GererBoxPlanCollision(Box* _pBox, Plan* _pPlan)
+void Collider::HandleBoxPlanCollision(Box* _pBox, Plan* _pPlan)
 {	
 	Vector3 vReflechie, vAngulaire;
 	Vector3 BoxVelocity,BoxVelocityNorm;
@@ -1229,12 +1229,12 @@ void Collider::GererBoxPlanCollision(Box* _pBox, Plan* _pPlan)
 }
 
 // -------------------------------------------------------------------------------------------------------	
-// Name : GererSphereBoxCollision
+// Name : HandleSphereBoxCollision
 // Goal : Gere le comportement d'une boite et d'une sphere lorsqu'ils collisionnent
 // Params : _pBox			: Boite considérée
 //				_pSphere	: Sphere considérée
 // -------------------------------------------------------------------------------------------------------
-void Collider::GererSphereBoxCollision( Sphere* _pSphere, Box* _pBox)
+void Collider::HandleSphereBoxCollision( Sphere* _pSphere, Box* _pBox)
 {
 	// ---------------------------------- Objet A --------------------------------------------------------------
 	Vector3	vColPtA;							// Coordonnées du point de collision dans le repere de l'objet A
@@ -1503,12 +1503,12 @@ void Collider::GererSphereBoxCollision( Sphere* _pSphere, Box* _pBox)
 }
 
 // -------------------------------------------------------------------------------------------------------	
-// Name : GererBoxBoxCollision
+// Name : HandleBoxBoxCollision
 // Goal : Gere le comportement d'une boite et d'une sphere lorsqu'ils collisionnent
 // Params : _pBox1			: Boite1 considérée
 //			_pBox2	: Boite2 considérée
 // -------------------------------------------------------------------------------------------------------
-void Collider::GererBoxBoxCollision( Box* _pBox1, Box* _pBox2, Vector3 vNormal, Vector3 vContactPoint)
+void Collider::HandleBoxBoxCollision( Box* _pBox1, Box* _pBox2, Vector3 vNormal, Vector3 vContactPoint)
 {
 	// ---------------------------------- Objet A --------------------------------------------------------------
 	Vector3	vColPtA;							// Coordonnées du point de collision dans le repere de l'objet A
