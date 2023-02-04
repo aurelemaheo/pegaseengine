@@ -1,5 +1,5 @@
 /*
- *  Scene.cpp
+ *  Collider.cpp
  *  PhysicEngine
  *
  *  Created by GrâˆšÂ©gory CorgiâˆšÂ© on 17/11/06.
@@ -22,7 +22,7 @@
 #include <iostream>
 #include <math.h>
 
-#include "scene.hpp"
+#include "collider.hpp"
 #include "sphere.hpp"
 #include "force.hpp"
 #include "matrix.hpp"
@@ -33,7 +33,7 @@
 // Goal : Constructor
 // Params : None
 // -------------------------------------------------------------------------------------------------------	
-Scene::Scene()
+Collider::Collider()
 {
 	m_iNbBodies	=	0;
 	m_dTimeElapsed	=	0;
@@ -46,7 +46,7 @@ Scene::Scene()
 // Goal : Display all objects in the scene at their current position
 // Params : None
 // -------------------------------------------------------------------------------------------------------	
-void Scene::Display()
+void Collider::Display()
 {
 	list<BaseBody*>::iterator itList = this->GetListBodies()->begin();
 	
@@ -64,7 +64,7 @@ void Scene::Display()
 // Goal : Apply forces to every object
 // Params : None
 // -------------------------------------------------------------------------------------------------------	
-void Scene::ApplyForces()
+void Collider::ApplyForces()
 {
 	Vector3 Acceleration, AccelerationAngulaire;
 	Vector3 Velocity, VitesseAngulaire;
@@ -162,7 +162,7 @@ void Scene::ApplyForces()
 // Goal : Update the scene (move the objects), detect collisions
 // Params : None
 // -------------------------------------------------------------------------------------------------------	
-void Scene::Update()
+void Collider::Update()
 {
 	int iNumeroObjet = 0;
 	list<BaseBody*>::iterator it_object = m_ListBodies.begin();
@@ -245,7 +245,7 @@ void Scene::Update()
 // Goal : Retourne un pointeur à partir d'une id de materiau
 // Params : _id	: id du Materiau souhaité
 // -------------------------------------------------------------------------------------------------------------------------
-Materiau* Scene::GetMaterial( int _id )
+Materiau* Collider::GetMaterial( int _id )
 {
 	list<Materiau*>::iterator		it;
 
@@ -270,7 +270,7 @@ Materiau* Scene::GetMaterial( int _id )
 //			_pPlan	: _pPlan testé
 //			_fDist	: distance objet / _pPlan
 // -------------------------------------------------------------------------------------------------------------------------
-bool Scene::IsInsidePlan( BaseBody* A, Plan* _pPlan, float _fDist )
+bool Collider::IsInsidePlan( BaseBody* A, Plan* _pPlan, float _fDist )
 {
 	Vector3		V2, ProjectionPlan;
 	Vector3		CotePlan1,CotePlan2,CotePlan3,CotePlan4;
@@ -327,7 +327,7 @@ bool Scene::IsInsidePlan( BaseBody* A, Plan* _pPlan, float _fDist )
 // Params : it				: objet testé 
 //			iNumeroObjet	: Plan considéré
 // -------------------------------------------------------------------------------------------------------------------------
-void Scene::TestCollision( list<BaseBody*>::iterator *it, int iNumeroObjet )
+void Collider::TestCollision( list<BaseBody*>::iterator *it, int iNumeroObjet )
 {
 	int iNumeroObjetCourant = 0;
 	list<BaseBody*>::iterator it_object = m_ListBodies.begin();
@@ -387,7 +387,7 @@ void Scene::TestCollision( list<BaseBody*>::iterator *it, int iNumeroObjet )
 
 }
 
-bool Scene::TestSphereSphereCollision(Sphere *sphereA, Sphere *sphereB)
+bool Collider::TestSphereSphereCollision(Sphere *sphereA, Sphere *sphereB)
 {
 	Vector3 V = sphereB->GetNewPos() - sphereA->GetNewPos();
 	float norme = V.Module();
@@ -401,7 +401,7 @@ bool Scene::TestSphereSphereCollision(Sphere *sphereA, Sphere *sphereB)
 	
 }
 
-bool Scene::TestPlanSphereCollision(Sphere *sphere, Plan *_pPlan)
+bool Collider::TestPlanSphereCollision(Sphere *sphere, Plan *_pPlan)
 {
 	Vector3 V1 = sphere->GetNewPos() - _pPlan->GetPos();
 	Vector3 V2 = _pPlan->GetNormal();
@@ -421,14 +421,14 @@ bool Scene::TestPlanSphereCollision(Sphere *sphere, Plan *_pPlan)
 // Goal : Reinit all objects to their initial positions
 // Params : None
 // --------------------------------------------------------------	
-void Scene::Reinit()
+void Collider::Reinit()
 {
 	this->m_ListBodies.clear();
 	this->m_ListInter.clear();
 }
 
 
-void Scene::AddIntersection(BaseBody* A, BaseBody*B)
+void Collider::AddIntersection(BaseBody* A, BaseBody*B)
 {
 	list<Intersection>::iterator it = m_ListInter.begin();
 	bool Already = false;
@@ -447,7 +447,7 @@ void Scene::AddIntersection(BaseBody* A, BaseBody*B)
 
 }
 
-void Scene::AddIntersection(BaseBody* A, BaseBody*B, Vector3 vNormal, Vector3 vContactPoint)
+void Collider::AddIntersection(BaseBody* A, BaseBody*B, Vector3 vNormal, Vector3 vContactPoint)
 {
 	list<Intersection>::iterator it = m_ListInter.begin();
 	bool Already = false;
@@ -466,7 +466,7 @@ void Scene::AddIntersection(BaseBody* A, BaseBody*B, Vector3 vNormal, Vector3 vC
 
 }
 
-void Scene::GererSphereSphereCollision(Sphere* sphereA, Sphere* sphereB)
+void Collider::GererSphereSphereCollision(Sphere* sphereA, Sphere* sphereB)
 {
 	Vector3 V = sphereB->GetNewPos() - sphereA->GetNewPos();
 	float norme = V.Module();
@@ -574,7 +574,7 @@ void Scene::GererSphereSphereCollision(Sphere* sphereA, Sphere* sphereB)
 // Params : _pBox			: Boite considérée
 //				_pSphere	: Sphere considérée
 // -------------------------------------------------------------------------------------------------------
-bool Scene::TestSphereBoxCollision( Sphere* _pSphere, Box* _pBox)
+bool Collider::TestSphereBoxCollision( Sphere* _pSphere, Box* _pBox)
 {
 	Vector3		vPNormal;
 	float			fR1Proj, fR2Proj, fR3Proj;
@@ -608,7 +608,7 @@ bool Scene::TestSphereBoxCollision( Sphere* _pSphere, Box* _pBox)
 	return false;
 }
 
-void Scene::GererSpherePlanCollision(Sphere* sphere, Plan* _pPlan)
+void Collider::GererSpherePlanCollision(Sphere* sphere, Plan* _pPlan)
 {
 	Vector3 V1 = sphere->GetNewPos() - _pPlan->GetPos();
 	Vector3 V2 = _pPlan->GetNormal();
@@ -682,7 +682,7 @@ void Scene::GererSpherePlanCollision(Sphere* sphere, Plan* _pPlan)
 // Params : _pBox	: Boite considérée
 //				_pPlan	: Plan considéré
 // -------------------------------------------------------------------------------------------------------
-bool Scene::TestBoxPlanCollision( Box* _pBox, Plan* _pPlan)
+bool Collider::TestBoxPlanCollision( Box* _pBox, Plan* _pPlan)
 {
 	Vector3		vPNormal, vV1;
 	float		fR1Proj, fR2Proj, fR3Proj;
@@ -725,7 +725,7 @@ bool Scene::TestBoxPlanCollision( Box* _pBox, Plan* _pPlan)
 // Params : _pBox	: Boite1 considérée
 //			_pPlan	: Boite2 considérée
 // ---------------------------------------------------------------
-bool Scene::TestBoxBoxCollision(Box* _box1, Box* _box2, Vector3 *vNormal, Vector3 *vContactPoint)
+bool Collider::TestBoxBoxCollision(Box* _box1, Box* _box2, Vector3 *vNormal, Vector3 *vContactPoint)
 {
 	int code; //code de retour
 	float s,s2;
@@ -938,7 +938,7 @@ bool Scene::TestBoxBoxCollision(Box* _box1, Box* _box2, Vector3 *vNormal, Vector
 
 }
 
-int Scene::TestSeparatingAxes(float expr1,float expr2,float n1,float n2,float n3, float* s,Vector3* normalR,Vector3* normalC,int* invert_normal)
+int Collider::TestSeparatingAxes(float expr1,float expr2,float n1,float n2,float n3, float* s,Vector3* normalR,Vector3* normalC,int* invert_normal)
 {
 	float s2 = fabs(expr1) - (expr2);
     if (s2 > 0) return -1;
@@ -964,7 +964,7 @@ int Scene::TestSeparatingAxes(float expr1,float expr2,float n1,float n2,float n3
 // Params : _pBox			: Boite considérée
 //				_pPlan	: Plan considéré
 // -------------------------------------------------------------------------------------------------------
-void Scene::GererBoxPlanCollision(Box* _pBox, Plan* _pPlan)
+void Collider::GererBoxPlanCollision(Box* _pBox, Plan* _pPlan)
 {	
 	Vector3 vReflechie, vAngulaire;
 	Vector3 BoxVelocity,BoxVelocityNorm;
@@ -1234,7 +1234,7 @@ void Scene::GererBoxPlanCollision(Box* _pBox, Plan* _pPlan)
 // Params : _pBox			: Boite considérée
 //				_pSphere	: Sphere considérée
 // -------------------------------------------------------------------------------------------------------
-void Scene::GererSphereBoxCollision( Sphere* _pSphere, Box* _pBox)
+void Collider::GererSphereBoxCollision( Sphere* _pSphere, Box* _pBox)
 {
 	// ---------------------------------- Objet A --------------------------------------------------------------
 	Vector3	vColPtA;							// Coordonnées du point de collision dans le repere de l'objet A
@@ -1508,7 +1508,7 @@ void Scene::GererSphereBoxCollision( Sphere* _pSphere, Box* _pBox)
 // Params : _pBox1			: Boite1 considérée
 //			_pBox2	: Boite2 considérée
 // -------------------------------------------------------------------------------------------------------
-void Scene::GererBoxBoxCollision( Box* _pBox1, Box* _pBox2, Vector3 vNormal, Vector3 vContactPoint)
+void Collider::GererBoxBoxCollision( Box* _pBox1, Box* _pBox2, Vector3 vNormal, Vector3 vContactPoint)
 {
 	// ---------------------------------- Objet A --------------------------------------------------------------
 	Vector3	vColPtA;							// Coordonnées du point de collision dans le repere de l'objet A
@@ -1757,7 +1757,7 @@ void Scene::GererBoxBoxCollision( Box* _pBox1, Box* _pBox2, Vector3 vNormal, Vec
 
 }
 
-float Scene::FindDeltaT(Box* _pBox, Plan* _pPlan, Vector3 ContactPoint, Vector3 BoxVelocity)
+float Collider::FindDeltaT(Box* _pBox, Plan* _pPlan, Vector3 ContactPoint, Vector3 BoxVelocity)
 {
 	return -2; //on se passe du recalage pour l'instant
 /*	Vector3 vNormal = _pPlan->GetNormal();
@@ -1824,7 +1824,7 @@ float Scene::FindDeltaT(Box* _pBox, Plan* _pPlan, Vector3 ContactPoint, Vector3 
 // Params : _pBox			: Boite considérée
 //				_pSphere	: Sphere considérée
 // -------------------------------------------------------------------------------------------------------
-Vector3	Scene::FindNormal( Sphere* _pSphere, Box* _pBox )
+Vector3	Collider::FindNormal( Sphere* _pSphere, Box* _pBox )
 {
 	Vector3	vBoxToSph;
 	

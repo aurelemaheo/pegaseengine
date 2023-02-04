@@ -29,7 +29,7 @@
 #include <GL/glut.h>
 #endif
 
-#include "scene.hpp"
+#include "collider.hpp"
 #include "basebody.hpp"
 #include "sphere.hpp"
 #include "plan.hpp"
@@ -43,7 +43,7 @@ void display(void);
 void InitialiseScene(void);
 void Idle();
 
-Scene				MainScene;
+Collider				coll;
 
 static Camera				Cam;
 static Image_Manager	ImgManager;
@@ -89,7 +89,7 @@ void display()
 	gluLookAt( Cam.m_vPos.x, Cam.m_vPos.y, Cam.m_vPos.z, Cam.m_vLookAt.x, Cam.m_vLookAt.y, Cam.m_vLookAt.z, 0.0f, 1.0f, 0.0f );
 
 	// Display scene
-	MainScene.Display();
+	coll.Display();
 				
 	glutSwapBuffers();
 }
@@ -106,7 +106,7 @@ void Idle()
 	int numOfIterations;
 
 	CurrentTime = clock();
-	PreviousTime = MainScene.GetCurrentTime();
+	PreviousTime = coll.GetCurrentTime();
 	dt = (CurrentTime - PreviousTime) / ( CLOCKS_PER_SEC * SLOWMOTIONRATION );
 
 	dt = 0.01f;
@@ -123,12 +123,12 @@ void Idle()
 	// We Need To Iterate Simulations "numOfIterations" Times.
 	for (int i = 0; i < numOfIterations; ++i)				
 	{
-		MainScene.SetCurrentTime( CurrentTime  );
-		MainScene.Setdt( dt );
-		MainScene.SetTimeElapsed( MainScene.GetTimeElapsed() + dt  );
+		coll.SetCurrentTime( CurrentTime  );
+		coll.Setdt( dt );
+		coll.SetTimeElapsed( coll.GetTimeElapsed() + dt  );
 		
-		MainScene.ApplyForces();
-		MainScene.Update();
+		coll.ApplyForces();
+		coll.Update();
 	}
 
 	glutPostRedisplay(); // force le reaffichage de la scene
@@ -160,7 +160,7 @@ void gestion_clavier( int touche, int x, int y )
 			Cam.MoveOn( -1.f );
 			break;
 		case GLUT_KEY_F1:
-			MainScene.Reinit();
+			coll.Reinit();
 			InitialiseScene();
 			break;
     }
@@ -270,7 +270,7 @@ void InitialiseScene(void)
 
 	// Creation d'un materiau par defaut
 	Materiau*	pMatDefault  = new Materiau();
-	MainScene.AddMaterial( pMatDefault );
+	coll.AddMaterial( pMatDefault );
 	
 	// Creation des materiaux souhaités
 	for ( i=0; i < iNbMat; i++)
@@ -292,7 +292,7 @@ void InitialiseScene(void)
 		{
 			pMat	=	new Materiau( fTexid, fFrot, fGliss );
 			pMat->SetTexTransp( pTransparency );
-			MainScene.AddMaterial( pMat );
+			coll.AddMaterial( pMat );
 			printf( "[VALID] - Texture %s chargee \n", fTexName );
 		}
 	}
@@ -325,13 +325,13 @@ void InitialiseScene(void)
 		// Material bounding 
 		// -----------------------------------------------------------------
 		if ( pMatId > 0 )
-			pSphere->SetMateriau( MainScene.GetMaterial( pMatId ) );
+			pSphere->SetMateriau( coll.GetMaterial( pMatId ) );
 		else
-			pSphere->SetMateriau( MainScene.GetMaterial( 0 ) );
+			pSphere->SetMateriau( coll.GetMaterial( 0 ) );
 
 		// Add object to current scene
 		// -----------------------------------------------------------------
-		MainScene.AddObject( pSphere );
+		coll.AddObject( pSphere );
 	}
 	
 
@@ -350,11 +350,11 @@ void InitialiseScene(void)
 		// Material bounding 
 		// -----------------------------------------------------------------
 		if ( pMatId > 0 )
-			pPlan->SetMateriau( MainScene.GetMaterial( pMatId ) );
+			pPlan->SetMateriau( coll.GetMaterial( pMatId ) );
 		else
-			pPlan->SetMateriau( MainScene.GetMaterial( 0 ) );
+			pPlan->SetMateriau( coll.GetMaterial( 0 ) );
 		
-		MainScene.AddObject( pPlan );
+		coll.AddObject( pPlan );
 	}
 	
 
@@ -391,17 +391,17 @@ void InitialiseScene(void)
 		// Material bounding 
 		// -----------------------------------------------------------------
 		if ( pMatId > 0 )
-			pBox->SetMateriau( MainScene.GetMaterial( pMatId ) );
+			pBox->SetMateriau( coll.GetMaterial( pMatId ) );
 		else
-			pBox->SetMateriau( MainScene.GetMaterial( 0 ) );
+			pBox->SetMateriau( coll.GetMaterial( 0 ) );
 
 		// Add object to current scene
 		// -----------------------------------------------------------------
-		MainScene.AddObject( pBox );
+		coll.AddObject( pBox );
 	}
 
 	return;
 	
-	MainScene.SetCurrentTime( clock() );
-	MainScene.SetTimeElapsed( 0.0f );
+	coll.SetCurrentTime( clock() );
+	coll.SetTimeElapsed( 0.0f );
 }

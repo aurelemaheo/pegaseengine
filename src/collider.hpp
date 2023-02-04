@@ -8,9 +8,8 @@
   *
   */
  
-#ifndef __SCENE_h__
- 
-#define __SCENE_h__
+#ifndef __COLLIDER_H_
+#define __COLLIDER_H__
  
 #include "box.hpp"
 #include "sphere.hpp"
@@ -33,13 +32,13 @@ struct Intersection
 	Vector3 vContactPoint;
 };
 
-class Scene
+class Collider
 {
 	 
 public:
 	 
-	 Scene();
-	 ~Scene(){}
+	 Collider();
+	 ~Collider(){}
 	 
 	 // ---------------------------------------------------------------	
 	 // Methods
@@ -116,8 +115,8 @@ private:
 	 list<Intersection> m_ListInter;
 
 	 
- };
+ }; // class Collider
  
-#endif
+#endif // __COLLIDER_H__ 
  
  
