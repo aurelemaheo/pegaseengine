@@ -1759,8 +1759,8 @@ void Collider::HandleBoxBoxCollision( Box* _pBox1, Box* _pBox2, Vector3 vNormal,
 
 float Collider::FindDeltaT(Box* _pBox, Plan* _pPlan, Vector3 ContactPoint, Vector3 BoxVelocity)
 {
-	return -2; //on se passe du recalage pour l'instant
-/*	Vector3 vNormal = _pPlan->GetNormal();
+	//return -2; //on se passe du recalage pour l'instant
+	Vector3 vNormal = _pPlan->GetNormal();
 	float fBoxPlanD = 	fabs((_pBox->GetNewPos() - _pPlan->GetPos())*vNormal);
 	Vector3 vContact = ContactPoint;
 	float Phi = acosf(fabs(vContact*vNormal)/vContact.Module());
@@ -1814,7 +1814,7 @@ float Collider::FindDeltaT(Box* _pBox, Plan* _pPlan, Vector3 ContactPoint, Vecto
 			break;
 		}
 	}
-	return BorneInf;*/
+	return BorneInf;
 }
 
 
