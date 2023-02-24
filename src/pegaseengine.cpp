@@ -32,7 +32,7 @@
 #include "collider.hpp"
 #include "basebody.hpp"
 #include "sphere.hpp"
-#include "plan.hpp"
+#include "plane.hpp"
 #include "box.hpp"
 #include "camera.hpp"
 #include "image.hpp"

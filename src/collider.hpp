@@ -13,8 +13,8 @@
  
 #include "box.hpp"
 #include "sphere.hpp"
-#include "plan.hpp"
-#include "materiau.hpp"
+#include "plane.hpp"
+#include "material.hpp"
 
 using namespace std;
  

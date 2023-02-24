@@ -22,7 +22,7 @@
 #include <GL/glut.h>
 #endif
 
-#include "plan.hpp"
+#include "plane.hpp"
 
 // ---------------------------------------------------------------	
 // Name : Constructors

@@ -11,7 +11,7 @@
 #define __BASEBODY_H__
 
 #include "vector3.hpp"
-#include "materiau.hpp"
+#include "material.hpp"
 #include "force.hpp"
 
 #include <list>

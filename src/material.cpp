@@ -7,7 +7,7 @@
  *
  */
 
-#include "materiau.hpp"
+#include "material.hpp"
 
 // ---------------------------------------------------------------	
 // Name : Constructor
