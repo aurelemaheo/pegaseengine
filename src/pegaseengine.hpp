@@ -6,7 +6,7 @@
 class PegaseEngine
 {
   public:
-   PegaseEngine();
+   PegaseEngine(double dt) : timeStep(dt) {}
    ~PegaseEngine();
 
    void addBody(RigidBody body)
@@ -14,13 +14,10 @@ class PegaseEngine
      bodies.push_back(body);
    }
 
-   void update()
-   {
-    
-   }
-
+   void run();
    int destroy();
 
   private:
     std::vector<RigidBody> bodies;
+    double timeStep;
 };

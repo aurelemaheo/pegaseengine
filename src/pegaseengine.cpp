@@ -1,8 +1,15 @@
 #include <iostream>
 #include "pegaseengine.hpp"
 
-PegaseEngine::PegaseEngine()
+void PegaseEngine::run()
 {
-  std::cout << "Constructor" << std::endl;
+ 
+  while(true)
+  {
+    for(auto& body: bodies)
+    {
+      body.update(timeStep);
+    }
+  }
 
 }
