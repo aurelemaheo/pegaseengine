@@ -1,2 +1,4 @@
+- implement python wrapper
+- implement smart logger (caching)
 - implement Regular dodecahedron and add to collider
 
