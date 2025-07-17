@@ -12,7 +12,8 @@ file(
 	src/*
 )
 
-#include_directories(${source_files})
+include_directories("/Users/aurele/.pyenv/versions/3.10.10/lib/python3.10/site-packages/pybind11/include")
+include_directories("/Users/aurele/.pyenv/versions/3.10.10/include/python3.10")
 
 # Build static library
 add_library(pegaseengine STATIC ${source_files})
