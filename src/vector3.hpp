@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <cmath>
 
 class Vector3
 {
@@ -21,6 +22,16 @@ class Vector3
     Vector3 operator*(double scalar) const
     {
       return Vector3(_x * scalar, _y * scalar, _z * scalar);
+    }
+  
+    double dot(const Vector3& other)
+    {
+      return _x * other._x + _y * other._y + _z * other._z;
+    }
+
+    double magnitude() const
+    {
+      return std::sqrt(_x*_x + _y*_y + _z*_z);
     }
 
   private:

@@ -15,6 +15,8 @@ class PegaseEngine
    }
 
    void run();
+   bool checkCollision(RigidBody body);
+   void solveCollision(RigidBody body);
    int destroy();
 
   private:

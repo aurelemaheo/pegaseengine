@@ -14,6 +14,8 @@ class RigidBody : public BaseBody
 
    void update(double deltaTime)
    {
+     std::cout << "Rigid body : update " << std::endl;
+
      _vel = _vel + _acc * deltaTime;
      _pos = _pos + _vel * deltaTime;
    }
