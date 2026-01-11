@@ -16,6 +16,7 @@ include_directories("/Users/aurele/.pyenv/versions/3.10.10/lib/python3.10/site-p
 include_directories("/Users/aurele/.pyenv/versions/3.10.10/include/python3.10")
 
 # Build static library
-add_library(pegaseengine STATIC ${source_files})
+add_executable(pegaseengine ${source_files})
+#add_library(pegaseengine STATIC ${source_files})
 set_target_properties(pegaseengine PROPERTIES LINKER_LANGUAGE CXX)
 

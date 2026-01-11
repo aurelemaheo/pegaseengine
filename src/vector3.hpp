@@ -3,41 +3,34 @@
 #include <iostream>
 #include <cmath>
 
-class Vector3
-{
-  public:
+// ==================== 3D Vector ====================
+struct Vec3 {
+    double x, y, z;
 
-    Vector3(double _x = 0, double _y = 0, double _z = 0):_x(_x), _y(_y), _z(_z) {}
+    Vec3(double x = 0, double y = 0, double z = 0) : x(x), y(y), z(z) {}
 
-    Vector3 operator+(const Vector3& other) const
-    {
-      return Vector3(_x + other._x, _y + other._y, _z + other._y);
-    } 
-   
-    Vector3 operator*(Vector3& other) const
-    {
-      return Vector3(_x * other._x, _y * other._y, _z * other._z);
-    }  
+    Vec3 operator+(const Vec3& v) const { return Vec3(x + v.x, y + v.y, z + v.z); }
+    Vec3 operator-(const Vec3& v) const { return Vec3(x - v.x, y - v.y, z - v.z); }
+    Vec3 operator*(double s) const { return Vec3(x * s, y * s, z * s); }
+    Vec3 operator/(double s) const { return Vec3(x / s, y / s, z / s); }
 
-    Vector3 operator*(double scalar) const
-    {
-      return Vector3(_x * scalar, _y * scalar, _z * scalar);
-    }
-  
-    double dot(const Vector3& other)
-    {
-      return _x * other._x + _y * other._y + _z * other._z;
+    Vec3& operator+=(const Vec3& v) { x += v.x; y += v.y; z += v.z; return *this; }
+    Vec3& operator-=(const Vec3& v) { x -= v.x; y -= v.y; z -= v.z; return *this; }
+
+    double dot(const Vec3& v) const { return x * v.x + y * v.y + z * v.z; }
+    Vec3 cross(const Vec3& v) const {
+        return Vec3(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
     }
 
-    double magnitude() const
-    {
-      return std::sqrt(_x*_x + _y*_y + _z*_z);
+    double length() const { return std::sqrt(x * x + y * y + z * z); }
+    double lengthSquared() const { return x * x + y * y + z * z; }
+
+    Vec3 normalized() const {
+        double len = length();
+        return len > 0 ? *this / len : Vec3(0, 0, 0);
     }
 
-  private:
-
-    double _x;
-    double _y;
-    double _z;
-
+    void print() const {
+        std::cout << "(" << x << ", " << y << ", " << z << ")";
+    }
 };
