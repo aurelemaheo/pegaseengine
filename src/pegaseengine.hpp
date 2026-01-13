@@ -10,8 +10,8 @@
 struct RandomBodyConfig
 {
     // Range defining number of bodies to create
-    int minCount = 5;
-    int maxCount = 100;
+    int minCount = 2000;
+    int maxCount = 4000;
 
     // Range for body positions
     Vec3 positionMin = Vec3(-10, 5, -10);
