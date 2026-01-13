@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <chrono>
 #include <random>
+//#include <omp.h>
 
 #include "vector3.hpp"
 #include "rigidbody.hpp"
@@ -96,6 +97,7 @@ void PegaseEngine::step(double dt)
   }
         
   // Détecter et résoudre les collisions
+  //#pragma omp parallel for schedule(dynamic)
   for (size_t i = 0; i < bodies.size(); ++i) {
     for (size_t j = i + 1; j < bodies.size(); ++j) {
       CollisionInfo info;
