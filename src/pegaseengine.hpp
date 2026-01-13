@@ -9,37 +9,37 @@
 
 struct RandomBodyConfig
 {
-    // Plages pour le nombre d'objets
+    // Range defining number of bodies to create
     int minCount = 5;
     int maxCount = 100;
-    
-    // Plages pour la position
+
+    // Range for body positions
     Vec3 positionMin = Vec3(-10, 5, -10);
     Vec3 positionMax = Vec3(10, 30, 10);
-    
-    // Plages pour la vitesse initiale
+
+    // Range for initial velocity
     Vec3 velocityMin = Vec3(-5, -2, -5);
     Vec3 velocityMax = Vec3(5, 5, 5);
-    
-    // Plages pour la masse
+
+    // Range for mass
     double massMin = 0.5;
     double massMax = 5.0;
     
-    // Plages pour la taille des formes
+    // Range for shape sizes
     double sizeMin = 0.5;
     double sizeMax = 2.0;
     
-    // Plages pour les propriétés physiques
+    // Range for physical properties
     double restitutionMin = 0.3;
     double restitutionMax = 0.9;
     
     double frictionMin = 0.1;
     double frictionMax = 0.8;
-    
-    // Types de formes autorisées (si vide, toutes sont autorisées)
+
+    // Allowed shapes
     std::vector<ShapeType> allowedShapes;
     
-    // Seed pour la reproductibilité (0 = aléatoire basé sur le temps)
+    // Seed for reproducibility (0 = random based on time)
     unsigned int seed = 0;
 };
 

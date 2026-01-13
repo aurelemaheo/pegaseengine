@@ -21,6 +21,7 @@ RigidBody* PegaseEngine::addBody(const Vec3& pos, double mass, std::shared_ptr<C
         return ptr;
 }
 
+// Generate a random number of bodies for simulation
 void PegaseEngine::addRandomBodies(const RandomBodyConfig& config)
 {
   unsigned int actualseed = config.seed;
@@ -108,9 +109,9 @@ void PegaseEngine::step(double dt)
 
 void PegaseEngine::printState() 
 {
-    std::cout << "\n=== État du système ===" << std::endl;
+    std::cout << "\n=== System state ===" << std::endl;
     for (size_t i = 0; i < bodies.size(); ++i) {
-        std::cout << "Corps " << i << ": pos = ";
+        std::cout << "Body " << i << ": pos = ";
         bodies[i]->position.print();
         std::cout << ", vel = ";
         bodies[i]->velocity.print();
