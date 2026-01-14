@@ -5,13 +5,13 @@
 #include <algorithm>
 #include <chrono>
 #include <random>
-//#include <omp.h>
 
 #include "vector3.hpp"
 #include "rigidbody.hpp"
 #include "collider.hpp"
 #include "pegaseengine.hpp"
 
+#define PAR 1
 
 // Add a rigid body to the simulation
 RigidBody* PegaseEngine::addBody(const Vec3& pos, double mass, std::shared_ptr<CollisionShape> shape) 
@@ -90,14 +90,43 @@ void PegaseEngine::step(double dt)
       body->applyForce(gravity * body->mass);
     }
   }
-        
-  // Intégrer les mouvements
+
+  unsigned long timeStep1 = std::chrono::duration_cast<std::chrono::microseconds>
+        (std::chrono::system_clock::now().time_since_epoch()).count();
+
+  // Update body motions
+
+#if PAR == 1
+  // Parallel version
+
+  ParallelFor(0, bodies.size(), [&](size_t i) {
+    bodies[i]->integrate(dt);
+  });
+
+#else      
+  // Sequential version
   for (auto& body : bodies) {
     body->integrate(dt);
   }
-        
-  // Détecter et résoudre les collisions
-  //#pragma omp parallel for schedule(dynamic)
+ #endif // PAR
+
+  unsigned long timeStep2 = std::chrono::duration_cast<std::chrono::microseconds>
+        (std::chrono::system_clock::now().time_since_epoch()).count();
+
+  // Detect and solve collisions
+#if PAR == 1
+  // Parallel version
+  ParallelFor(0, bodies.size(), [&](size_t i) {
+    for (size_t j = i + 1; j < bodies.size(); ++j) {
+      CollisionInfo info;
+      if (Collider::checkCollision(bodies[i].get(), bodies[j].get(), info)) {
+        Collider::resolveCollision(info);
+      }
+    }
+  });
+
+#else
+  // Sequential version
   for (size_t i = 0; i < bodies.size(); ++i) {
     for (size_t j = i + 1; j < bodies.size(); ++j) {
       CollisionInfo info;
@@ -107,6 +136,14 @@ void PegaseEngine::step(double dt)
     }
   }
 
+#endif // PAR
+
+unsigned long timeStep3 = std::chrono::duration_cast<std::chrono::microseconds>
+  (std::chrono::system_clock::now().time_since_epoch()).count();
+
+std::cout << "Integration time: " << (timeStep2 - timeStep1) / 1e3 << " ms, ";
+std::cout << "Collision time: " << (timeStep3 - timeStep2) / 1e3 << " ms" << std::endl;
+  
 }
 
 void PegaseEngine::printState() 
