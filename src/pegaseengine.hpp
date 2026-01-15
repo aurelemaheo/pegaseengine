@@ -47,7 +47,7 @@ struct RandomBodyConfig
     // Range for mass
     double massMin = 0.5;
     double massMax = 5.0;
-    
+            
     // Range for shape sizes
     double sizeMin = 0.5;
     double sizeMax = 2.0;
@@ -68,7 +68,7 @@ struct RandomBodyConfig
 
 // ==================== Class for engine ====================
 class PegaseEngine {
-public:
+  public:
     std::vector<std::unique_ptr<RigidBody>> bodies;
     Vec3 gravity;
     
@@ -80,6 +80,13 @@ public:
     // Generate a random number of bodies for simulation 
     void addRandomBodies(const RandomBodyConfig& config);
 
-    void step(double dt);
+    // Run the simulation
+    void run(int numSteps, double dt);
+    //void step(double dt);
     void printState();
+
+  private:
+     void step(double dt);
+ 
+
 };

@@ -146,6 +146,14 @@ std::cout << "Collision time: " << (timeStep3 - timeStep2) / 1e3 << " ms" << std
   
 }
 
+void PegaseEngine::run(int numSteps, double dt) 
+{
+    // Main simulation loop (not implemented here)
+    for(int i=0 ; i<numSteps ; ++i) {
+        step(dt);
+    }
+}
+
 void PegaseEngine::printState() 
 {
     std::cout << "\n=== System state ===" << std::endl;

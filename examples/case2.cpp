@@ -29,7 +29,10 @@ int main() {
     
     unsigned long startSimTime = std::chrono::duration_cast<std::chrono::microseconds>
         (std::chrono::system_clock::now().time_since_epoch()).count();
-    
+   
+    engine.run(steps, timeStep);
+
+    /*
     for (int i = 0; i < steps; ++i) {
         engine.step(timeStep);
         totalTime += timeStep;
@@ -40,6 +43,7 @@ int main() {
             //engine.printState();
         }
     }
+    */
 
     unsigned long endSimTime = std::chrono::duration_cast<std::chrono::microseconds>
         (std::chrono::system_clock::now().time_since_epoch()).count();
