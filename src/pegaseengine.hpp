@@ -4,6 +4,7 @@
 #include <vector>
 #include <thread>
 #include <future>
+#include <set>
 
 #include "vector3.hpp"
 #include "rigidbody.hpp"
@@ -69,7 +70,7 @@ struct RandomBodyConfig
 // ==================== Class for engine ====================
 class PegaseEngine {
   public:
-    std::vector<std::unique_ptr<RigidBody>> bodies;
+    std::vector<RigidBody*> bodies;
     Vec3 gravity;
     
     PegaseEngine() : gravity(0, -9.81, 0) {}
@@ -79,6 +80,12 @@ class PegaseEngine {
     
     // Generate a random number of bodies for simulation 
     void addRandomBodies(const RandomBodyConfig& config);
+    // Broad phase stage: parse space tree and find potential collisions
+    void BroadPhase();
+    // Narrow phase stage: check potential collisions and resolve them
+    void NarrowPhase();
+
+    void UpdateObjectAABB();
 
     // Run the simulation
     void run(int numSteps, double dt);
@@ -87,6 +94,9 @@ class PegaseEngine {
 
   private:
      void step(double dt);
- 
+     void basicStep(double dt);
+     void broadPhaseStep(double dt);
+
+     std::set<Collider::CollisionInfo> broadphaseCollisions;
 
 };

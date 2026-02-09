@@ -1,5 +1,3 @@
-#pragma once
-
 #include "collider.hpp"
 
 // Check collision between each pair of bodies and body shape type

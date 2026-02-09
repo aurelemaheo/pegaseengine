@@ -6,8 +6,11 @@
 
 // ==================== Forme de collision ====================
 enum class ShapeType {
+    AABB,
+    OOB,
     SPHERE,
     BOX,
+    MESH,
     PLANE
 };
 
@@ -57,6 +60,40 @@ public:
           mass(m), restitution(0.6), friction(0.3), shape(s), isStatic(false) {
         inverseMass = (m > 0) ? 1.0 / m : 0.0;
     }
+
+    bool GetBroadphaseAABB(Vec3& outSize) {
+        if (shape->type == ShapeType::SPHERE) {
+            SphereShape* sphere = static_cast<SphereShape*>(shape.get());
+            outSize = Vec3(sphere->radius, sphere->radius, sphere->radius);
+            return true;
+        } else if (shape->type == ShapeType::BOX) {
+            BoxShape* box = static_cast<BoxShape*>(shape.get());
+            outSize = box->halfExtents;
+            return true;
+        }
+        return false; // AABB non supporté pour cette forme
+    }
+
+    void UpdateBroadphaseAABB() {
+
+        if(shape->type == ShapeType::AABB) {
+            // AABB pour une sphère : centre = position, demi-dimensions = rayon
+            // Pas besoin de stocker séparément, on peut calculer à la volée
+            broadphaseAABB = GetHalfDimensions(); 
+        } else if (shape->type == ShapeType::SPHERE) {
+            SphereShape* sphere = static_cast<SphereShape*>(shape.get());
+            // AABB pour une sphère : centre = position, demi-dimensions = rayon
+            // Pas besoin de stocker séparément, on peut calculer à la volée
+            broadphaseAABB = Vec3(sphere->radius, sphere->radius, sphere->radius);
+        }
+        else if(shape->type == ShapeType::BOX) {
+            BoxShape* box = static_cast<BoxShape*>(shape.get());
+            // AABB pour une boîte : centre = position, demi-dimensions = halfExtents
+            // Pas besoin de stocker séparément, on peut calculer à la volée
+            broadphaseAABB = box->halfExtents;
+        }
+
+    }
     
     void applyForce(const Vec3& f) {
         if (!isStatic) {
@@ -87,5 +124,16 @@ public:
         inverseMass = 0.0;
         velocity = Vec3(0, 0, 0);
     }
+
+    Vec3 GetHalfDimensions() {
+        return halfSizes;
+    }
+    
+    Vec3 getPosition() const { return position; }
+
+private:
+    Vec3 halfSizes; // Stocke les demi-dimensions pour les formes AABB et BOX
+    Vec3 broadphaseAABB; // Stocke les demi-dimensions de l'AABB pour la phase de détection large
+
 };
 
