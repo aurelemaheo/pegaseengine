@@ -14,14 +14,14 @@ class Collider
     struct CollisionInfo {
       RigidBody* bodyA;
       RigidBody* bodyB;
-      Vec3 normal;        // Normal de collision (de A vers B)
-      double penetration; // Profondeur de pénétration
-      Vec3 contactPoint;  // Point de contact
+      Vec3 normal;        
+      double penetration; 
+      Vec3 contactPoint;  
 
       CollisionInfo() : bodyA(nullptr), bodyB(nullptr), penetration(0) {}
 
       bool operator < ( const CollisionInfo & other ) const {
-        size_t otherHash = ( size_t ) other . bodyA + (( size_t ) other . bodyB << 8);
+        size_t otherHash = ( size_t ) other.bodyA + (( size_t ) other.bodyB << 8);
         size_t thisHash = ( size_t ) bodyA + (( size_t ) bodyB << 8);
 
         return ( thisHash < otherHash );
