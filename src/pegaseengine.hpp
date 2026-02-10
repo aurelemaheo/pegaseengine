@@ -9,6 +9,7 @@
 #include "vector3.hpp"
 #include "rigidbody.hpp"
 #include "collider.hpp"
+#include "pegaseengine.hpp"
 
 template<typename Func>
 void ParallelFor(size_t start, size_t end, Func f) {
@@ -70,7 +71,6 @@ struct RandomBodyConfig
 // ==================== Class for engine ====================
 class PegaseEngine {
   public:
-    std::vector<RigidBody*> bodies;
     Vec3 gravity;
     
     PegaseEngine() : gravity(0, -9.81, 0) {}
@@ -93,10 +93,16 @@ class PegaseEngine {
     void printState();
 
   private:
+
+     std::set<Collider::CollisionInfo> broadphaseCollisions;
+     std::unique_ptr<Octree<RigidBody*>> octree;
+     std::vector<RigidBody*> bodies;
+
      void step(double dt);
      void basicStep(double dt);
      void broadPhaseStep(double dt);
-
-     std::set<Collider::CollisionInfo> broadphaseCollisions;
+     void prepareBroadPhase();
+     void execBroadPhase();
+     void execNarrowPhase();
 
 };

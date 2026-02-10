@@ -28,8 +28,6 @@ class Collider
       }
     };
 
-
-
     static bool checkCollision(RigidBody* a, RigidBody* b, CollisionInfo& info);
     static void resolveCollision(CollisionInfo& info);
     static bool AABBTest(const Vec3& posA, const Vec3& posB,

@@ -91,6 +91,32 @@ void PegaseEngine::UpdateObjectAABB()
     }
 }
 
+void PegaseEngine::prepareBroadPhase() {
+  octree = std::make_unique<Octree<RigidBody*>>(
+    Vec3{1024, 1024, 1024}, 7);
+        
+  for (auto& body : bodies) {
+    Vec3 halfSizes;
+    body->GetBroadphaseAABB(halfSizes);
+    octree->Insert(body, body->getPosition(), halfSizes);
+  }
+}
+
+void PegaseEngine::execBroadPhase() {
+  broadphaseCollisions.clear();
+
+  octree->OperateOnContents([&](std::list<OctreeEntry<RigidBody*>>& entries) {
+    Collider::CollisionInfo info;
+    for(auto it1 = entries.begin(); it1 != entries.end(); it1++) {
+      for(auto it2 = std::next(it1); it2 != entries.end(); it2++) {
+        info.bodyA = it1->object;
+        info.bodyB = it2->object;
+        broadphaseCollisions.insert(info);
+      }
+    }
+  });
+}
+
 // Broad phase function
 void PegaseEngine::BroadPhase()
 {
@@ -121,6 +147,16 @@ void PegaseEngine::BroadPhase()
 
     });
 
+}
+
+void PegaseEngine::execNarrowPhase() {
+  for(std::set<Collider::CollisionInfo>::iterator it = broadphaseCollisions.begin(); 
+    it != broadphaseCollisions.end(); ++it) {
+    Collider::CollisionInfo info = *it;
+      if (Collider::checkCollision(info.bodyA, info.bodyB, info)) {
+          Collider::resolveCollision(info);
+      }
+  }
 }
 
 // Narrow phase function
@@ -201,7 +237,7 @@ std::cout << "Collision time: " << (timeStep3 - timeStep2) / 1e3 << " ms" << std
 
 void PegaseEngine::broadPhaseStep(double dt) 
 {
-    BroadPhase();
+    prepareBroadPhase();
     NarrowPhase();
 }
 
@@ -262,11 +298,11 @@ void PegaseEngine::step(double dt)
 
 #endif // PAR
 
-unsigned long timeStep3 = std::chrono::duration_cast<std::chrono::microseconds>
-  (std::chrono::system_clock::now().time_since_epoch()).count();
+  unsigned long timeStep3 = std::chrono::duration_cast<std::chrono::microseconds>
+    (std::chrono::system_clock::now().time_since_epoch()).count();
 
-std::cout << "Integration time: " << (timeStep2 - timeStep1) / 1e3 << " ms, ";
-std::cout << "Collision time: " << (timeStep3 - timeStep2) / 1e3 << " ms" << std::endl;
+  std::cout << "Integration time: " << (timeStep2 - timeStep1) / 1e3 << " ms, ";
+  std::cout << "Collision time: " << (timeStep3 - timeStep2) / 1e3 << " ms" << std::endl;
   
 }
 

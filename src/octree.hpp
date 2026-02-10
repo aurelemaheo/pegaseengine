@@ -17,7 +17,7 @@ struct OctreeEntry {
 
 };
 
-// Class describing Octree node and related operations such body insertion
+// Class describing Octree node and related operations such body insertion and content processing
 template <class T>
 class OctreeNode {
 public:
@@ -100,7 +100,6 @@ public:
     Vec3 volume;
     OctreeNode<T>* children;
 
-
 };
 
 // Template class describing an octree for spatial partitioning, used in broad phase collision detection
@@ -114,7 +113,7 @@ public:
 
     } 
 
-    void Insert(T object, Vec3& pos, Vec3& size) {
+    void Insert(T object, const Vec3& pos, Vec3& size) {
         root->Insert(object, pos, size, depthLeft, maxVolume);
     }
 

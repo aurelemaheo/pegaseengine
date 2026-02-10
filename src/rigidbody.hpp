@@ -38,7 +38,7 @@ struct PlaneShape : public CollisionShape {
 };
 
 
-// ==================== Corps rigide ====================
+// ==================== Rigid body : position, velocity, acceleration, force ====================
 class RigidBody {
 public:
     Vec3 position;
