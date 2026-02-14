@@ -41,8 +41,11 @@ class Collider
     }
 
   private:
+    // Collision detection handling sphere versus sphere
     static bool sphereVsSphere(RigidBody* a, RigidBody* b, CollisionInfo& info);
+    // Collision detection handling sphere versus plane
     static bool sphereVsPlane(RigidBody* sphere, RigidBody* plane, CollisionInfo& info);
+    // Collision detection handling box versus box 
     static bool boxVsBox(RigidBody* a, RigidBody* b, CollisionInfo& info);
     static void correctPosition(CollisionInfo& info);
     static void applyFriction(CollisionInfo& info, const Vec3& relativeVelocity, double normalImpulse);

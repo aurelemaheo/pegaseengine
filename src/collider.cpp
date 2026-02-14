@@ -37,26 +37,23 @@ bool Collider::checkCollision(RigidBody* a, RigidBody* b, CollisionInfo& info)
         RigidBody* a = info.bodyA;
         RigidBody* b = info.bodyB;
 
-        // Correction de position (projection)
+        // Correct body position
         correctPosition(info);
 
-        // Calculer la vitesse relative
+        // Calculate relative speed
         Vec3 relativeVelocity = b->velocity - a->velocity;
         double velocityAlongNormal = relativeVelocity.dot(info.normal);
 
-        // Ne résoudre que si les objets se rapprochent
+        // Solve only if bodies are moving towards each other
         if (velocityAlongNormal > 0) return;
 
-        // Calculer le coefficient de restitution
         double restitution = std::min(a->restitution, b->restitution);
 
-        // Calculer l'impulsion
         double impulseScalar = -(1.0 + restitution) * velocityAlongNormal;
         impulseScalar /= (a->inverseMass + b->inverseMass);
 
         Vec3 impulse = info.normal * impulseScalar;
 
-        // Appliquer l'impulsion
         a->applyImpulse(impulse * -1.0);
         b->applyImpulse(impulse);
 
