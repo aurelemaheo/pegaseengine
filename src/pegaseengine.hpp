@@ -79,7 +79,7 @@ class PegaseEngine {
     RigidBody* addBody(const Vec3& pos, double mass, std::shared_ptr<CollisionShape> shape);
     
     // Generate a random number of bodies for simulation 
-    void addRandomBodies(const RandomBodyConfig& config);
+    void genBodies(const RandomBodyConfig& config);
     // Broad phase stage: parse space tree and find potential collisions
     void BroadPhase();
     // Narrow phase stage: check potential collisions and resolve them

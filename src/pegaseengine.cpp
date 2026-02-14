@@ -26,7 +26,7 @@
 //}
 
 // Generate a random number of bodies for simulation
-void PegaseEngine::addRandomBodies(const RandomBodyConfig& config)
+void PegaseEngine::genBodies(const RandomBodyConfig& config)
 {
   unsigned int actualseed = config.seed;
 
