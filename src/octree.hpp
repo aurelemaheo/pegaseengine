@@ -1,3 +1,4 @@
+#pragma once
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -58,7 +59,7 @@ public:
         }
     }
 
-    typedef std::function<void(std::list<OctreeEntry<T>>&)> OctreeFunc; 
+    typedef std::function<void(std::list<OctreeEntry<T> >&)> OctreeFunc; 
 
     void OperateOnContents(const typename OctreeNode<T>::OctreeFunc& func) {
 
@@ -92,7 +93,7 @@ public:
         children[7] = OctreeNode(position + Vec3( quarterSize.x, -quarterSize.y, -quarterSize.z), halfSize); 
     }
 
-    std::list<OctreeEntry<T>> contents;
+    std::list<OctreeEntry<T> > contents;
 
     private:
 

@@ -9,8 +9,9 @@
 #include "vector3.hpp"
 #include "rigidbody.hpp"
 #include "collider.hpp"
-#include "pegaseengine.hpp"
+#include "octree.hpp"
 
+/*
 template<typename Func>
 void ParallelFor(size_t start, size_t end, Func f) {
 
@@ -18,19 +19,20 @@ void ParallelFor(size_t start, size_t end, Func f) {
   unsigned int num_threads = std::thread::hardware_concurrency();
   size_t ckSize = (end - start) / num_threads;
 
-  std::vector<std::future<void>> futures;
+  std::vector<std::future<void> > futures;
 
     for(unsigned int t = 0; t < num_threads; ++t) {
         size_t chunk_start = start + t * ckSize;
         size_t chunk_end = (t == num_threads - 1) ? end : chunk_start + ckSize;
     
-        futures.push_back(std::async(std::launch::async, [chunk_start, chunk_end, &f]() {
+        futures.push_back(std::launch::async(std::launch::async, [chunk_start, chunk_end, &f]() {
         for(size_t i = chunk_start; i < chunk_end; ++i) {
             f(i);
         }
         }));
     }  
 }
+*/
 
 struct RandomBodyConfig
 {
@@ -95,11 +97,12 @@ class PegaseEngine {
   private:
 
      std::set<Collider::CollisionInfo> broadphaseCollisions;
-     std::unique_ptr<Octree<RigidBody*>> octree;
+     std::unique_ptr<Octree<RigidBody*> > octree;
      std::vector<RigidBody*> bodies;
 
      void step(double dt);
      void basicStep(double dt);
+     void broadphaseStep(double dt);
      void broadPhaseStep(double dt);
      void prepareBroadPhase();
      void execBroadPhase();

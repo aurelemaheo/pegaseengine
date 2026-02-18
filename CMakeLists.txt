@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.22)
 # Project name
 project(pegaseengine)
 #set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 # Enable OpenMP
 #find_package(OpenMP)

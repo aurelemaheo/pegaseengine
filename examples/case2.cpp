@@ -18,7 +18,7 @@ int main() {
     std::cout << "Simulation of rigid bodies with gravity and collisions\n" << std::endl;
    
     RandomBodyConfig config;
-    engine.addRandomBodies(config);
+    engine.genBodies(config);
 
     // Simulation
     double timeStep = 0.016;  // ~60 FPS

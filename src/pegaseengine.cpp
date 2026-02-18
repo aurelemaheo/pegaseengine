@@ -92,6 +92,7 @@ void PegaseEngine::UpdateObjectAABB()
 }
 
 void PegaseEngine::prepareBroadPhase() {
+  std::cout << "prepare BroadPhase" << std::endl;
   octree = std::make_unique<Octree<RigidBody*>>(
     Vec3{1024, 1024, 1024}, 7);
         
@@ -103,6 +104,7 @@ void PegaseEngine::prepareBroadPhase() {
 }
 
 void PegaseEngine::execBroadPhase() {
+  std::cout << "exec BroadPhase" << std::endl;
   broadphaseCollisions.clear();
 
   octree->OperateOnContents([&](std::list<OctreeEntry<RigidBody*>>& entries) {
@@ -150,6 +152,7 @@ void PegaseEngine::BroadPhase()
 }
 
 void PegaseEngine::execNarrowPhase() {
+  std::cout << "exec NarrowPhase" << std::endl;
   for(std::set<Collider::CollisionInfo>::iterator it = broadphaseCollisions.begin(); 
     it != broadphaseCollisions.end(); ++it) {
     Collider::CollisionInfo info = *it;
@@ -185,26 +188,10 @@ void PegaseEngine::basicStep(double dt)
   unsigned long timeStep1 = std::chrono::duration_cast<std::chrono::microseconds>
         (std::chrono::system_clock::now().time_since_epoch()).count();
 
-#if PAR == 1
-  // Parallel version
-
-  ParallelFor(0, bodies.size(), [&](size_t i) {
-    bodies[i]->integrate(dt);
-  });
-
-#else      
-  // Sequential version
-  for (auto& body : bodies) {
-    body->integrate(dt);
-  }
- #endif // PAR
-
-  unsigned long timeStep2 = std::chrono::duration_cast<std::chrono::microseconds>
-        (std::chrono::system_clock::now().time_since_epoch()).count();
-
   // Detect and solve collisions
 #if PAR == 1
   // Parallel version
+  /*
   ParallelFor(0, bodies.size(), [&](size_t i) {
     for (size_t j = i + 1; j < bodies.size(); ++j) {
       Collider::CollisionInfo info;
@@ -213,7 +200,7 @@ void PegaseEngine::basicStep(double dt)
       }
     }
   });
-
+  */
 #else
   // Sequential version
   for (size_t i = 0; i < bodies.size(); ++i) {
@@ -227,18 +214,23 @@ void PegaseEngine::basicStep(double dt)
 
 #endif // PAR
 
-unsigned long timeStep3 = std::chrono::duration_cast<std::chrono::microseconds>
-  (std::chrono::system_clock::now().time_since_epoch()).count();
-
-std::cout << "Integration time: " << (timeStep2 - timeStep1) / 1e3 << " ms, ";
-std::cout << "Collision time: " << (timeStep3 - timeStep2) / 1e3 << " ms" << std::endl;
- 
 }
 
-void PegaseEngine::broadPhaseStep(double dt) 
+
+// Simulation step function
+void PegaseEngine::broadphaseStep(double dt) 
 {
-    prepareBroadPhase();
-    NarrowPhase();
+  for (auto& body : bodies) {
+    body->integrate(dt);
+  }
+
+  // Insert bodies 
+  prepareBroadPhase();
+  // Maintain broadphase collision pairs
+  execBroadPhase();
+  // Check and resolve collisions
+  execNarrowPhase();
+
 }
 
 void PegaseEngine::step(double dt)
@@ -250,67 +242,17 @@ void PegaseEngine::step(double dt)
       body->applyForce(gravity * body->mass);
     }
   }
-
   
   unsigned long timeStep1 = std::chrono::duration_cast<std::chrono::microseconds>
         (std::chrono::system_clock::now().time_since_epoch()).count();
 
-
-#if PAR == 1
-  // Parallel version
-
-  ParallelFor(0, bodies.size(), [&](size_t i) {
-    bodies[i]->integrate(dt);
-  });
-
-#else      
-  // Sequential version
-  for (auto& body : bodies) {
-    body->integrate(dt);
-  }
- #endif // PAR
-
-  unsigned long timeStep2 = std::chrono::duration_cast<std::chrono::microseconds>
-        (std::chrono::system_clock::now().time_since_epoch()).count();
-
-  // Detect and solve collisions
-#if PAR == 1
-  // Parallel version
-  ParallelFor(0, bodies.size(), [&](size_t i) {
-    for (size_t j = i + 1; j < bodies.size(); ++j) {
-      Collider::CollisionInfo info;
-      if (Collider::checkCollision(bodies[i], bodies[j], info)) {
-        Collider::resolveCollision(info);
-      }
-    }
-  });
-
-#else
-  // Sequential version
-  for (size_t i = 0; i < bodies.size(); ++i) {
-    for (size_t j = i + 1; j < bodies.size(); ++j) {
-      CollisionInfo info;
-      if (Collider::checkCollision(bodies[i].get(), bodies[j].get(), info)) {
-        Collider::resolveCollision(info);
-      }
-    }
-  }
-
-#endif // PAR
-
-  unsigned long timeStep3 = std::chrono::duration_cast<std::chrono::microseconds>
-    (std::chrono::system_clock::now().time_since_epoch()).count();
-
-  std::cout << "Integration time: " << (timeStep2 - timeStep1) / 1e3 << " ms, ";
-  std::cout << "Collision time: " << (timeStep3 - timeStep2) / 1e3 << " ms" << std::endl;
-  
 }
 
 void PegaseEngine::run(int numSteps, double dt) 
 {
     // Main simulation loop (not implemented here)
     for(int i=0 ; i<numSteps ; ++i) {
-        step(dt);
+        broadphaseStep(dt);
     }
 }
 
