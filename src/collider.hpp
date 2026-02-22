@@ -5,12 +5,15 @@
 #include "vector3.hpp"
 #include "rigidbody.hpp"
 
-// Class handling collision detection and resolution between rigid bodies
+/*
+* @class Collidier 
+* @brief Class handling collision detection and resolution between rigid bodies
+*/
 class Collider
 {
   public:
 
-    // ==================== Collision Information ====================
+    // Collision Information Structure 
     struct CollisionInfo {
       RigidBody* bodyA;
       RigidBody* bodyB;

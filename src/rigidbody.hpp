@@ -4,7 +4,7 @@
 
 #include "vector3.hpp"
 
-// ==================== Forme de collision ====================
+// Collision shape
 enum class ShapeType {
     AABB,
     OOB,
@@ -25,20 +25,24 @@ struct SphereShape : public CollisionShape {
 };
 
 struct BoxShape : public CollisionShape {
-    Vec3 halfExtents;  // Demi-dimensions (largeur/2, hauteur/2, profondeur/2)
+    Vec3 halfExtents;  // Semi dimensions (width/2, height/2, depth/2)
     BoxShape(const Vec3& extents) : halfExtents(extents) { type = ShapeType::BOX; }
 };
 
 struct PlaneShape : public CollisionShape {
     Vec3 normal;
-    double distance;  // Distance de l'origine
+    double distance;  // Distance from origin
     PlaneShape(const Vec3& n, double d) : normal(n.normalized()), distance(d) {
         type = ShapeType::PLANE;
     }
 };
 
 
-// ==================== Rigid body : position, velocity, acceleration, force ====================
+/* 
+ * Rigid body : position, velocity, acceleration, force 
+ * @brief  Class representing a rigid body in the physics engine, with properties and methods for physics simulation
+ */
+
 class RigidBody {
 public:
     Vec3 position;
@@ -48,12 +52,12 @@ public:
     
     double mass;
     double inverseMass;
-    double restitution;  // Coefficient de rebond (0 = inélastique, 1 = élastique parfait)
-    double friction;     // Coefficient de friction
+    double restitution;  // Bouncing coefficient  (0 = inélastique, 1 = élastique parfait)
+    double friction;     // Friction coefficient
     
     std::shared_ptr<CollisionShape> shape;
     
-    bool isStatic;  // Les objets statiques ne bougent pas
+    bool isStatic;  // Static bodies do not move
     
     RigidBody(const Vec3& pos, double m, std::shared_ptr<CollisionShape> s)
         : position(pos), velocity(0, 0, 0), acceleration(0, 0, 0), force(0, 0, 0),
@@ -71,25 +75,22 @@ public:
             outSize = box->halfExtents;
             return true;
         }
-        return false; // AABB non supporté pour cette forme
+        return false; // AABB not supported for this shape type
     }
 
     void UpdateBroadphaseAABB() {
 
         if(shape->type == ShapeType::AABB) {
-            // AABB pour une sphère : centre = position, demi-dimensions = rayon
+            // AABB for a sphere
             // Pas besoin de stocker séparément, on peut calculer à la volée
             broadphaseAABB = GetHalfDimensions(); 
         } else if (shape->type == ShapeType::SPHERE) {
             SphereShape* sphere = static_cast<SphereShape*>(shape.get());
-            // AABB pour une sphère : centre = position, demi-dimensions = rayon
-            // Pas besoin de stocker séparément, on peut calculer à la volée
             broadphaseAABB = Vec3(sphere->radius, sphere->radius, sphere->radius);
         }
         else if(shape->type == ShapeType::BOX) {
             BoxShape* box = static_cast<BoxShape*>(shape.get());
-            // AABB pour une boîte : centre = position, demi-dimensions = halfExtents
-            // Pas besoin de stocker séparément, on peut calculer à la volée
+            // AABB for a box : center = position, semi dimensions = halfExtents
             broadphaseAABB = box->halfExtents;
         }
 
@@ -110,12 +111,12 @@ public:
     void integrate(double dt) {
         if (isStatic) return;
         
-        // Intégration de Verlet semi-implicite
+        // Integrate Verlet semi-implicit
         acceleration = force * inverseMass;
         velocity += acceleration * dt;
         position += velocity * dt;
         
-        // Réinitialiser les forces
+        // Reset forces
         force = Vec3(0, 0, 0);
     }
     
@@ -132,8 +133,8 @@ public:
     Vec3 getPosition() const { return position; }
 
 private:
-    Vec3 halfSizes; // Stocke les demi-dimensions pour les formes AABB et BOX
-    Vec3 broadphaseAABB; // Stocke les demi-dimensions de l'AABB pour la phase de détection large
+    Vec3 halfSizes; // Store semi dimensions for AABB and BOX shapes
+    Vec3 broadphaseAABB; // Store the half dimensions of the AABB for broadphase detection
 
 };
 

@@ -70,7 +70,7 @@ struct RandomBodyConfig
     unsigned int seed = 0;
 };
 
-// ==================== Class for engine ====================
+// @brief Class for engine management and simulation control ====================
 class PegaseEngine {
   public:
     Vec3 gravity;

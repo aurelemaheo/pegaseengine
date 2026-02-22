@@ -18,7 +18,10 @@ struct OctreeEntry {
 
 };
 
-// Class describing Octree node and related operations such body insertion and content processing
+/*
+* @class OctreeNode 
+* @brief  Class describing Octree node and related operations such body insertion and content processing
+*/
 template <class T>
 class OctreeNode {
 public:
@@ -103,7 +106,10 @@ public:
 
 };
 
-// Template class describing an octree for spatial partitioning, used in broad phase collision detection
+/*
+* @class Octree
+*  @brief Template class describing an octree for spatial partitioning, used in broad phase collision detection
+*/
 template <class T>
 class Octree {
 public: 

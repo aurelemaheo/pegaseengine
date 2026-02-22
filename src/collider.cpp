@@ -1,3 +1,5 @@
+// @brief collider.hpp
+
 #include "collider.hpp"
 
 // Check collision between each pair of bodies and body shape type
@@ -32,6 +34,7 @@ bool Collider::checkCollision(RigidBody* a, RigidBody* b, CollisionInfo& info)
         return false;
     }
 
+    // Solve collision by applying calculations 
     void Collider::resolveCollision(CollisionInfo& info) 
     {
         RigidBody* a = info.bodyA;
@@ -61,6 +64,7 @@ bool Collider::checkCollision(RigidBody* a, RigidBody* b, CollisionInfo& info)
         applyFriction(info, relativeVelocity, impulseScalar);
     }
 
+    // Collision detection handling sphere versus sphere
     bool Collider::sphereVsSphere(RigidBody* a, RigidBody* b, CollisionInfo& info) 
     {
         auto sphereA = std::static_pointer_cast<SphereShape>(a->shape);
@@ -80,6 +84,7 @@ bool Collider::checkCollision(RigidBody* a, RigidBody* b, CollisionInfo& info)
         return false;
     }
 
+    // Sphere versus Plane collision detection
     bool Collider::sphereVsPlane(RigidBody* sphere, RigidBody* plane, CollisionInfo& info) 
     {
         auto sphereShape = std::static_pointer_cast<SphereShape>(sphere->shape);
@@ -96,29 +101,30 @@ bool Collider::checkCollision(RigidBody* a, RigidBody* b, CollisionInfo& info)
         return false;
     }
 
+    // Collision detection between two boxes  
     bool Collider::boxVsBox(RigidBody* a, RigidBody* b, CollisionInfo& info) 
     {
         auto boxA = std::static_pointer_cast<BoxShape>(a->shape);
         auto boxB = std::static_pointer_cast<BoxShape>(b->shape);
 
-        // Test AABB simple (Axis-Aligned Bounding Box)
+        // Simple AABB test (Axis-Aligned Bounding Box)
         Vec3 minA = a->position - boxA->halfExtents;
         Vec3 maxA = a->position + boxA->halfExtents;
         Vec3 minB = b->position - boxB->halfExtents;
         Vec3 maxB = b->position + boxB->halfExtents;
 
-        // Test de chevauchement sur chaque axe
+        // Overlap test on each axis
         bool overlapX = maxA.x >= minB.x && maxB.x >= minA.x;
         bool overlapY = maxA.y >= minB.y && maxB.y >= minA.y;
         bool overlapZ = maxA.z >= minB.z && maxB.z >= minA.z;
 
         if (overlapX && overlapY && overlapZ) {
-            // Calculer la pénétration sur chaque axe
+            // Calculate penetration on each axis
             double penX = std::min(maxA.x - minB.x, maxB.x - minA.x);
             double penY = std::min(maxA.y - minB.y, maxB.y - minA.y);
             double penZ = std::min(maxA.z - minB.z, maxB.z - minA.z);
 
-            // Trouver l'axe de pénétration minimale
+            // Find the minimal penetration axis
             if (penX < penY && penX < penZ) {
                 info.penetration = penX;
                 info.normal = (b->position.x > a->position.x) ? Vec3(1, 0, 0) : Vec3(-1, 0, 0);
@@ -138,8 +144,8 @@ bool Collider::checkCollision(RigidBody* a, RigidBody* b, CollisionInfo& info)
 
     void Collider::correctPosition(CollisionInfo& info) 
     {
-        const double percent = 0.8;  // Pourcentage de correction
-        const double slop = 0.01;    // Seuil de pénétration autorisée
+        const double percent = 0.8;  // Percentage of correction
+        const double slop = 0.01;    // Penetration allowance
 
         double correctionAmount = std::max(info.penetration - slop, 0.0) /
                                   (info.bodyA->inverseMass + info.bodyB->inverseMass) * percent;
@@ -159,17 +165,17 @@ bool Collider::checkCollision(RigidBody* a, RigidBody* b, CollisionInfo& info)
         RigidBody* a = info.bodyA;
         RigidBody* b = info.bodyB;
 
-        // Calculer la vitesse tangentielle
+        // Calculate tangential speed 
         Vec3 tangent = relativeVelocity - info.normal * relativeVelocity.dot(info.normal);
         double tangentLength = tangent.length();
 
         if (tangentLength > 0.0001) {
             tangent = tangent / tangentLength;
 
-            // Coefficient de friction
+            // Coefficient of friction
             double friction = std::sqrt(a->friction * b->friction);
 
-            // Impulsion de friction (loi de Coulomb)
+            // Impulsion of friction (Coulomb law)
             double frictionImpulse = -tangentLength / (a->inverseMass + b->inverseMass);
             frictionImpulse = std::max(-std::abs(normalImpulse) * friction,
                                        std::min(frictionImpulse, std::abs(normalImpulse) * friction));

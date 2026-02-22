@@ -1,3 +1,4 @@
+// @file island.hpp
 
 #include <vector>
 #include <map>
@@ -75,4 +76,6 @@ class IslandDetector
                 RigidBody* neighbor = bodies[neighborId].get();
                 exploreIsland(neighbor, graph, visited, island, bodies);
             }
+
+        }
 };
