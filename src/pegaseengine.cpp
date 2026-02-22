@@ -17,13 +17,13 @@
 #define PAR 1
 
 // Add a rigid body to the simulation
-//RigidBody* PegaseEngine::addBody(const Vec3& pos, double mass, std::shared_ptr<CollisionShape> shape) 
-//{
-//        auto body = std::make_unique<RigidBody>(pos, mass, shape);
-//        RigidBody* ptr = body.get();
-//        bodies.push_back(body);
-//        return ptr;
-//}
+RigidBody* PegaseEngine::addBody(const Vec3& pos, double mass, std::shared_ptr<CollisionShape> shape) 
+{
+       auto body = std::make_unique<RigidBody>(pos, mass, shape);
+        RigidBody* ptr = body.get();
+        //bodies.push_back(body);
+       return ptr;
+}
 
 // Generate a random number of bodies for simulation
 void PegaseEngine::genBodies(const RandomBodyConfig& config)

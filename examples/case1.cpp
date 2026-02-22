@@ -43,17 +43,8 @@ int main() {
     int steps = 200;
     
     std::cout << "Début de la simulation..." << std::endl;
-    
-    for (int i = 0; i < steps; ++i) {
-        engine.step(timeStep);
-        totalTime += timeStep;
-        
-        // Afficher l'état tous les 30 pas
-        if (i % 30 == 0) {
-            std::cout << "\nTemps: " << totalTime << "s";
-            engine.printState();
-        }
-    }
+
+    engine.run(steps, timeStep);
     
     std::cout << "\n\n=== Simulation terminée ===" << std::endl;
     std::cout << "Temps total simulé: " << totalTime << " secondes" << std::endl;
